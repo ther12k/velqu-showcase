@@ -1,0 +1,389 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VelquView Tailwind Showcase</title>
+</head>
+<body class="bg-slate-100">
+  <main class="p-12">
+    <header class="m-0">
+      <h1 class="m-0 text-3xl font-bold text-slate-900">VelquView Tailwind Showcase</h1>
+      <p class="m-0 mt-2 text-sm text-slate-500">Every HTML element and Tailwind utility the renderer supports, in one page. Sections marked "native defaults" intentionally use no utilities to expose user-agent differences.</p>
+    </header>
+
+    <!-- ============ 1. Typography (conformance) ============ -->
+    <section id="sec-type" data-vv-test="sec-type" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">1 · Typography</h2>
+
+      <h1 id="type-h1" data-vv-test="type-h1" class="m-0 mt-4 text-4xl font-bold text-slate-900">Heading level 1</h1>
+      <h2 id="type-h2" data-vv-test="type-h2" class="m-0 mt-2 text-3xl font-bold text-slate-900">Heading level 2</h2>
+      <h3 id="type-h3" data-vv-test="type-h3" class="m-0 mt-2 text-2xl font-semibold text-slate-800">Heading level 3</h3>
+      <h4 id="type-h4" data-vv-test="type-h4" class="m-0 mt-2 text-xl font-semibold text-slate-800">Heading level 4</h4>
+      <h5 id="type-h5" data-vv-test="type-h5" class="m-0 mt-2 text-lg font-medium text-slate-700">Heading level 5</h5>
+      <h6 id="type-h6" data-vv-test="type-h6" class="m-0 mt-2 text-base font-medium text-slate-700">Heading level 6</h6>
+      <p id="type-p" data-vv-test="type-p" class="m-0 mt-4 text-base text-slate-700">A paragraph of body text. The quick brown fox jumps over the lazy dog while the renderer measures every glyph run.</p>
+
+      <div class="mt-4 flex items-end gap-4">
+        <div id="size-xs" data-vv-test="size-xs" class="text-xs text-slate-700">xs 12px</div>
+        <div id="size-sm" data-vv-test="size-sm" class="text-sm text-slate-700">sm 14px</div>
+        <div id="size-base" data-vv-test="size-base" class="text-base text-slate-700">base 16px</div>
+        <div id="size-lg" data-vv-test="size-lg" class="text-lg text-slate-700">lg 18px</div>
+        <div id="size-xl" data-vv-test="size-xl" class="text-xl text-slate-700">xl 20px</div>
+        <div id="size-2xl" data-vv-test="size-2xl" class="text-2xl text-slate-700">2xl 24px</div>
+        <div id="size-3xl" data-vv-test="size-3xl" class="text-3xl text-slate-700">3xl 30px</div>
+        <div id="size-4xl" data-vv-test="size-4xl" class="text-4xl text-slate-700">4xl 36px</div>
+      </div>
+
+      <div class="mt-4 flex flex-col">
+        <div id="weight-thin" data-vv-test="weight-thin" class="text-base font-thin text-slate-700">font-thin · Aa Bb 123</div>
+        <div id="weight-light" data-vv-test="weight-light" class="text-base font-light text-slate-700">font-light · Aa Bb 123</div>
+        <div id="weight-normal" data-vv-test="weight-normal" class="text-base font-normal text-slate-700">font-normal · Aa Bb 123</div>
+        <div id="weight-medium" data-vv-test="weight-medium" class="text-base font-medium text-slate-700">font-medium · Aa Bb 123</div>
+        <div id="weight-semibold" data-vv-test="weight-semibold" class="text-base font-semibold text-slate-700">font-semibold · Aa Bb 123</div>
+        <div id="weight-bold" data-vv-test="weight-bold" class="text-base font-bold text-slate-700">font-bold · Aa Bb 123</div>
+        <div id="weight-black" data-vv-test="weight-black" class="text-base font-black text-slate-700">font-black · Aa Bb 123</div>
+      </div>
+
+      <div class="mt-4 flex gap-4">
+        <p id="leading-none" data-vv-test="leading-none" class="m-0 w-64 text-sm leading-none text-slate-700">leading-none: several lines of text wrap here to show the line height of this utility.</p>
+        <p id="leading-tight" data-vv-test="leading-tight" class="m-0 w-64 text-sm leading-tight text-slate-700">leading-tight: several lines of text wrap here to show the line height of this utility.</p>
+        <p id="leading-normal" data-vv-test="leading-normal" class="m-0 w-64 text-sm leading-normal text-slate-700">leading-normal: several lines of text wrap here to show the line height of this utility.</p>
+        <p id="leading-loose" data-vv-test="leading-loose" class="m-0 w-64 text-sm leading-loose text-slate-700">leading-loose: several lines of text wrap here to show the line height of this utility.</p>
+      </div>
+
+      <div class="mt-4 w-full">
+        <p id="align-left" data-vv-test="align-left" class="m-0 text-sm text-left text-slate-700">text-left</p>
+        <p id="align-center" data-vv-test="align-center" class="m-0 text-sm text-center text-slate-700">text-center</p>
+        <p id="align-right" data-vv-test="align-right" class="m-0 text-sm text-right text-slate-700">text-right</p>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <div id="tcolor-slate" data-vv-test="tcolor-slate" class="text-sm font-medium text-slate-600">slate</div>
+        <div id="tcolor-red" data-vv-test="tcolor-red" class="text-sm font-medium text-red-600">red</div>
+        <div id="tcolor-orange" data-vv-test="tcolor-orange" class="text-sm font-medium text-orange-600">orange</div>
+        <div id="tcolor-amber" data-vv-test="tcolor-amber" class="text-sm font-medium text-amber-600">amber</div>
+        <div id="tcolor-green" data-vv-test="tcolor-green" class="text-sm font-medium text-green-600">green</div>
+        <div id="tcolor-emerald" data-vv-test="tcolor-emerald" class="text-sm font-medium text-emerald-600">emerald</div>
+        <div id="tcolor-teal" data-vv-test="tcolor-teal" class="text-sm font-medium text-teal-600">teal</div>
+        <div id="tcolor-sky" data-vv-test="tcolor-sky" class="text-sm font-medium text-sky-600">sky</div>
+        <div id="tcolor-blue" data-vv-test="tcolor-blue" class="text-sm font-medium text-blue-600">blue</div>
+        <div id="tcolor-indigo" data-vv-test="tcolor-indigo" class="text-sm font-medium text-indigo-600">indigo</div>
+        <div id="tcolor-violet" data-vv-test="tcolor-violet" class="text-sm font-medium text-violet-600">violet</div>
+        <div id="tcolor-pink" data-vv-test="tcolor-pink" class="text-sm font-medium text-pink-600">pink</div>
+      </div>
+    </section>
+
+    <!-- ============ 2. Native defaults (differences expected) ============ -->
+    <section id="sec-native" data-vv-test="sec-native" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">2 · Native element defaults <span class="text-sm font-normal text-amber-600">(differences expected)</span></h2>
+      <p class="m-0 mt-2 text-sm text-slate-500">No utilities on these — each engine's own user-agent styles show.</p>
+
+      <h1 id="native-h1" data-vv-test="native-h1">Native h1</h1>
+      <h2 id="native-h2" data-vv-test="native-h2">Native h2</h2>
+      <h3 id="native-h3" data-vv-test="native-h3">Native h3</h3>
+      <p id="native-p" data-vv-test="native-p">A native paragraph keeps its user-agent margins and font size.</p>
+      <blockquote id="native-blockquote" data-vv-test="native-blockquote">A native blockquote.</blockquote>
+      <ul id="native-ul" data-vv-test="native-ul">
+        <li id="native-li-1" data-vv-test="native-li-1">Unordered item one</li>
+        <li id="native-li-2" data-vv-test="native-li-2">Unordered item two</li>
+      </ul>
+      <ol id="native-ol" data-vv-test="native-ol">
+        <li id="native-oli-1" data-vv-test="native-oli-1">Ordered item one</li>
+        <li id="native-oli-2" data-vv-test="native-oli-2">Ordered item two</li>
+      </ol>
+      <hr id="native-hr" data-vv-test="native-hr">
+      <p id="native-inline" data-vv-test="native-inline">Inline mix: <span id="native-span" data-vv-test="native-span">span</span>, <b id="native-b" data-vv-test="native-b">bold</b>, <strong id="native-strong" data-vv-test="native-strong">strong</strong>, <i id="native-i" data-vv-test="native-i">italic</i>, <em id="native-em" data-vv-test="native-em">emphasis</em>, <code id="native-code" data-vv-test="native-code">code_inline()</code>, <small id="native-small" data-vv-test="native-small">small</small>, and <a id="native-a" data-vv-test="native-a" href="https://example.com">a link</a>.</p>
+      <pre id="native-pre" data-vv-test="native-pre">preformatted
+  text block</pre>
+    </section>
+
+    <!-- ============ 3. Colors (conformance) ============ -->
+    <section id="sec-colors" data-vv-test="sec-colors" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">3 · Background colors</h2>
+      <div class="mt-4 grid grid-cols-6 gap-2">
+        <div id="swatch-red" data-vv-test="swatch-red" class="h-10 rounded bg-red-500"></div>
+        <div id="swatch-orange" data-vv-test="swatch-orange" class="h-10 rounded bg-orange-500"></div>
+        <div id="swatch-amber" data-vv-test="swatch-amber" class="h-10 rounded bg-amber-500"></div>
+        <div id="swatch-yellow" data-vv-test="swatch-yellow" class="h-10 rounded bg-yellow-500"></div>
+        <div id="swatch-lime" data-vv-test="swatch-lime" class="h-10 rounded bg-lime-500"></div>
+        <div id="swatch-green" data-vv-test="swatch-green" class="h-10 rounded bg-green-500"></div>
+        <div id="swatch-emerald" data-vv-test="swatch-emerald" class="h-10 rounded bg-emerald-500"></div>
+        <div id="swatch-teal" data-vv-test="swatch-teal" class="h-10 rounded bg-teal-500"></div>
+        <div id="swatch-cyan" data-vv-test="swatch-cyan" class="h-10 rounded bg-cyan-500"></div>
+        <div id="swatch-sky" data-vv-test="swatch-sky" class="h-10 rounded bg-sky-500"></div>
+        <div id="swatch-blue" data-vv-test="swatch-blue" class="h-10 rounded bg-blue-500"></div>
+        <div id="swatch-indigo" data-vv-test="swatch-indigo" class="h-10 rounded bg-indigo-500"></div>
+        <div id="swatch-violet" data-vv-test="swatch-violet" class="h-10 rounded bg-violet-500"></div>
+        <div id="swatch-purple" data-vv-test="swatch-purple" class="h-10 rounded bg-purple-500"></div>
+        <div id="swatch-fuchsia" data-vv-test="swatch-fuchsia" class="h-10 rounded bg-fuchsia-500"></div>
+        <div id="swatch-pink" data-vv-test="swatch-pink" class="h-10 rounded bg-pink-500"></div>
+        <div id="swatch-rose" data-vv-test="swatch-rose" class="h-10 rounded bg-rose-500"></div>
+        <div id="swatch-slate" data-vv-test="swatch-slate" class="h-10 rounded bg-slate-500"></div>
+      </div>
+      <div class="mt-4 flex gap-2">
+        <div id="ramp-slate-50" data-vv-test="ramp-slate-50" class="w-20 h-10 rounded bg-slate-50 border"></div>
+        <div id="ramp-slate-100" data-vv-test="ramp-slate-100" class="w-20 h-10 rounded bg-slate-100"></div>
+        <div id="ramp-slate-200" data-vv-test="ramp-slate-200" class="w-20 h-10 rounded bg-slate-200"></div>
+        <div id="ramp-slate-300" data-vv-test="ramp-slate-300" class="w-20 h-10 rounded bg-slate-300"></div>
+        <div id="ramp-slate-400" data-vv-test="ramp-slate-400" class="w-20 h-10 rounded bg-slate-400"></div>
+        <div id="ramp-slate-500" data-vv-test="ramp-slate-500" class="w-20 h-10 rounded bg-slate-500"></div>
+        <div id="ramp-slate-600" data-vv-test="ramp-slate-600" class="w-20 h-10 rounded bg-slate-600"></div>
+        <div id="ramp-slate-700" data-vv-test="ramp-slate-700" class="w-20 h-10 rounded bg-slate-700"></div>
+        <div id="ramp-slate-800" data-vv-test="ramp-slate-800" class="w-20 h-10 rounded bg-slate-800"></div>
+        <div id="ramp-slate-900" data-vv-test="ramp-slate-900" class="w-20 h-10 rounded bg-slate-900"></div>
+        <div id="ramp-slate-950" data-vv-test="ramp-slate-950" class="w-20 h-10 rounded bg-slate-950"></div>
+      </div>
+      <div class="mt-4 flex gap-2">
+        <div id="on-color-1" data-vv-test="on-color-1" class="px-3 py-2 rounded bg-indigo-600 text-white text-sm font-medium">text-white on indigo</div>
+        <div id="on-color-2" data-vv-test="on-color-2" class="px-3 py-2 rounded bg-slate-900 text-white text-sm font-medium">text-white on slate</div>
+        <div id="on-color-3" data-vv-test="on-color-3" class="px-3 py-2 rounded bg-black text-white text-sm font-medium">on black</div>
+      </div>
+    </section>
+
+    <!-- ============ 4. Borders & radius (conformance) ============ -->
+    <section id="sec-borders" data-vv-test="sec-borders" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">4 · Borders and radius</h2>
+      <div class="mt-4 flex items-start gap-4">
+        <div id="border-1" data-vv-test="border-1" class="w-24 h-16 border border-slate-400"></div>
+        <div id="border-2" data-vv-test="border-2" class="w-24 h-16 border-2 border-slate-400"></div>
+        <div id="border-4" data-vv-test="border-4" class="w-24 h-16 border-4 border-slate-400"></div>
+        <div id="border-8" data-vv-test="border-8" class="w-24 h-16 border-8 border-slate-400"></div>
+        <div id="border-colored" data-vv-test="border-colored" class="w-24 h-16 border-2 border-indigo-500"></div>
+        <div id="border-none" data-vv-test="border-none" class="w-24 h-16 border border-slate-300 border-none"></div>
+      </div>
+      <div class="mt-4 flex items-start gap-4">
+        <div id="rounded-none" data-vv-test="rounded-none" class="w-16 h-16 bg-indigo-500 rounded-none"></div>
+        <div id="rounded-sm" data-vv-test="rounded-sm" class="w-16 h-16 bg-indigo-500 rounded-sm"></div>
+        <div id="rounded-md" data-vv-test="rounded-md" class="w-16 h-16 bg-indigo-500 rounded-md"></div>
+        <div id="rounded-lg" data-vv-test="rounded-lg" class="w-16 h-16 bg-indigo-500 rounded-lg"></div>
+        <div id="rounded-xl" data-vv-test="rounded-xl" class="w-16 h-16 bg-indigo-500 rounded-xl"></div>
+        <div id="rounded-2xl" data-vv-test="rounded-2xl" class="w-16 h-16 bg-indigo-500 rounded-2xl"></div>
+        <div id="rounded-3xl" data-vv-test="rounded-3xl" class="w-16 h-16 bg-indigo-500 rounded-3xl"></div>
+        <div id="rounded-full" data-vv-test="rounded-full" class="w-16 h-16 bg-indigo-500 rounded-full"></div>
+      </div>
+    </section>
+
+    <!-- ============ 5. Spacing (conformance) ============ -->
+    <section id="sec-spacing" data-vv-test="sec-spacing" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">5 · Spacing scale</h2>
+      <div class="mt-4 flex items-end gap-2">
+        <div id="pad-1" data-vv-test="pad-1" class="p-1 bg-slate-200 border border-slate-400"><div class="w-8 h-8 bg-indigo-400"></div></div>
+        <div id="pad-2" data-vv-test="pad-2" class="p-2 bg-slate-200 border border-slate-400"><div class="w-8 h-8 bg-indigo-400"></div></div>
+        <div id="pad-4" data-vv-test="pad-4" class="p-4 bg-slate-200 border border-slate-400"><div class="w-8 h-8 bg-indigo-400"></div></div>
+        <div id="pad-8" data-vv-test="pad-8" class="p-8 bg-slate-200 border border-slate-400"><div class="w-8 h-8 bg-indigo-400"></div></div>
+        <div id="pad-px" data-vv-test="pad-px" class="p-px bg-slate-200 border border-slate-400"><div class="w-8 h-8 bg-indigo-400"></div></div>
+        <div id="pad-0" data-vv-test="pad-0" class="p-0 bg-slate-200 border border-slate-400"><div class="w-8 h-8 bg-indigo-400"></div></div>
+      </div>
+      <div class="mt-4">
+        <div id="margin-a" data-vv-test="margin-a" class="w-48 h-8 bg-teal-200 border border-teal-500"></div>
+        <div id="margin-b" data-vv-test="margin-b" class="w-48 h-8 bg-teal-200 border border-teal-500 mt-8 ml-16"></div>
+        <div id="margin-c" data-vv-test="margin-c" class="w-48 h-8 bg-teal-200 border border-teal-500 mx-0 mb-2"></div>
+      </div>
+    </section>
+
+    <!-- ============ 6. Sizing (conformance) ============ -->
+    <section id="sec-sizing" data-vv-test="sec-sizing" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">6 · Sizing</h2>
+      <div class="mt-4 flex items-end gap-2">
+        <div id="w-16" data-vv-test="w-16" class="w-16 h-10 bg-rose-300 border border-rose-500"></div>
+        <div id="w-24" data-vv-test="w-24" class="w-24 h-10 bg-rose-300 border border-rose-500"></div>
+        <div id="w-32" data-vv-test="w-32" class="w-32 h-10 bg-rose-300 border border-rose-500"></div>
+        <div id="w-48" data-vv-test="w-48" class="w-48 h-10 bg-rose-300 border border-rose-500"></div>
+        <div id="w-64" data-vv-test="w-64" class="w-64 h-10 bg-rose-300 border border-rose-500"></div>
+      </div>
+      <div class="mt-4 flex items-end gap-2">
+        <div id="h-8" data-vv-test="h-8" class="w-16 h-8 bg-sky-300 border border-sky-500"></div>
+        <div id="h-16" data-vv-test="h-16" class="w-16 h-16 bg-sky-300 border border-sky-500"></div>
+        <div id="h-24" data-vv-test="h-24" class="w-16 h-24 bg-sky-300 border border-sky-500"></div>
+        <div id="h-40" data-vv-test="h-40" class="w-16 h-40 bg-sky-300 border border-sky-500"></div>
+      </div>
+      <div id="w-full-box" data-vv-test="w-full-box" class="mt-4 w-full h-8 bg-emerald-300 border border-emerald-500"></div>
+      <div class="mt-4 flex gap-4">
+        <div id="min-w-box" data-vv-test="min-w-box" class="min-w-48 h-8 bg-amber-300 border border-amber-500"></div>
+        <div id="max-w-box" data-vv-test="max-w-box" class="w-full max-w-lg h-8 bg-amber-300 border border-amber-500"></div>
+        <div id="w-auto-box" data-vv-test="w-auto-box" class="w-auto h-8 px-4 bg-amber-300 border border-amber-500"></div>
+      </div>
+    </section>
+
+    <!-- ============ 7. Flexbox (conformance) ============ -->
+    <section id="sec-flex" data-vv-test="sec-flex" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">7 · Flexbox</h2>
+
+      <div id="flex-start" data-vv-test="flex-start" class="mt-4 w-full h-12 flex justify-start gap-2 bg-slate-100 border border-slate-300 p-1">
+        <div class="w-12 h-8 bg-indigo-400 rounded"></div>
+        <div class="w-8 h-8 bg-indigo-500 rounded"></div>
+        <div class="w-16 h-8 bg-indigo-600 rounded"></div>
+      </div>
+      <div id="flex-center" data-vv-test="flex-center" class="mt-2 w-full h-12 flex justify-center gap-2 bg-slate-100 border border-slate-300 p-1">
+        <div class="w-12 h-8 bg-indigo-400 rounded"></div>
+        <div class="w-8 h-8 bg-indigo-500 rounded"></div>
+        <div class="w-16 h-8 bg-indigo-600 rounded"></div>
+      </div>
+      <div id="flex-end" data-vv-test="flex-end" class="mt-2 w-full h-12 flex justify-end gap-2 bg-slate-100 border border-slate-300 p-1">
+        <div class="w-12 h-8 bg-indigo-400 rounded"></div>
+        <div class="w-8 h-8 bg-indigo-500 rounded"></div>
+        <div class="w-16 h-8 bg-indigo-600 rounded"></div>
+      </div>
+      <div id="flex-between" data-vv-test="flex-between" class="mt-2 w-full h-12 flex justify-between bg-slate-100 border border-slate-300 p-1">
+        <div class="w-12 h-8 bg-indigo-400 rounded"></div>
+        <div class="w-8 h-8 bg-indigo-500 rounded"></div>
+        <div class="w-16 h-8 bg-indigo-600 rounded"></div>
+      </div>
+
+      <div id="flex-items-start" data-vv-test="flex-items-start" class="mt-2 w-full h-16 flex items-start gap-2 bg-slate-100 border border-slate-300 p-1">
+        <div class="w-12 h-8 bg-teal-400 rounded"></div>
+        <div class="w-12 h-12 bg-teal-500 rounded"></div>
+      </div>
+      <div id="flex-items-center" data-vv-test="flex-items-center" class="mt-2 w-full h-16 flex items-center gap-2 bg-slate-100 border border-slate-300 p-1">
+        <div class="w-12 h-8 bg-teal-400 rounded"></div>
+        <div class="w-12 h-12 bg-teal-500 rounded"></div>
+      </div>
+      <div id="flex-items-end" data-vv-test="flex-items-end" class="mt-2 w-full h-16 flex items-end gap-2 bg-slate-100 border border-slate-300 p-1">
+        <div class="w-12 h-8 bg-teal-400 rounded"></div>
+        <div class="w-12 h-12 bg-teal-500 rounded"></div>
+      </div>
+      <div id="flex-items-stretch" data-vv-test="flex-items-stretch" class="mt-2 w-full h-16 flex items-stretch gap-2 bg-slate-100 border border-slate-300 p-1">
+        <div class="w-12 bg-teal-400 rounded"></div>
+        <div class="w-12 bg-teal-500 rounded"></div>
+      </div>
+
+      <div id="flex-col" data-vv-test="flex-col" class="mt-2 w-32 flex flex-col gap-1 bg-slate-100 border border-slate-300 p-1">
+        <div class="w-16 h-6 bg-violet-400 rounded"></div>
+        <div class="w-24 h-6 bg-violet-500 rounded"></div>
+        <div class="w-12 h-6 bg-violet-600 rounded"></div>
+      </div>
+
+      <div id="flex-wrap" data-vv-test="flex-wrap" class="mt-2 w-64 flex flex-wrap gap-2 bg-slate-100 border border-slate-300 p-1">
+        <div class="w-20 h-8 bg-orange-400 rounded"></div>
+        <div class="w-20 h-8 bg-orange-400 rounded"></div>
+        <div class="w-20 h-8 bg-orange-500 rounded"></div>
+        <div class="w-20 h-8 bg-orange-500 rounded"></div>
+        <div class="w-20 h-8 bg-orange-600 rounded"></div>
+      </div>
+
+      <div id="flex-grow" data-vv-test="flex-grow" class="mt-2 w-full h-10 flex gap-2 bg-slate-100 border border-slate-300 p-1">
+        <div id="grow-fixed" data-vv-test="grow-fixed" class="w-16 bg-rose-400 rounded"></div>
+        <div id="grow-one" data-vv-test="grow-one" class="flex-1 bg-rose-500 rounded"></div>
+        <div id="grow-two" data-vv-test="grow-two" class="flex-1 bg-rose-600 rounded"></div>
+      </div>
+    </section>
+
+    <!-- ============ 8. Grid (conformance) ============ -->
+    <section id="sec-grid" data-vv-test="sec-grid" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">8 · Grid</h2>
+      <div id="grid-basic" data-vv-test="grid-basic" class="mt-4 w-full grid grid-cols-3 gap-2">
+        <div id="grid-c1" data-vv-test="grid-c1" class="h-10 bg-cyan-400 border border-cyan-600 rounded"></div>
+        <div id="grid-c2" data-vv-test="grid-c2" class="h-10 bg-cyan-400 border border-cyan-600 rounded"></div>
+        <div id="grid-c3" data-vv-test="grid-c3" class="h-10 bg-cyan-400 border border-cyan-600 rounded"></div>
+        <div id="grid-c4" data-vv-test="grid-c4" class="h-10 bg-cyan-500 border border-cyan-700 rounded"></div>
+        <div id="grid-c5" data-vv-test="grid-c5" class="h-10 bg-cyan-500 border border-cyan-700 rounded"></div>
+        <div id="grid-c6" data-vv-test="grid-c6" class="h-10 bg-cyan-500 border border-cyan-700 rounded"></div>
+      </div>
+      <div id="grid-span" data-vv-test="grid-span" class="mt-4 w-full grid grid-cols-3 gap-2">
+        <div id="span-wide" data-vv-test="span-wide" class="col-span-2 h-10 bg-violet-400 border border-violet-600 rounded"></div>
+        <div id="span-side" data-vv-test="span-side" class="h-10 bg-violet-500 border border-violet-700 rounded"></div>
+        <div id="span-full" data-vv-test="span-full" class="col-span-3 h-10 bg-violet-600 border border-violet-800 rounded"></div>
+      </div>
+      <div id="grid-rows" data-vv-test="grid-rows" class="mt-4 w-full grid grid-cols-2 grid-rows-2 gap-2">
+        <div id="grow-cell-1" data-vv-test="grow-cell-1" class="bg-emerald-400 border border-emerald-600 rounded"></div>
+        <div id="grow-cell-2" data-vv-test="grow-cell-2" class="bg-emerald-400 border border-emerald-600 rounded"></div>
+        <div id="grow-cell-3" data-vv-test="grow-cell-3" class="bg-emerald-500 border border-emerald-700 rounded"></div>
+        <div id="grow-cell-4" data-vv-test="grow-cell-4" class="bg-emerald-500 border border-emerald-700 rounded"></div>
+      </div>
+    </section>
+
+    <!-- ============ 9. Form controls (conformance-styled) ============ -->
+    <section id="sec-controls" data-vv-test="sec-controls" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">9 · Form controls (explicitly sized)</h2>
+      <div class="mt-4 flex items-start gap-6">
+        <div class="flex flex-col gap-2">
+          <label for="ctl-input" class="block text-xs text-slate-500">Driver name (input type=text)</label>
+          <input id="ctl-input" data-vv-test="ctl-input" type="text" value="Siti Rahayu" class="w-64 h-10 border border-slate-300 rounded px-3 text-sm text-slate-800">
+          <label for="ctl-readonly" class="block text-xs text-slate-500">Read-only</label>
+          <input id="ctl-readonly" data-vv-test="ctl-readonly" type="text" value="locked value" readonly class="w-64 h-10 border border-slate-200 rounded px-3 text-sm text-slate-400 bg-slate-50">
+          <label for="ctl-disabled" class="block text-xs text-slate-500">Disabled</label>
+          <input id="ctl-disabled" data-vv-test="ctl-disabled" type="text" value="disabled value" disabled class="w-64 h-10 border border-slate-200 rounded px-3 text-sm text-slate-400 bg-slate-100">
+          <label for="ctl-textarea" class="block text-xs text-slate-500">Notes (textarea)</label>
+          <textarea id="ctl-textarea" data-vv-test="ctl-textarea" class="w-64 h-20 border border-slate-300 rounded px-3 py-2 text-sm text-slate-800">Second line preserved
+Third line too</textarea>
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="block text-xs text-slate-500">Buttons</span>
+          <div class="flex gap-2">
+            <button id="ctl-btn-primary" data-vv-test="ctl-btn-primary" class="px-4 h-10 rounded bg-indigo-600 text-white text-sm font-medium">Save</button>
+            <button id="ctl-btn-secondary" data-vv-test="ctl-btn-secondary" class="px-4 h-10 rounded border border-indigo-600 bg-white text-indigo-600 text-sm font-medium">Cancel</button>
+            <button id="ctl-btn-disabled" data-vv-test="ctl-btn-disabled" disabled class="px-4 h-10 rounded bg-slate-200 text-slate-400 text-sm font-medium">Disabled</button>
+          </div>
+          <span class="block text-xs text-slate-500">Link (styled)</span>
+          <a id="ctl-link" data-vv-test="ctl-link" href="https://example.com" class="block text-sky-600 text-sm font-medium">Open documentation</a>
+          <span class="block text-xs text-slate-500">Badge-like spans</span>
+          <div class="flex gap-2">
+            <div id="ctl-badge-green" data-vv-test="ctl-badge-green" class="px-2 py-1 rounded bg-green-100 text-green-800 text-xs font-semibold">ACTIVE</div>
+            <div id="ctl-badge-amber" data-vv-test="ctl-badge-amber" class="px-2 py-1 rounded bg-amber-100 text-amber-800 text-xs font-semibold">PENDING</div>
+            <div id="ctl-badge-red" data-vv-test="ctl-badge-red" class="px-2 py-1 rounded bg-red-100 text-red-800 text-xs font-semibold">BLOCKED</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10. Native controls (differences expected) ============ -->
+    <section id="sec-controls-native" data-vv-test="sec-controls-native" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">10 · Native controls <span class="text-sm font-normal text-amber-600">(differences expected)</span></h2>
+      <p class="m-0 mt-2 text-sm text-slate-500">No sizing utilities — intrinsic control sizes and platform widgets show.</p>
+      <div class="mt-4 flex gap-4 items-start">
+        <input id="native-input" data-vv-test="native-input" type="text" value="intrinsic text input">
+        <textarea id="native-textarea" data-vv-test="native-textarea">intrinsic textarea</textarea>
+        <button id="native-button" data-vv-test="native-button">Native button</button>
+        <select id="native-select" data-vv-test="native-select">
+          <option>Option A</option>
+          <option>Option B</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- ============ 11. Images (conformance) ============ -->
+    <section id="sec-images" data-vv-test="sec-images" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">11 · Images</h2>
+      <div class="mt-4 flex items-start gap-6">
+        <img id="img-natural" data-vv-test="img-natural" src="./photo.png" alt="marker pattern">
+        <img id="img-scaled" data-vv-test="img-scaled" src="./photo.png" class="w-48" alt="scaled">
+        <img id="img-thumb" data-vv-test="img-thumb" src="./photo.png" class="w-16 h-16" alt="thumb">
+        <img id="img-round" data-vv-test="img-round" src="./photo.png" class="w-24 h-24 rounded-full" alt="round">
+      </div>
+    </section>
+
+    <!-- ============ 12. Overflow & whitespace (conformance) ============ -->
+    <section id="sec-overflow" data-vv-test="sec-overflow" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">12 · Overflow and whitespace</h2>
+      <div class="mt-4 flex gap-4">
+        <div id="overflow-hidden" data-vv-test="overflow-hidden" class="w-48 h-12 overflow-hidden bg-slate-100 border border-slate-300 p-1">
+          <div class="w-64 h-8 bg-pink-400 rounded"></div>
+        </div>
+        <div id="overflow-visible" data-vv-test="overflow-visible" class="w-48 h-12 overflow-visible bg-slate-100 border border-slate-300 p-1">
+          <div class="w-64 h-8 bg-pink-400 rounded"></div>
+        </div>
+        <p id="ws-nowrap" data-vv-test="ws-nowrap" class="m-0 w-48 text-sm whitespace-nowrap bg-slate-100 border border-slate-300 p-1 text-slate-700">whitespace-nowrap keeps this on one line</p>
+      </div>
+    </section>
+
+    <!-- ============ 13. Inline content in flex (known difference) ============ -->
+    <section id="sec-inline-flex" data-vv-test="sec-inline-flex" class="mt-6 p-6 bg-white rounded-lg border">
+      <h2 class="m-0 text-xl font-bold text-slate-900">13 · Inline elements inside flex <span class="text-sm font-normal text-amber-600">(differences expected)</span></h2>
+      <p class="m-0 mt-2 text-sm text-slate-500">Spans stay inline content in the renderer's flex profile (flowed as text, not stacked as flex items); browsers blockify them. The supported idiom is block children — sections 1–12 use it.</p>
+      <div id="inline-flex-col" data-vv-test="inline-flex-col" class="mt-4 flex flex-col gap-1 bg-slate-100 border border-slate-300 p-2">
+        <span id="inflex-1" data-vv-test="inflex-1" class="text-sm text-slate-700">span one in flex-col</span>
+        <span id="inflex-2" data-vv-test="inflex-2" class="text-sm text-slate-700">span two in flex-col</span>
+        <span id="inflex-3" data-vv-test="inflex-3" class="text-sm text-slate-700">span three in flex-col</span>
+      </div>
+      <div id="inline-flex-row" data-vv-test="inline-flex-row" class="mt-2 flex gap-4 bg-slate-100 border border-slate-300 p-2">
+        <span id="inflex-r1" data-vv-test="inflex-r1" class="text-sm text-slate-700">row span a</span>
+        <span id="inflex-r2" data-vv-test="inflex-r2" class="text-sm text-slate-700">row span b</span>
+      </div>
+      <div id="inline-size" data-vv-test="inline-size" class="mt-2 bg-slate-100 border border-slate-300 p-2">
+        <span id="inflex-big" data-vv-test="inflex-big" class="text-4xl text-slate-700">big inline</span>
+        <span id="inflex-small" data-vv-test="inflex-small" class="text-xs text-slate-700">small inline after it</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

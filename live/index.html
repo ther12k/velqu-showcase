@@ -1,0 +1,792 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VelquView · Component Showcase</title>
+</head>
+<body class="bg-white">
+  <!--
+    Designed live showcase (tailwindcss.com-inspired) for VelquView's
+    Tailwind v0 profile. Layout techniques used are ALL profile-supported:
+    two-pane shell (fixed sidebar + overflow-y-auto pane — the document
+    itself does not scroll), centered reading column via flex
+    justify-center + w-full max-w-*, flat color + borders for depth
+    (shadows/gradients/opacity are outside the profile), flex-col gap
+    rhythm, and author-CSS :hover on nav items only.
+    This file is the live sample; the frozen comparison page is showcase/.
+    The "HyperUI ports" group adapts real-world components from
+    github.com/markmead/hyperui (MIT) to the v0 profile: SVGs become flat
+    marks, anchors become divs, responsive/dark variants are dropped
+    (no media queries), shadows/rings become borders, and images that
+    would stretch without object-fit become flat panels.
+  -->
+  <main vx-state="{
+    current: 'all',
+  }" class="flex h-full">
+    <aside class="w-72 h-full bg-slate-900 p-4 overflow-y-auto">
+      <div class="flex items-center gap-3 px-2 pt-2">
+        <div class="w-9 h-9 rounded-lg bg-sky-500"></div>
+        <div class="flex flex-col">
+          <div class="text-base font-bold text-white">VelquView</div>
+          <div class="text-xs text-slate-400">Tailwind v0 profile</div>
+        </div>
+      </div>
+
+      <p class="text-xs font-semibold text-slate-500 px-2 m-0 mt-6">Overview</p>
+      <div id="nav-all" data-vv-test="nav-all" @click="current = 'all'"
+        :class="current === 'all' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">All components</div>
+
+      <p class="text-xs font-semibold text-slate-500 px-2 m-0 mt-5">Components</p>
+      <div id="nav-buttons" data-vv-test="nav-buttons" @click="current = 'buttons'"
+        :class="current === 'buttons' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Buttons</div>
+      <div id="nav-badges" data-vv-test="nav-badges" @click="current = 'badges'"
+        :class="current === 'badges' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Badges &amp; pills</div>
+      <div id="nav-forms" data-vv-test="nav-forms" @click="current = 'forms'"
+        :class="current === 'forms' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Form inputs</div>
+      <div id="nav-cards" data-vv-test="nav-cards" @click="current = 'cards'"
+        :class="current === 'cards' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Cards</div>
+      <div id="nav-alerts" data-vv-test="nav-alerts" @click="current = 'alerts'"
+        :class="current === 'alerts' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Alerts</div>
+
+      <p class="text-xs font-semibold text-slate-500 px-2 m-0 mt-5">Foundations</p>
+      <div id="nav-colors" data-vv-test="nav-colors" @click="current = 'colors'"
+        :class="current === 'colors' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Color palette</div>
+      <div id="nav-type" data-vv-test="nav-type" @click="current = 'type'"
+        :class="current === 'type' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Typography</div>
+      <div id="nav-radius" data-vv-test="nav-radius" @click="current = 'radius'"
+        :class="current === 'radius' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Borders &amp; radius</div>
+      <div id="nav-layout" data-vv-test="nav-layout" @click="current = 'layout'"
+        :class="current === 'layout' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Flex &amp; grid</div>
+      <div id="nav-images" data-vv-test="nav-images" @click="current = 'images'"
+        :class="current === 'images' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Images</div>
+
+      <p class="text-xs font-semibold text-slate-500 px-2 m-0 mt-5">HyperUI ports</p>
+      <div id="nav-header" data-vv-test="nav-header" @click="current = 'header'"
+        :class="current === 'header' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Header</div>
+      <div id="nav-hero" data-vv-test="nav-hero" @click="current = 'hero'"
+        :class="current === 'hero' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Hero</div>
+      <div id="nav-features" data-vv-test="nav-features" @click="current = 'features'"
+        :class="current === 'features' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Feature grid</div>
+      <div id="nav-pricing" data-vv-test="nav-pricing" @click="current = 'pricing'"
+        :class="current === 'pricing' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Pricing</div>
+      <div id="nav-team" data-vv-test="nav-team" @click="current = 'team'"
+        :class="current === 'team' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Team</div>
+      <div id="nav-cta" data-vv-test="nav-cta" @click="current = 'cta'"
+        :class="current === 'cta' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">CTA banner</div>
+      <div id="nav-footer" data-vv-test="nav-footer" @click="current = 'footer'"
+        :class="current === 'footer' ? 'bg-sky-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm'"
+        class="vv-nav rounded-md px-3 py-2 mt-1 text-sm">Footer</div>
+
+      <div class="mt-8 p-3 rounded-lg bg-slate-800">
+        <div class="text-xs font-bold text-white m-0">Native render</div>
+        <div class="text-xs text-slate-400 mt-1">winit · taffy · fontdue · softbuffer</div>
+      </div>
+    </aside>
+
+    <div class="flex-1 h-full overflow-y-auto bg-slate-50">
+      <div class="flex justify-center">
+        <div class="w-full max-w-3xl p-10">
+
+          <!-- ==================== Hero ==================== -->
+          <section class="flex flex-col" data-vv-test="sec-hero">
+            <div class="flex gap-2">
+              <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-sky-50 border border-sky-200">
+                <div class="w-2 h-2 rounded-full bg-sky-500"></div>
+                <div class="text-xs font-semibold text-sky-700">Tailwind v0 profile</div>
+              </div>
+              <div class="flex items-center px-3 h-7 rounded-full bg-white border border-slate-200">
+                <div class="text-xs font-medium text-slate-600">17 sections · 0 browser</div>
+              </div>
+            </div>
+            <h1 class="text-4xl font-extrabold text-slate-900 m-0 mt-6 leading-tight">The Tailwind showcase, rendered without a browser.</h1>
+            <p class="text-base text-slate-600 m-0 mt-4">Every sample on this page is laid out with taffy, rasterized with fontdue and presented through softbuffer — VelquView's native Tailwind v0 engine. Pick a section on the left, or scroll everything below.</p>
+            <div class="mt-6 flex gap-3">
+              <button @click="current = 'buttons'" class="h-10 px-5 rounded-md bg-sky-600 text-white text-sm font-semibold border-none">Browse components</button>
+              <button @click="current = 'header'" class="h-10 px-5 rounded-md bg-white text-slate-700 text-sm font-semibold border border-slate-300">See HyperUI ports</button>
+            </div>
+            <div class="mt-8 grid grid-cols-3 gap-4">
+              <div class="p-4 bg-white rounded-lg border border-slate-200">
+                <div class="text-2xl font-bold text-slate-900">17</div>
+                <div class="text-xs text-slate-500 mt-1">sections rendered natively on this page</div>
+              </div>
+              <div class="p-4 bg-white rounded-lg border border-slate-200">
+                <div class="text-2xl font-bold text-slate-900">21</div>
+                <div class="text-xs text-slate-500 mt-1">color families on the 4px spacing scale</div>
+              </div>
+              <div class="p-4 bg-white rounded-lg border border-slate-200">
+                <div class="text-2xl font-bold text-slate-900">7</div>
+                <div class="text-xs text-slate-500 mt-1">real-world ports from HyperUI (MIT)</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== Buttons ==================== -->
+          <section id="sec-buttons" data-vv-test="sec-buttons" vx-show="current === 'all' || current === 'buttons'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-sky-500"></div><p class="text-xs font-bold text-sky-600 m-0">COMPONENTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Buttons</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Solid, outline and quiet variants with size steps. Built from bg-, border-, rounded- and the spacing scale only.</p>
+
+            <div class="mt-6 p-5 bg-white rounded-lg border border-slate-200">
+              <p class="text-xs font-semibold text-slate-400 m-0">Variants</p>
+              <div class="flex flex-wrap gap-3 mt-3 items-center">
+                <button class="h-9 px-4 rounded-md bg-sky-600 text-white text-sm font-medium border-none">Save changes</button>
+                <button class="h-9 px-4 rounded-md bg-white text-slate-700 text-sm font-medium border border-slate-300">Preview</button>
+                <button class="h-9 px-4 rounded-md bg-slate-100 text-slate-600 text-sm font-medium border-none">Duplicate</button>
+                <button class="h-9 px-4 rounded-md bg-red-600 text-white text-sm font-medium border-none">Delete</button>
+                <button class="h-9 px-4 rounded-md bg-slate-100 text-slate-400 text-sm font-medium border border-slate-200">Disabled</button>
+              </div>
+              <p class="text-xs font-semibold text-slate-400 m-0 mt-5">Sizes</p>
+              <div class="flex flex-wrap gap-3 mt-3 items-center">
+                <button class="h-8 px-3 rounded-md bg-sky-600 text-white text-xs font-medium border-none">Small</button>
+                <button class="h-9 px-4 rounded-md bg-sky-600 text-white text-sm font-medium border-none">Medium</button>
+                <button class="h-11 px-5 rounded-md bg-sky-600 text-white text-base font-medium border-none">Large</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== Badges ==================== -->
+          <section id="sec-badges" data-vv-test="sec-badges" vx-show="current === 'all' || current === 'badges'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-sky-500"></div><p class="text-xs font-bold text-sky-600 m-0">COMPONENTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Badges &amp; pills</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Status chips with dot indicators, built with rounded-full and flex alignment.</p>
+
+            <div class="mt-6 p-5 bg-white rounded-lg border border-slate-200">
+              <div class="flex flex-wrap gap-2 items-center">
+                <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-emerald-50 border border-emerald-200">
+                  <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                  <div class="text-xs font-medium text-emerald-700">Operational</div>
+                </div>
+                <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-amber-50 border border-amber-200">
+                  <div class="w-2 h-2 rounded-full bg-amber-500"></div>
+                  <div class="text-xs font-medium text-amber-700">Degraded</div>
+                </div>
+                <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-red-50 border border-red-200">
+                  <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                  <div class="text-xs font-medium text-red-700">Outage</div>
+                </div>
+                <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-sky-50 border border-sky-200">
+                  <div class="w-2 h-2 rounded-full bg-sky-500"></div>
+                  <div class="text-xs font-medium text-sky-700">Beta</div>
+                </div>
+                <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-slate-100 border border-slate-200">
+                  <div class="w-2 h-2 rounded-full bg-slate-400"></div>
+                  <div class="text-xs font-medium text-slate-600">Archived</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== Form inputs ==================== -->
+          <section id="sec-forms" data-vv-test="sec-forms" vx-show="current === 'all' || current === 'forms'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-sky-500"></div><p class="text-xs font-bold text-sky-600 m-0">COMPONENTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Form inputs</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Editable text controls in a labeled form layout — a workable settings screen.</p>
+
+            <div class="mt-6 p-5 bg-white rounded-lg border border-slate-200">
+              <div class="flex flex-col gap-4">
+                <div class="flex flex-col">
+                  <label for="f-name" class="text-sm font-medium text-slate-700 m-0">Workspace name</label>
+                  <input id="f-name" type="text" value="Kalibaru Terminal" class="mt-2 h-10 w-full rounded-md border border-slate-300 px-3 text-sm text-slate-800">
+                  <p class="text-xs text-slate-400 m-0 mt-1">Visible to everyone in the organization.</p>
+                </div>
+                <div class="flex flex-col">
+                  <label for="f-desc" class="text-sm font-medium text-slate-700 m-0">Description</label>
+                  <textarea id="f-desc" class="mt-2 w-full h-20 rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800">Gate throughput dashboard for Terminal 3.</textarea>
+                </div>
+                <div class="flex flex-col">
+                  <label class="text-sm font-medium text-slate-700 m-0">API key</label>
+                  <input type="text" value="locked-in-demo" readonly class="mt-2 h-10 w-full rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-400">
+                </div>
+                <div class="flex gap-3 mt-1">
+                  <button class="h-9 px-4 rounded-md bg-sky-600 text-white text-sm font-medium border-none">Save</button>
+                  <button class="h-9 px-4 rounded-md bg-white text-slate-700 text-sm font-medium border border-slate-300">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== Cards ==================== -->
+          <section id="sec-cards" data-vv-test="sec-cards" vx-show="current === 'all' || current === 'cards'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-sky-500"></div><p class="text-xs font-bold text-sky-600 m-0">COMPONENTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Cards</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Content composition with images, dividers and footers on a responsive grid.</p>
+
+            <div class="mt-6 grid grid-cols-2 gap-4">
+              <div class="bg-white rounded-lg border border-slate-200 overflow-hidden">
+                <div class="h-20 bg-sky-500 flex items-end p-3">
+                  <div class="w-10 h-10 rounded-full bg-white"></div>
+                </div>
+                <div class="p-4 flex flex-col gap-2">
+                  <div class="text-xs font-medium text-sky-600">Deployment</div>
+                  <p class="text-sm font-semibold text-slate-900 m-0">Ship the gate runtime</p>
+                  <p class="text-xs text-slate-500 m-0">Signed pack, reverse-proxy profile, health checks wired to the liveness route.</p>
+                </div>
+                <div class="p-4 vv-divider flex justify-between items-center">
+                  <div class="text-xs text-slate-400">6 min read</div>
+                  <div class="text-xs font-medium text-sky-600">Read</div>
+                </div>
+              </div>
+              <div class="bg-white rounded-lg border border-slate-200 p-4 flex flex-col">
+                <div class="flex items-center gap-3">
+                  <img src="./photo.png" class="w-12 h-12 rounded-full" alt="avatar">
+                  <div class="flex flex-col">
+                    <div class="text-sm font-semibold text-slate-900">Rizky Pratama</div>
+                    <div class="text-xs text-slate-500">Platform engineer</div>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-500 m-0 mt-3">Owns the rendering pipeline and the qualification suites.</p>
+                <div class="flex gap-2 mt-3">
+                  <div class="flex items-center px-2 h-6 rounded-full bg-slate-100">
+                    <div class="text-xs text-slate-600">rust</div>
+                  </div>
+                  <div class="flex items-center px-2 h-6 rounded-full bg-slate-100">
+                    <div class="text-xs text-slate-600">wgpu</div>
+                  </div>
+                  <div class="flex items-center px-2 h-6 rounded-full bg-slate-100">
+                    <div class="text-xs text-slate-600">taffy</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== Alerts ==================== -->
+          <section id="sec-alerts" data-vv-test="sec-alerts" vx-show="current === 'all' || current === 'alerts'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-sky-500"></div><p class="text-xs font-bold text-sky-600 m-0">COMPONENTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Alerts</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Accent bar plus tinted panel — depth and semantics without shadows.</p>
+
+            <div class="mt-6 flex flex-col gap-3">
+              <div class="flex bg-sky-50 rounded-lg overflow-hidden">
+                <div class="w-1 bg-sky-500"></div>
+                <div class="p-4 flex flex-col">
+                  <div class="text-sm font-semibold text-sky-900">Heads up</div>
+                  <div class="text-xs text-sky-700 mt-1">A new pack format is available. Migration is optional this cycle.</div>
+                </div>
+              </div>
+              <div class="flex bg-emerald-50 rounded-lg overflow-hidden">
+                <div class="w-1 bg-emerald-500"></div>
+                <div class="p-4 flex flex-col">
+                  <div class="text-sm font-semibold text-emerald-900">Saved</div>
+                  <div class="text-xs text-emerald-700 mt-1">Your changes were written to the device.</div>
+                </div>
+              </div>
+              <div class="flex bg-amber-50 rounded-lg overflow-hidden">
+                <div class="w-1 bg-amber-500"></div>
+                <div class="p-4 flex flex-col">
+                  <div class="text-sm font-semibold text-amber-900">Storage sync</div>
+                  <div class="text-xs text-amber-700 mt-1">Directory sync failed — survival after power loss is unconfirmed.</div>
+                </div>
+              </div>
+              <div class="flex bg-red-50 rounded-lg overflow-hidden">
+                <div class="w-1 bg-red-500"></div>
+                <div class="p-4 flex flex-col">
+                  <div class="text-sm font-semibold text-red-900">Validation failed</div>
+                  <div class="text-xs text-red-700 mt-1">Driver name must be 1–80 characters after trimming.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== Colors ==================== -->
+          <section id="sec-colors" data-vv-test="sec-colors" vx-show="current === 'all' || current === 'colors'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-violet-500"></div><p class="text-xs font-bold text-violet-600 m-0">FOUNDATIONS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Color palette</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Full 11-step ramps — the engine ships 21 families; five shown here.</p>
+
+            <div class="mt-6 flex flex-col gap-5">
+              <div class="flex flex-col">
+                <div class="text-sm font-semibold text-slate-700">sky</div>
+                <div class="flex mt-2 rounded-lg overflow-hidden border border-slate-200">
+                  <div class="flex-1 h-14 bg-sky-50"></div>
+                  <div class="flex-1 h-14 bg-sky-100"></div>
+                  <div class="flex-1 h-14 bg-sky-200"></div>
+                  <div class="flex-1 h-14 bg-sky-300"></div>
+                  <div class="flex-1 h-14 bg-sky-400"></div>
+                  <div class="flex-1 h-14 bg-sky-500"></div>
+                  <div class="flex-1 h-14 bg-sky-600"></div>
+                  <div class="flex-1 h-14 bg-sky-700"></div>
+                  <div class="flex-1 h-14 bg-sky-800"></div>
+                  <div class="flex-1 h-14 bg-sky-900"></div>
+                  <div class="flex-1 h-14 bg-sky-950"></div>
+                </div>
+                <div class="flex mt-1">
+                  <div class="flex-1 text-center text-xs text-slate-400">50</div>
+                  <div class="flex-1 text-center text-xs text-slate-400">100</div>
+                  <div class="flex-1 text-center text-xs text-slate-400">200</div>
+                  <div class="flex-1 text-center text-xs text-slate-400">300</div>
+                  <div class="flex-1 text-center text-xs text-slate-400">400</div>
+                  <div class="flex-1 text-center text-xs text-slate-400">500</div>
+                  <div class="flex-1 text-center text-xs text-slate-400">600</div>
+                  <div class="flex-1 text-center text-xs text-slate-400">700</div>
+                  <div class="flex-1 text-center text-xs text-slate-400">800</div>
+                  <div class="flex-1 text-center text-xs text-slate-400">900</div>
+                  <div class="flex-1 text-center text-xs text-slate-400">950</div>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="text-sm font-semibold text-slate-700">emerald</div>
+                <div class="flex mt-2 rounded-lg overflow-hidden border border-slate-200">
+                  <div class="flex-1 h-14 bg-emerald-50"></div>
+                  <div class="flex-1 h-14 bg-emerald-100"></div>
+                  <div class="flex-1 h-14 bg-emerald-200"></div>
+                  <div class="flex-1 h-14 bg-emerald-300"></div>
+                  <div class="flex-1 h-14 bg-emerald-400"></div>
+                  <div class="flex-1 h-14 bg-emerald-500"></div>
+                  <div class="flex-1 h-14 bg-emerald-600"></div>
+                  <div class="flex-1 h-14 bg-emerald-700"></div>
+                  <div class="flex-1 h-14 bg-emerald-800"></div>
+                  <div class="flex-1 h-14 bg-emerald-900"></div>
+                  <div class="flex-1 h-14 bg-emerald-950"></div>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="text-sm font-semibold text-slate-700">rose</div>
+                <div class="flex mt-2 rounded-lg overflow-hidden border border-slate-200">
+                  <div class="flex-1 h-14 bg-rose-50"></div>
+                  <div class="flex-1 h-14 bg-rose-100"></div>
+                  <div class="flex-1 h-14 bg-rose-200"></div>
+                  <div class="flex-1 h-14 bg-rose-300"></div>
+                  <div class="flex-1 h-14 bg-rose-400"></div>
+                  <div class="flex-1 h-14 bg-rose-500"></div>
+                  <div class="flex-1 h-14 bg-rose-600"></div>
+                  <div class="flex-1 h-14 bg-rose-700"></div>
+                  <div class="flex-1 h-14 bg-rose-800"></div>
+                  <div class="flex-1 h-14 bg-rose-900"></div>
+                  <div class="flex-1 h-14 bg-rose-950"></div>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="text-sm font-semibold text-slate-700">amber</div>
+                <div class="flex mt-2 rounded-lg overflow-hidden border border-slate-200">
+                  <div class="flex-1 h-14 bg-amber-50"></div>
+                  <div class="flex-1 h-14 bg-amber-100"></div>
+                  <div class="flex-1 h-14 bg-amber-200"></div>
+                  <div class="flex-1 h-14 bg-amber-300"></div>
+                  <div class="flex-1 h-14 bg-amber-400"></div>
+                  <div class="flex-1 h-14 bg-amber-500"></div>
+                  <div class="flex-1 h-14 bg-amber-600"></div>
+                  <div class="flex-1 h-14 bg-amber-700"></div>
+                  <div class="flex-1 h-14 bg-amber-800"></div>
+                  <div class="flex-1 h-14 bg-amber-900"></div>
+                  <div class="flex-1 h-14 bg-amber-950"></div>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="text-sm font-semibold text-slate-700">slate</div>
+                <div class="flex mt-2 rounded-lg overflow-hidden border border-slate-200">
+                  <div class="flex-1 h-14 bg-slate-50"></div>
+                  <div class="flex-1 h-14 bg-slate-100"></div>
+                  <div class="flex-1 h-14 bg-slate-200"></div>
+                  <div class="flex-1 h-14 bg-slate-300"></div>
+                  <div class="flex-1 h-14 bg-slate-400"></div>
+                  <div class="flex-1 h-14 bg-slate-500"></div>
+                  <div class="flex-1 h-14 bg-slate-600"></div>
+                  <div class="flex-1 h-14 bg-slate-700"></div>
+                  <div class="flex-1 h-14 bg-slate-800"></div>
+                  <div class="flex-1 h-14 bg-slate-900"></div>
+                  <div class="flex-1 h-14 bg-slate-950"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== Typography ==================== -->
+          <section id="sec-type" data-vv-test="sec-type" vx-show="current === 'all' || current === 'type'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-violet-500"></div><p class="text-xs font-bold text-violet-600 m-0">FOUNDATIONS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Typography</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">The size scale with its paired line-heights, on one face (regular + bold).</p>
+
+            <div class="mt-6 p-6 bg-white rounded-lg border border-slate-200 flex flex-col gap-3">
+              <div class="text-4xl font-bold text-slate-900">Display 36px</div>
+              <div class="text-3xl font-bold text-slate-900">Heading 30px</div>
+              <div class="text-2xl font-bold text-slate-900">Subheading 24px</div>
+              <div class="text-xl font-semibold text-slate-900">Title 20px</div>
+              <div class="text-base text-slate-600">Body 16px — the working text of the interface. Every glyph is rasterized by the bundled DejaVu face.</div>
+              <div class="text-sm text-slate-500">Small 14px — labels, meta and secondary copy.</div>
+              <div class="text-xs text-slate-400">Caption 12px — timestamps and footnotes.</div>
+            </div>
+          </section>
+
+          <!-- ==================== Borders & radius ==================== -->
+          <section id="sec-radius" data-vv-test="sec-radius" vx-show="current === 'all' || current === 'radius'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-violet-500"></div><p class="text-xs font-bold text-violet-600 m-0">FOUNDATIONS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Borders &amp; radius</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Width steps and the full radius scale, on tinted tiles.</p>
+
+            <div class="mt-6 p-5 bg-white rounded-lg border border-slate-200 flex flex-col gap-4">
+              <div class="flex flex-wrap gap-3">
+                <div class="w-24 h-16 bg-slate-100 border border-slate-400 rounded-md"></div>
+                <div class="w-24 h-16 bg-slate-100 border-2 border-slate-400 rounded-md"></div>
+                <div class="w-24 h-16 bg-slate-100 border-4 border-slate-400 rounded-md"></div>
+                <div class="w-24 h-16 bg-slate-100 border-4 border-sky-500 rounded-md"></div>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <div class="w-20 h-14 bg-sky-200 rounded-none"></div>
+                <div class="w-20 h-14 bg-sky-300 rounded-sm"></div>
+                <div class="w-20 h-14 bg-sky-400 rounded-md"></div>
+                <div class="w-20 h-14 bg-sky-500 rounded-lg"></div>
+                <div class="w-20 h-14 bg-sky-500 rounded-xl"></div>
+                <div class="w-20 h-14 bg-sky-600 rounded-2xl"></div>
+                <div class="w-20 h-14 bg-sky-600 rounded-3xl"></div>
+                <div class="w-20 h-14 bg-sky-700 rounded-full"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== Flex & grid ==================== -->
+          <section id="sec-layout" data-vv-test="sec-layout" vx-show="current === 'all' || current === 'layout'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-violet-500"></div><p class="text-xs font-bold text-violet-600 m-0">FOUNDATIONS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Flex &amp; grid</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">The layout engines behind every screen this renderer can build.</p>
+
+            <div class="mt-6 flex flex-col gap-4">
+              <div class="p-4 bg-white rounded-lg border border-slate-200 flex flex-col">
+                <div class="text-xs font-semibold text-slate-400">justify-between</div>
+                <div class="mt-2 h-12 rounded-md bg-slate-50 border border-slate-200 flex justify-between items-center p-2">
+                  <div class="w-14 h-7 rounded bg-sky-400"></div>
+                  <div class="w-14 h-7 rounded bg-sky-500"></div>
+                  <div class="w-14 h-7 rounded bg-sky-600"></div>
+                </div>
+              </div>
+              <div class="p-4 bg-white rounded-lg border border-slate-200 flex flex-col">
+                <div class="text-xs font-semibold text-slate-400">items-center + gap</div>
+                <div class="mt-2 h-14 rounded-md bg-slate-50 border border-slate-200 flex items-center gap-2 p-2">
+                  <div class="w-14 h-7 rounded bg-teal-400"></div>
+                  <div class="w-14 h-11 rounded bg-teal-500"></div>
+                  <div class="w-14 h-7 rounded bg-teal-600"></div>
+                </div>
+              </div>
+              <div class="p-4 bg-white rounded-lg border border-slate-200 flex flex-col">
+                <div class="text-xs font-semibold text-slate-400">grid-cols-3 with a span</div>
+                <div class="mt-2 grid grid-cols-3 gap-2">
+                  <div class="h-12 rounded bg-violet-400"></div>
+                  <div class="h-12 rounded bg-violet-500"></div>
+                  <div class="h-12 rounded bg-violet-600"></div>
+                  <div class="h-12 rounded bg-violet-500 col-span-2"></div>
+                  <div class="h-12 rounded bg-violet-700"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== Images ==================== -->
+          <section id="sec-images" data-vv-test="sec-images" vx-show="current === 'all' || current === 'images'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-violet-500"></div><p class="text-xs font-bold text-violet-600 m-0">FOUNDATIONS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Images</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Asset-resolver loaded PNGs: natural size, scaled, thumb, masked.</p>
+
+            <div class="mt-6 p-5 bg-white rounded-lg border border-slate-200">
+              <div class="flex flex-wrap gap-4 items-center">
+                <img src="./photo.png" alt="natural">
+                <img src="./photo.png" class="w-24" alt="scaled">
+                <img src="./photo.png" class="w-12 h-12" alt="thumb">
+                <img src="./photo.png" class="w-20 h-20 rounded-full" alt="masked">
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== HyperUI: Header ==================== -->
+          <section id="sec-hui-header" data-vv-test="sec-hui-header" vx-show="current === 'all' || current === 'header'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-teal-500"></div><p class="text-xs font-bold text-teal-600 m-0">HYPERUI PORTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Header</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Ported from HyperUI 'marketing / headers'. Adaptations: SVG logo becomes a flat mark, anchors become divs, responsive and dark variants dropped (no media queries in v0).</p>
+
+            <div class="mt-6 bg-white rounded-lg border border-slate-200 overflow-hidden">
+              <div class="flex h-16 items-center justify-between px-6">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-md bg-teal-600"></div>
+                  <div class="text-base font-bold text-gray-900">Northwind</div>
+                </div>
+                <div class="flex items-center gap-6 text-sm">
+                  <div class="text-gray-500">About</div>
+                  <div class="text-gray-500">Careers</div>
+                  <div class="text-gray-500">Services</div>
+                  <div class="text-gray-500">Blog</div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="rounded-md bg-teal-600 px-5 py-2 text-sm font-medium text-white">Login</div>
+                  <div class="rounded-md bg-gray-100 px-5 py-2 text-sm font-medium text-teal-600">Register</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== HyperUI: Hero ==================== -->
+          <section id="sec-hui-hero" data-vv-test="sec-hui-hero" vx-show="current === 'all' || current === 'hero'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-teal-500"></div><p class="text-xs font-bold text-teal-600 m-0">HYPERUI PORTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Hero</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Ported from HyperUI 'marketing / sections'. Adaptation: the Unsplash photo becomes a flat panel — object-fit and aspect-ratio are outside v0, so a stretched bitmap would smear.</p>
+
+            <div class="mt-6 grid grid-cols-2 gap-8 items-center bg-white rounded-lg border border-slate-200 p-6">
+              <div class="flex flex-col">
+                <h3 class="text-3xl font-semibold text-gray-900 m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
+                <p class="mt-4 text-gray-700 m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur doloremque saepe architecto maiores repudiandae amet perferendis repellendus.</p>
+              </div>
+              <div class="rounded-xl bg-teal-600 h-56 flex items-center justify-center">
+                <div class="w-16 h-16 rounded-full bg-white"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== HyperUI: Feature grid ==================== -->
+          <section id="sec-hui-feat" data-vv-test="sec-hui-feat" vx-show="current === 'all' || current === 'features'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-teal-500"></div><p class="text-xs font-bold text-teal-600 m-0">HYPERUI PORTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Feature grid</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Ported from HyperUI 'marketing / feature-grids'. Adaptation: stroke icons become flat glyph tiles — SVG is not a v0 paint surface.</p>
+
+            <div class="mt-6 bg-white rounded-lg border border-slate-200 p-6">
+              <div class="grid grid-cols-4 gap-6">
+                <div class="flex flex-col items-center text-center">
+                  <div class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                    <div class="w-6 h-6 rounded bg-teal-600"></div>
+                  </div>
+                  <h3 class="mt-4 text-lg font-semibold text-gray-900 m-0">High performance</h3>
+                  <p class="mt-2 text-sm text-gray-700 m-0">Optimized load times</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                  <div class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                    <div class="w-6 h-6 rounded-full bg-teal-600"></div>
+                  </div>
+                  <h3 class="mt-4 text-lg font-semibold text-gray-900 m-0">Enterprise security</h3>
+                  <p class="mt-2 text-sm text-gray-700 m-0">Every layer secured</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                  <div class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                    <div class="w-6 h-6 rounded-md bg-teal-600"></div>
+                  </div>
+                  <h3 class="mt-4 text-lg font-semibold text-gray-900 m-0">Highly configurable</h3>
+                  <p class="mt-2 text-sm text-gray-700 m-0">Adapt every aspect</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                  <div class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                    <div class="w-8 h-5 rounded bg-teal-600"></div>
+                  </div>
+                  <h3 class="mt-4 text-lg font-semibold text-gray-900 m-0">Advanced reporting</h3>
+                  <p class="mt-2 text-sm text-gray-700 m-0">Metrics that matter</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== HyperUI: Pricing ==================== -->
+          <section id="sec-hui-pricing" data-vv-test="sec-hui-pricing" vx-show="current === 'all' || current === 'pricing'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-teal-500"></div><p class="text-xs font-bold text-teal-600 m-0">HYPERUI PORTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Pricing</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Ported from HyperUI 'marketing / pricing'. Adaptations: shadow-xs + ring-1 collapse to a wider border on the highlighted plan; check icons become glyphs; list rhythm via flex gap.</p>
+
+            <div class="mt-6 flex justify-center">
+              <div class="w-full max-w-2xl grid grid-cols-2 gap-6">
+                <div class="rounded-2xl border border-gray-200 bg-white p-6 flex flex-col">
+                  <div class="flex flex-col items-center">
+                    <h3 class="text-lg font-medium text-gray-900 m-0">Starter</h3>
+                    <div class="mt-3 flex items-center gap-1">
+                      <div class="text-4xl font-bold text-gray-900">$20</div>
+                      <div class="text-sm font-medium text-gray-700">/month</div>
+                    </div>
+                  </div>
+                  <div class="mt-6 flex flex-col gap-2">
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-bold text-indigo-700">✓</div>
+                      <div class="text-sm text-gray-700">10 users included</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-bold text-indigo-700">✓</div>
+                      <div class="text-sm text-gray-700">2GB of storage</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-bold text-indigo-700">✓</div>
+                      <div class="text-sm text-gray-700">Email support</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-bold text-indigo-700">✓</div>
+                      <div class="text-sm text-gray-700">Help center access</div>
+                    </div>
+                  </div>
+                  <div class="mt-8 rounded-full border border-indigo-600 bg-white px-6 py-2 text-center text-sm font-medium text-indigo-600">Get Started</div>
+                </div>
+                <div class="rounded-2xl border-2 border-indigo-600 bg-white p-6 flex flex-col">
+                  <div class="flex flex-col items-center">
+                    <h3 class="text-lg font-medium text-gray-900 m-0">Pro</h3>
+                    <div class="mt-3 flex items-center gap-1">
+                      <div class="text-4xl font-bold text-gray-900">$30</div>
+                      <div class="text-sm font-medium text-gray-700">/month</div>
+                    </div>
+                  </div>
+                  <div class="mt-6 flex flex-col gap-2">
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-bold text-indigo-700">✓</div>
+                      <div class="text-sm text-gray-700">20 users included</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-bold text-indigo-700">✓</div>
+                      <div class="text-sm text-gray-700">5GB of storage</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-bold text-indigo-700">✓</div>
+                      <div class="text-sm text-gray-700">Email support</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-bold text-indigo-700">✓</div>
+                      <div class="text-sm text-gray-700">Help center access</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-bold text-indigo-700">✓</div>
+                      <div class="text-sm text-gray-700">Phone support</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="text-sm font-bold text-indigo-700">✓</div>
+                      <div class="text-sm text-gray-700">Community access</div>
+                    </div>
+                  </div>
+                  <div class="mt-8 rounded-full border border-indigo-600 bg-indigo-600 px-6 py-2 text-center text-sm font-medium text-white">Get Started</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== HyperUI: Team ==================== -->
+          <section id="sec-hui-team" data-vv-test="sec-hui-team" vx-show="current === 'all' || current === 'team'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-teal-500"></div><p class="text-xs font-bold text-teal-600 m-0">HYPERUI PORTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Team</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Ported from HyperUI 'marketing / team-sections'. Adaptations: photos become initials avatars (object-cover is outside v0); the demo's repeated name varied so the grid reads like a real roster.</p>
+
+            <div class="mt-6 bg-white rounded-lg border border-slate-200 p-6">
+              <div class="grid grid-cols-3 gap-8">
+                <div class="flex flex-col items-center">
+                  <div class="w-20 h-20 rounded-full bg-teal-100 flex items-center justify-center">
+                    <div class="text-xl font-bold text-teal-700">EJ</div>
+                  </div>
+                  <div class="mt-4 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 m-0 leading-tight">Eric Johnson</h3>
+                    <p class="mt-1 text-sm text-gray-700 m-0">Product Designer</p>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-20 h-20 rounded-full bg-indigo-100 flex items-center justify-center">
+                    <div class="text-xl font-bold text-indigo-700">MK</div>
+                  </div>
+                  <div class="mt-4 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 m-0 leading-tight">Maya Kusuma</h3>
+                    <p class="mt-1 text-sm text-gray-700 m-0">Platform Engineer</p>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-20 h-20 rounded-full bg-rose-100 flex items-center justify-center">
+                    <div class="text-xl font-bold text-rose-700">AR</div>
+                  </div>
+                  <div class="mt-4 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 m-0 leading-tight">Andi Raharjo</h3>
+                    <p class="mt-1 text-sm text-gray-700 m-0">Frontend Engineer</p>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-20 h-20 rounded-full bg-amber-100 flex items-center justify-center">
+                    <div class="text-xl font-bold text-amber-700">SD</div>
+                  </div>
+                  <div class="mt-4 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 m-0 leading-tight">Sari Dewi</h3>
+                    <p class="mt-1 text-sm text-gray-700 m-0">Product Manager</p>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-20 h-20 rounded-full bg-sky-100 flex items-center justify-center">
+                    <div class="text-xl font-bold text-sky-700">BL</div>
+                  </div>
+                  <div class="mt-4 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 m-0 leading-tight">Budi Lim</h3>
+                    <p class="mt-1 text-sm text-gray-700 m-0">DevOps</p>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center">
+                    <div class="text-xl font-bold text-emerald-700">NP</div>
+                  </div>
+                  <div class="mt-4 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 m-0 leading-tight">Nadia Putri</h3>
+                    <p class="mt-1 text-sm text-gray-700 m-0">QA Engineer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== HyperUI: CTA banner ==================== -->
+          <section id="sec-hui-cta" data-vv-test="sec-hui-cta" vx-show="current === 'all' || current === 'cta'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-teal-500"></div><p class="text-xs font-bold text-teal-600 m-0">HYPERUI PORTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">CTA banner</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Ported from HyperUI 'marketing / ctas'. Adaptations: focus rings and the arrow icon dropped — live text input stands in for the email field.</p>
+
+            <div class="mt-6 rounded-lg bg-gray-50 border border-slate-200 px-16 py-10">
+              <h3 class="text-2xl font-bold text-gray-900 m-0 text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit</h3>
+              <p class="mt-4 text-gray-500 m-0 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae dolor officia blanditiis repellat in, vero, aperiam porro ipsum laboriosam.</p>
+              <div class="mt-8 flex gap-4 w-full max-w-xl items-center self-center">
+                <input type="text" value="you@example.com" class="flex-1 h-11 rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-700">
+                <div class="rounded-md bg-rose-600 px-5 py-2 text-sm font-medium text-white">Sign Up</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== HyperUI: Footer ==================== -->
+          <section id="sec-hui-footer" data-vv-test="sec-hui-footer" vx-show="current === 'all' || current === 'footer'" class="flex flex-col mt-16">
+            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-sm bg-teal-500"></div><p class="text-xs font-bold text-teal-600 m-0">HYPERUI PORTS</p></div>
+            <h2 class="text-2xl font-bold text-slate-900 m-0 mt-1">Footer</h2>
+            <p class="text-sm text-slate-500 m-0 mt-2">Ported from HyperUI 'marketing / footers'. Adaptations: brand SVGs become flat tiles; the border-t rule lives in author CSS (.vv-rule) since per-side widths are outside v0.</p>
+
+            <div class="mt-6 bg-white rounded-lg border border-slate-200 px-16 py-8">
+              <h3 class="text-3xl font-extrabold text-gray-900 m-0 text-center">Customise Your Product</h3>
+              <p class="mt-4 text-gray-500 m-0 text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum maiores ipsum eos temporibus ea nihil.</p>
+              <div class="mt-8 flex justify-center">
+                <div class="rounded-full border border-indigo-600 px-12 py-3 text-sm font-medium text-indigo-600">Get Started</div>
+              </div>
+              <div class="mt-12 vv-rule pt-8 flex justify-between items-center">
+                <div class="flex flex-wrap gap-4">
+                  <div class="text-xs text-gray-500">Terms &amp; Conditions</div>
+                  <div class="text-xs text-gray-500">Privacy Policy</div>
+                  <div class="text-xs text-gray-500">Cookies</div>
+                </div>
+                <div class="flex gap-6">
+                  <div class="w-6 h-6 rounded-md bg-gray-300"></div>
+                  <div class="w-6 h-6 rounded-md bg-gray-400"></div>
+                  <div class="w-6 h-6 rounded-md bg-indigo-400"></div>
+                  <div class="w-6 h-6 rounded-md bg-gray-400"></div>
+                  <div class="w-6 h-6 rounded-md bg-gray-300"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="mt-16 p-6 bg-slate-900 rounded-lg flex justify-between items-center" data-vv-test="sec-footerband">
+            <div class="flex flex-col">
+              <div class="text-base font-bold text-white m-0">VelquView</div>
+              <div class="text-xs text-slate-400 mt-1">Phase 1 · component showcase</div>
+            </div>
+            <div class="flex gap-5">
+              <div class="text-xs text-slate-400">runtime 1d0a562</div>
+              <div class="text-xs text-slate-400">dev-tool 3c1ee34</div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 m-0 mt-6">Rendered natively — winit window, taffy layout, fontdue glyphs, softbuffer pixels. No browser involved.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

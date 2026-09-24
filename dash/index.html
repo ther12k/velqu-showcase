@@ -1,0 +1,457 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VelquView · Telemetry Dashboard</title>
+</head>
+<body class="bg-slate-950">
+  <!--
+    Dashboard sample: a dark app-UI genre sample for VelquView's
+    Tailwind v0 profile — top bar + icon sidebar + scrollable content,
+    reactive tabs (Overview / Traffic / Events) and a 7d/30d range
+    toggle. Dark tonal surfaces are chosen deliberately: without
+    shadows (outside the profile) depth comes from tonal steps
+    (950/900/800) and 1px borders. All text leaves in flex containers
+    are block elements; multi-line text never sits in items-center
+    flex columns (measured engine limitation).
+  -->
+  <main vx-state="{
+    current: 'overview',
+    range: '7d',
+    modal: '',
+    fmt: 'csv',
+  }" class="flex flex-col h-full">
+
+    <!-- ==================== Top bar ==================== -->
+    <div vx-show="modal === ''" class="h-16 bg-slate-900 vv-topline flex items-center justify-between px-6" data-vv-test="topbar">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-teal-500 flex items-center justify-center">
+          <div class="w-3 h-3 rounded-sm bg-slate-950"></div>
+        </div>
+        <div class="flex flex-col">
+          <div class="text-lg font-bold text-white">Telemetry</div>
+          <div class="text-xs text-slate-400">Kalibaru Terminal 3</div>
+        </div>
+        <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-slate-800 border border-slate-700 ml-4">
+          <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+          <div class="text-xs font-semibold text-emerald-300">LIVE</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <input type="text" value="Search lanes, drivers, containers…" class="w-80 h-9 rounded-md bg-slate-800 border border-slate-600 px-3 text-sm text-slate-300">
+        <div class="w-9 h-9 rounded-full bg-teal-700 border border-teal-500 flex items-center justify-center">
+          <div class="text-xs font-bold text-white">RZ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-1" vx-show="modal === ''">
+      <!-- ==================== Sidebar ==================== -->
+      <aside class="w-56 h-full bg-slate-900 p-3 flex flex-col" data-vv-test="sidebar">
+        <p class="text-xs font-semibold text-slate-600 px-3 m-0 mt-2">MONITOR</p>
+        <div id="nav-overview" data-vv-test="nav-overview" @click="current = 'overview'"
+          :class="current === 'overview' ? 'bg-teal-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm font-medium flex items-center gap-3' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm font-medium flex items-center gap-3'"
+          class="vv-nav rounded-md px-3 py-2 mt-1 text-sm font-medium flex items-center gap-3">
+          <div class="w-5 h-5 rounded-md bg-teal-500"></div>
+          <div>Overview</div>
+        </div>
+        <div id="nav-traffic" data-vv-test="nav-traffic" @click="current = 'traffic'"
+          :class="current === 'traffic' ? 'bg-teal-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm font-medium flex items-center gap-3' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm font-medium flex items-center gap-3'"
+          class="vv-nav rounded-md px-3 py-2 mt-1 text-sm font-medium flex items-center gap-3">
+          <div class="w-5 h-5 rounded-md bg-sky-500"></div>
+          <div>Traffic</div>
+        </div>
+        <div id="nav-events" data-vv-test="nav-events" @click="current = 'events'"
+          :class="current === 'events' ? 'bg-teal-600 text-white vv-nav rounded-md px-3 py-2 mt-1 text-sm font-medium flex items-center gap-3' : 'text-slate-300 vv-nav rounded-md px-3 py-2 mt-1 text-sm font-medium flex items-center gap-3'"
+          class="vv-nav rounded-md px-3 py-2 mt-1 text-sm font-medium flex items-center gap-3">
+          <div class="w-5 h-5 rounded-md bg-violet-500"></div>
+          <div>Events</div>
+        </div>
+
+        <p class="text-xs font-semibold text-slate-600 px-3 m-0 mt-6">GATES</p>
+        <div class="rounded-md px-3 py-2 mt-1 text-sm text-slate-400 flex items-center gap-3">
+          <div class="w-5 h-5 rounded-md bg-slate-700"></div>
+          <div>Inbound</div>
+          <div class="text-xs text-slate-500">24</div>
+        </div>
+        <div class="rounded-md px-3 py-2 mt-1 text-sm text-slate-400 flex items-center gap-3">
+          <div class="w-5 h-5 rounded-md bg-slate-700"></div>
+          <div>Outbound</div>
+          <div class="text-xs text-slate-500">18</div>
+        </div>
+        <div class="rounded-md px-3 py-2 mt-1 text-sm text-slate-400 flex items-center gap-3">
+          <div class="w-5 h-5 rounded-md bg-slate-700"></div>
+          <div>Depot</div>
+          <div class="text-xs text-slate-500">6</div>
+        </div>
+
+        <div class="mt-8 p-3 rounded-lg bg-slate-800 flex flex-col">
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+            <div class="text-xs font-bold text-white m-0">1 alarm open</div>
+          </div>
+          <div class="text-xs text-slate-400 mt-2">Camera 12 lost signal at 09:41.</div>
+          <div class="text-xs font-semibold text-teal-300 mt-2">View alarm</div>
+        </div>
+      </aside>
+
+      <!-- ==================== Content ==================== -->
+      <div class="flex-1 h-full overflow-y-auto bg-slate-950">
+        <div class="flex justify-center">
+          <div class="w-full max-w-5xl p-8 flex flex-col">
+
+            <!-- ========== Tab: Overview ========== -->
+            <section data-vv-test="sec-overview" vx-show="current === 'overview'" class="flex flex-col">
+              <div class="flex items-end justify-between">
+                <div>
+                  <h1 class="text-3xl font-bold text-white m-0">Overview</h1>
+                  <p class="text-sm text-slate-500 m-0 mt-2">Gate throughput and processing health, updated live.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="flex gap-1 rounded-md bg-slate-900 border border-slate-800 p-1">
+                    <div id="rng-7d" data-vv-test="rng-7d" @click="range = '7d'"
+                      :class="range === '7d' ? 'bg-teal-600 text-white vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold' : 'text-slate-400 vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold'"
+                      class="vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold">7d</div>
+                    <div id="rng-30d" data-vv-test="rng-30d" @click="range = '30d'"
+                      :class="range === '30d' ? 'bg-teal-600 text-white vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold' : 'text-slate-400 vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold'"
+                      class="vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold">30d</div>
+                  </div>
+                  <div @click="modal = 'export'" class="vv-click h-9 px-4 rounded-md bg-teal-600 text-white text-sm font-semibold flex items-center">Export</div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-4 gap-4 mt-8" vx-show="range === '7d'" data-vv-test="kpi-7d">
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">Trucks processed</div>
+                  <div class="text-3xl font-bold text-white mt-2">1,284</div>
+                  <div class="flex items-end gap-1 mt-4"><div class="w-3 h-4 bg-slate-800 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div><div class="w-3 h-5 bg-slate-800 rounded-sm"></div><div class="w-3 h-8 bg-teal-500 rounded-sm"></div><div class="w-3 h-6 bg-slate-800 rounded-sm"></div><div class="w-3 h-9 bg-teal-500 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div></div><div class="flex items-center gap-2 mt-3">
+                    <div class="flex items-center gap-1 px-2 h-6 rounded-full bg-emerald-900 border border-emerald-700">
+                      <div class="text-xs font-bold text-emerald-300">+12.4%</div>
+                    </div>
+                    <div class="text-xs text-slate-500">vs last week</div>
+                  </div>
+                </div>
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">Median gate time</div>
+                  <div class="text-3xl font-bold text-white mt-2">41s</div>
+                  <div class="flex items-end gap-1 mt-4"><div class="w-3 h-4 bg-slate-800 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div><div class="w-3 h-5 bg-slate-800 rounded-sm"></div><div class="w-3 h-8 bg-teal-500 rounded-sm"></div><div class="w-3 h-6 bg-slate-800 rounded-sm"></div><div class="w-3 h-9 bg-teal-500 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div></div><div class="flex items-center gap-2 mt-3">
+                    <div class="flex items-center gap-1 px-2 h-6 rounded-full bg-emerald-900 border border-emerald-700">
+                      <div class="text-xs font-bold text-emerald-300">-3.1%</div>
+                    </div>
+                    <div class="text-xs text-slate-500">faster</div>
+                  </div>
+                </div>
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">OCR rejects</div>
+                  <div class="text-3xl font-bold text-white mt-2">27</div>
+                  <div class="flex items-end gap-1 mt-4"><div class="w-3 h-4 bg-slate-800 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div><div class="w-3 h-5 bg-slate-800 rounded-sm"></div><div class="w-3 h-8 bg-teal-500 rounded-sm"></div><div class="w-3 h-6 bg-slate-800 rounded-sm"></div><div class="w-3 h-9 bg-teal-500 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div></div><div class="flex items-center gap-2 mt-3">
+                    <div class="flex items-center gap-1 px-2 h-6 rounded-full bg-red-900 border border-red-800">
+                      <div class="text-xs font-bold text-red-300">+5</div>
+                    </div>
+                    <div class="text-xs text-slate-500">needs review</div>
+                  </div>
+                </div>
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">Uptime</div>
+                  <div class="text-3xl font-bold text-white mt-2">99.7%</div>
+                  <div class="flex items-end gap-1 mt-4"><div class="w-3 h-4 bg-slate-800 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div><div class="w-3 h-5 bg-slate-800 rounded-sm"></div><div class="w-3 h-8 bg-teal-500 rounded-sm"></div><div class="w-3 h-6 bg-slate-800 rounded-sm"></div><div class="w-3 h-9 bg-teal-500 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div></div><div class="flex items-center gap-2 mt-3">
+                    <div class="flex items-center gap-1 px-2 h-6 rounded-full bg-slate-800 border border-slate-700">
+                      <div class="text-xs font-bold text-slate-300">30d SLA</div>
+                    </div>
+                    <div class="text-xs text-slate-500">met</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-4 gap-4 mt-8" vx-show="range === '30d'" data-vv-test="kpi-30d">
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">Trucks processed</div>
+                  <div class="text-3xl font-bold text-white mt-2">5,132</div>
+                  <div class="flex items-end gap-1 mt-4"><div class="w-3 h-4 bg-slate-800 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div><div class="w-3 h-5 bg-slate-800 rounded-sm"></div><div class="w-3 h-8 bg-teal-500 rounded-sm"></div><div class="w-3 h-6 bg-slate-800 rounded-sm"></div><div class="w-3 h-9 bg-teal-500 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div></div><div class="flex items-center gap-2 mt-3">
+                    <div class="flex items-center gap-1 px-2 h-6 rounded-full bg-emerald-900 border border-emerald-700">
+                      <div class="text-xs font-bold text-emerald-300">+18.9%</div>
+                    </div>
+                    <div class="text-xs text-slate-600">vs last month</div>
+                  </div>
+                </div>
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">Median gate time</div>
+                  <div class="text-3xl font-bold text-white mt-2">44s</div>
+                  <div class="flex items-end gap-1 mt-4"><div class="w-3 h-4 bg-slate-800 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div><div class="w-3 h-5 bg-slate-800 rounded-sm"></div><div class="w-3 h-8 bg-teal-500 rounded-sm"></div><div class="w-3 h-6 bg-slate-800 rounded-sm"></div><div class="w-3 h-9 bg-teal-500 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div></div><div class="flex items-center gap-2 mt-3">
+                    <div class="flex items-center gap-1 px-2 h-6 rounded-full bg-emerald-900 border border-emerald-700">
+                      <div class="text-xs font-bold text-emerald-300">-1.8%</div>
+                    </div>
+                    <div class="text-xs text-slate-500">faster</div>
+                  </div>
+                </div>
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">OCR rejects</div>
+                  <div class="text-3xl font-bold text-white mt-2">118</div>
+                  <div class="flex items-end gap-1 mt-4"><div class="w-3 h-4 bg-slate-800 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div><div class="w-3 h-5 bg-slate-800 rounded-sm"></div><div class="w-3 h-8 bg-teal-500 rounded-sm"></div><div class="w-3 h-6 bg-slate-800 rounded-sm"></div><div class="w-3 h-9 bg-teal-500 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div></div><div class="flex items-center gap-2 mt-3">
+                    <div class="flex items-center gap-1 px-2 h-6 rounded-full bg-red-900 border border-red-800">
+                      <div class="text-xs font-bold text-red-300">+23</div>
+                    </div>
+                    <div class="text-xs text-slate-500">needs review</div>
+                  </div>
+                </div>
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">Uptime</div>
+                  <div class="text-3xl font-bold text-white mt-2">99.4%</div>
+                  <div class="flex items-end gap-1 mt-4"><div class="w-3 h-4 bg-slate-800 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div><div class="w-3 h-5 bg-slate-800 rounded-sm"></div><div class="w-3 h-8 bg-teal-500 rounded-sm"></div><div class="w-3 h-6 bg-slate-800 rounded-sm"></div><div class="w-3 h-9 bg-teal-500 rounded-sm"></div><div class="w-3 h-7 bg-slate-800 rounded-sm"></div></div><div class="flex items-center gap-2 mt-3">
+                    <div class="flex items-center gap-1 px-2 h-6 rounded-full bg-slate-800 border border-slate-700">
+                      <div class="text-xs font-bold text-slate-300">30d SLA</div>
+                    </div>
+                    <div class="text-xs text-slate-500">met</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- chart card -->
+              <div class="mt-6 p-6 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                <div class="flex items-center justify-between">
+                  <div class="flex flex-col">
+                    <div class="text-base font-semibold text-white">Throughput per day</div>
+                    <div class="text-xs text-slate-400 mt-1">Trucks cleared through all lanes</div>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-sm bg-teal-500"></div><div class="text-xs text-slate-300">Cleared</div></div>
+                    <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-sm bg-teal-800"></div><div class="text-xs text-slate-300">Reprocessed</div></div>
+                  </div>
+                </div>
+
+                <div class="flex items-end gap-3 mt-8" vx-show="range === '7d'" data-vv-test="chart-7d">
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-24 bg-teal-500 rounded-sm"></div><div class="text-xs text-slate-400">Mon</div></div>
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-32 bg-teal-500 rounded-sm"></div><div class="text-xs text-slate-400">Tue</div></div>
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-28 bg-teal-500 rounded-sm"></div><div class="text-xs text-slate-400">Wed</div></div>
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-40 bg-teal-500 rounded-sm"></div><div class="text-xs text-slate-400">Thu</div></div>
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-36 bg-teal-500 rounded-sm"></div><div class="text-xs text-slate-400">Fri</div></div>
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-20 bg-teal-800 rounded-sm"></div><div class="text-xs text-slate-500">Sat</div></div>
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-16 bg-teal-800 rounded-sm"></div><div class="text-xs text-slate-500">Sun</div></div>
+                </div>
+
+                <div class="flex items-end gap-6 mt-8" vx-show="range === '30d'" data-vv-test="chart-30d">
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-24 bg-teal-500 rounded-sm"></div><div class="text-xs text-slate-400">W1</div></div>
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-32 bg-teal-500 rounded-sm"></div><div class="text-xs text-slate-400">W2</div></div>
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-28 bg-teal-800 rounded-sm"></div><div class="text-xs text-slate-500">W3</div></div>
+                  <div class="flex-1 flex flex-col items-center gap-2"><div class="w-full h-40 bg-teal-500 rounded-sm"></div><div class="text-xs text-slate-400">W4</div></div>
+                </div>
+              </div>
+
+              <!-- table card -->
+              <div class="mt-6 bg-slate-900 rounded-lg border border-slate-800 flex flex-col" data-vv-test="table">
+                <div class="p-6 pb-4 flex items-center justify-between">
+                  <div class="flex flex-col">
+                    <div class="text-sm font-semibold text-white">Recent transactions</div>
+                    <div class="text-xs text-slate-400 mt-1">Latest gate movements across terminals</div>
+                  </div>
+                  <div class="text-xs font-semibold text-teal-300">View all</div>
+                </div>
+                <div class="flex px-6 py-3 vv-line">
+                  <div class="w-28 text-xs font-bold text-slate-500">TXN</div>
+                  <div class="flex-1 text-xs font-bold text-slate-500">DRIVER</div>
+                  <div class="w-32 text-xs font-bold text-slate-500">LANE</div>
+                  <div class="w-32 text-xs font-bold text-slate-500">STATUS</div>
+                  <div class="w-24 text-xs font-bold text-slate-500 text-right">TIME</div>
+                </div>
+                <div class="flex px-6 py-4 vv-line items-center">
+                  <div class="w-28 text-xs font-semibold text-teal-300">GT-2418</div>
+                  <div class="flex-1 text-sm text-slate-100">Dwi Santoso</div>
+                  <div class="w-32 text-xs text-slate-400">Inbound · 04</div>
+                  <div class="w-32"><div class="flex items-center gap-2 px-2 h-6 rounded-full bg-emerald-900 border border-emerald-700 w-24"><div class="w-2 h-2 rounded-full bg-emerald-400"></div><div class="text-xs font-semibold text-emerald-300">Cleared</div></div></div>
+                  <div class="w-24 text-xs text-slate-400 text-right">09:58</div>
+                </div>
+                <div class="flex px-6 py-4 vv-line items-center">
+                  <div class="w-28 text-xs font-semibold text-teal-300">GT-2417</div>
+                  <div class="flex-1 text-sm text-slate-100">Rina Halim</div>
+                  <div class="w-32 text-xs text-slate-400">Outbound · 11</div>
+                  <div class="w-32"><div class="flex items-center gap-2 px-2 h-6 rounded-full bg-emerald-900 border border-emerald-700 w-24"><div class="w-2 h-2 rounded-full bg-emerald-400"></div><div class="text-xs font-semibold text-emerald-300">Cleared</div></div></div>
+                  <div class="w-24 text-xs text-slate-400 text-right">09:52</div>
+                </div>
+                <div class="flex px-6 py-4 vv-line items-center">
+                  <div class="w-28 text-xs font-semibold text-teal-300">GT-2416</div>
+                  <div class="flex-1 text-sm text-slate-100">Bambang Utomo</div>
+                  <div class="w-32 text-xs text-slate-400">Inbound · 02</div>
+                  <div class="w-32"><div class="flex items-center gap-2 px-2 h-6 rounded-full bg-amber-900 border border-amber-700 w-24"><div class="w-2 h-2 rounded-full bg-amber-400"></div><div class="text-xs font-semibold text-amber-300">Pending</div></div></div>
+                  <div class="w-24 text-xs text-slate-400 text-right">09:47</div>
+                </div>
+                <div class="flex px-6 py-4 vv-line items-center">
+                  <div class="w-28 text-xs font-semibold text-teal-300">GT-2415</div>
+                  <div class="flex-1 text-sm text-slate-100">Agus Wijaya</div>
+                  <div class="w-32 text-xs text-slate-400">Depot · A</div>
+                  <div class="w-32"><div class="flex items-center gap-2 px-2 h-6 rounded-full bg-red-900 border border-red-800 w-24"><div class="w-2 h-2 rounded-full bg-red-400"></div><div class="text-xs font-semibold text-red-300">Rejected</div></div></div>
+                  <div class="w-24 text-xs text-slate-400 text-right">09:31</div>
+                </div>
+                <div class="flex px-6 py-4 items-center">
+                  <div class="w-28 text-xs font-semibold text-teal-300">GT-2414</div>
+                  <div class="flex-1 text-sm text-slate-100">Siti Nurhaliza</div>
+                  <div class="w-32 text-xs text-slate-400">Outbound · 09</div>
+                  <div class="w-32"><div class="flex items-center gap-2 px-2 h-6 rounded-full bg-emerald-900 border border-emerald-700 w-24"><div class="w-2 h-2 rounded-full bg-emerald-400"></div><div class="text-xs font-semibold text-emerald-300">Cleared</div></div></div>
+                  <div class="w-24 text-xs text-slate-400 text-right">09:22</div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ========== Tab: Traffic ========== -->
+            <section data-vv-test="sec-traffic" vx-show="current === 'traffic'" class="flex flex-col">
+              <div>
+                <h1 class="text-3xl font-bold text-white m-0">Traffic</h1>
+                <p class="text-sm text-slate-500 m-0 mt-2">Lane load distribution and dwell times.</p>
+              </div>
+
+              <div class="grid grid-cols-3 gap-4 mt-8">
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">Peak hour</div>
+                  <div class="text-2xl font-bold text-white mt-2">08:00 – 09:00</div>
+                  <div class="text-xs text-slate-500 mt-3">212 trucks in 60 minutes</div>
+                </div>
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">Avg dwell</div>
+                  <div class="text-2xl font-bold text-white mt-2">38 min</div>
+                  <div class="text-xs text-slate-500 mt-3">yard occupancy 71%</div>
+                </div>
+                <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                  <div class="text-xs text-slate-400">Queue now</div>
+                  <div class="text-2xl font-bold text-white mt-2">14 trucks</div>
+                  <div class="text-xs text-slate-500 mt-3">longest at Inbound 04</div>
+                </div>
+              </div>
+
+              <div class="mt-6 p-6 bg-slate-900 rounded-lg border border-slate-800 flex flex-col">
+                <div class="flex flex-col">
+                  <div class="text-sm font-semibold text-white">Lane utilization</div>
+                  <div class="text-xs text-slate-400 mt-1">Share of daily traffic per lane</div>
+                </div>
+                <div class="flex flex-col gap-5 mt-6">
+                  <div class="flex items-center gap-4">
+                    <div class="w-28 text-sm text-slate-200">Inbound 04</div>
+                    <div class="flex-1 h-4 rounded-full bg-slate-800 overflow-hidden"><div class="h-4 w-72 bg-teal-500 rounded-full"></div></div>
+                    <div class="w-14 text-xs text-slate-400 text-right">41%</div>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <div class="w-28 text-sm text-slate-200">Outbound 11</div>
+                    <div class="flex-1 h-4 rounded-full bg-slate-800 overflow-hidden"><div class="h-4 w-56 bg-teal-500 rounded-full"></div></div>
+                    <div class="w-14 text-xs text-slate-400 text-right">32%</div>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <div class="w-28 text-sm text-slate-200">Inbound 02</div>
+                    <div class="flex-1 h-4 rounded-full bg-slate-800 overflow-hidden"><div class="h-4 w-40 bg-teal-500 rounded-full"></div></div>
+                    <div class="w-14 text-xs text-slate-400 text-right">23%</div>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <div class="w-28 text-sm text-slate-200">Depot A</div>
+                    <div class="flex-1 h-4 rounded-full bg-slate-800 overflow-hidden"><div class="h-4 w-24 bg-teal-800 rounded-full"></div></div>
+                    <div class="w-14 text-xs text-slate-400 text-right">14%</div>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <div class="w-28 text-sm text-slate-200">Depot B</div>
+                    <div class="flex-1 h-4 rounded-full bg-slate-800 overflow-hidden"><div class="h-4 w-16 bg-teal-800 rounded-full"></div></div>
+                    <div class="w-14 text-xs text-slate-400 text-right">9%</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ========== Tab: Events ========== -->
+            <section data-vv-test="sec-events" vx-show="current === 'events'" class="flex flex-col">
+              <div>
+                <h1 class="text-3xl font-bold text-white m-0">Events</h1>
+                <p class="text-sm text-slate-500 m-0 mt-2">System and operator event stream.</p>
+              </div>
+
+              <div class="mt-8 bg-slate-900 rounded-lg border border-slate-800 flex flex-col p-6">
+                <div class="flex justify-between items-start gap-4 py-4 vv-line">
+                  <div class="flex gap-4">
+                    <div class="w-2 h-2 rounded-full bg-red-400 mt-2"></div>
+                    <div class="flex flex-col">
+                      <div class="text-sm font-semibold text-white">Camera 12 lost signal</div>
+                      <div class="text-xs text-slate-400 mt-1">Inbound 04 · OCR fallback engaged · operator notified</div>
+                    </div>
+                  </div>
+                  <div class="text-xs text-slate-500">09:41</div>
+                </div>
+                <div class="flex justify-between items-start gap-4 py-4 vv-line">
+                  <div class="flex gap-4">
+                    <div class="w-2 h-2 rounded-full bg-amber-400 mt-2"></div>
+                    <div class="flex flex-col">
+                      <div class="text-sm font-semibold text-white">OCR confidence below threshold</div>
+                      <div class="text-xs text-slate-400 mt-1">GT-2416 · plate re-capture queued for review</div>
+                    </div>
+                  </div>
+                  <div class="text-xs text-slate-500">09:47</div>
+                </div>
+                <div class="flex justify-between items-start gap-4 py-4 vv-line">
+                  <div class="flex gap-4">
+                    <div class="w-2 h-2 rounded-full bg-emerald-400 mt-2"></div>
+                    <div class="flex flex-col">
+                      <div class="text-sm font-semibold text-white">Daily archive sealed</div>
+                      <div class="text-xs text-slate-400 mt-1">records.json · 1,284 entries · checksum verified</div>
+                    </div>
+                  </div>
+                  <div class="text-xs text-slate-500">08:00</div>
+                </div>
+                <div class="flex justify-between items-start gap-4 py-4">
+                  <div class="flex gap-4">
+                    <div class="w-2 h-2 rounded-full bg-sky-400 mt-2"></div>
+                    <div class="flex flex-col">
+                      <div class="text-sm font-semibold text-white">Shift handover</div>
+                      <div class="text-xs text-slate-400 mt-1">Night shift closed · 0 unresolved alerts</div>
+                    </div>
+                  </div>
+                  <div class="text-xs text-slate-500">06:00</div>
+                </div>
+              </div>
+            </section>
+
+            <div class="mt-10 p-5 bg-slate-900 rounded-lg border border-slate-800 flex justify-between items-center" data-vv-test="footerband">
+              <div class="flex flex-col">
+                <div class="text-sm font-bold text-white m-0">VelquView Telemetry</div>
+                <div class="text-xs text-slate-400 mt-1">Sample dashboard · reactive tabs, zero browser</div>
+              </div>
+              <div class="flex gap-5">
+                <div class="text-xs text-slate-400">runtime 1d0a562</div>
+                <div class="text-xs text-slate-400">dev-tool 3c1ee34</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 m-0 mt-6">Rendered natively — winit window, taffy layout, fontdue glyphs, softbuffer pixels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Modal: Export report (Flowbite port) ==================== -->
+    <div vx-show="modal === 'export'" class="h-full bg-slate-950 flex items-center justify-center" data-vv-test="modal-export">
+      <div class="w-full max-w-lg bg-slate-900 border border-slate-700 rounded-xl p-6 flex flex-col" data-vv-test="modal-card">
+        <div class="flex items-center justify-between pb-4 vv-line">
+          <h3 class="text-lg font-semibold text-white m-0">Export report</h3>
+          <div @click="modal = ''" class="vv-click w-9 h-9 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 text-base">×</div>
+        </div>
+        <div class="py-5 flex flex-col gap-3">
+          <div class="text-sm text-slate-400 m-0">Choose a format for the export. The file is written by the host process.</div>
+          <div @click="fmt = 'csv'" data-vv-test="fmt-csv"
+            :class="fmt === 'csv' ? 'border-teal-500 bg-slate-800' : 'border-slate-700 bg-slate-900'"
+            class="vv-click rounded-lg border p-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-md bg-teal-600 flex items-center justify-center text-white text-xs font-bold">CSV</div>
+            <div class="flex flex-col">
+              <div class="text-sm font-semibold text-white m-0">Spreadsheet</div>
+              <div class="text-xs text-slate-400 m-0 mt-1">Rows, lanes and timestamps — opens anywhere</div>
+            </div>
+          </div>
+          <div @click="fmt = 'json'" data-vv-test="fmt-json"
+            :class="fmt === 'json' ? 'border-teal-500 bg-slate-800' : 'border-slate-700 bg-slate-900'"
+            class="vv-click rounded-lg border p-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-md bg-indigo-600 flex items-center justify-center text-white text-xs font-bold">JSON</div>
+            <div class="flex flex-col">
+              <div class="text-sm font-semibold text-white m-0">Structured</div>
+              <div class="text-xs text-slate-400 m-0 mt-1">Nested records for pipeline ingestion</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 pt-4 vv-topline flex-row-reverse">
+          <div @click="modal = ''" class="vv-click rounded-md bg-teal-600 px-5 h-9 flex items-center text-sm font-semibold text-white">Export now</div>
+          <div @click="modal = ''" class="vv-click rounded-md bg-slate-800 border border-slate-600 px-5 h-9 flex items-center text-sm font-semibold text-slate-300">Cancel</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

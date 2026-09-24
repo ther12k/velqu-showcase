@@ -1,0 +1,8 @@
+/* A/B comparison sample set (NOT the frozen pipeline).
+   Loaded by BOTH engines; only the shared shell reset plus the
+   per-side border rule that v0 utilities cannot express. */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.vv-line { border-width: 0 0 1px 0; border-style: solid; border-color: #f3f4f6; }

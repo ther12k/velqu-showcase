@@ -1,0 +1,9 @@
+/* Login comparison sample (NOT the frozen pipeline).
+   Same reset rationale: preflight-lite sets only box-sizing, so the
+   UA body margin would frame the page; heights make the flex
+   centering shell work. This file is loaded by BOTH engines
+   (velqu auto-loads *.css; the browser copy links it explicitly). */
+html, body {
+  height: 100%;
+  margin: 0;
+}

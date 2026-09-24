@@ -1,0 +1,13 @@
+[package]
+name = "velqu-showcase"
+description = "Tailwind showcase: every supported HTML element + utility, rendered by VelquView, compared against a real browser."
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+velqu-view = { git = "https://github.com/ther12k/velqu-view.git", rev = "1d0a562bccdcb21c657423ca8b568cc2beebff88" }
+velqu-tailwind = { git = "https://github.com/ther12k/velqu-view.git", rev = "1d0a562bccdcb21c657423ca8b568cc2beebff88" }
+serde_json = "1"
+
+[profile.release]
+debug = false

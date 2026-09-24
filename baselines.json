@@ -1,0 +1,1379 @@
+{
+ "note": "Reviewed acceptance record. Per-element entries are the ACCEPTED velqu-vs-browser deltas; deviations list every accepted difference with its reason. Regressions, new deviations, and unexpected improvements fail the gate.",
+ "inputs": {
+  "pageFnv1a64": "15fc4f6993acf492",
+  "cssSha256": "f7189779aa75e44e9da4a5b954f724b8bda890ffa8f5ac553cb28209de7212f3",
+  "velquDeterminism": "912799ea220e6a0e453aa3431205eb8817fb12020442d978e8edc6e7ea320012"
+ },
+ "sections": {
+  "sec-type": {
+   "sec-type": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "type-h1": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "type-h2": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "type-h3": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "type-h4": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "type-h5": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "type-h6": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "type-p": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "size-xs": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "size-sm": {
+    "lx": -0.0,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "size-base": {
+    "lx": -0.01,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "size-lg": {
+    "lx": -0.01,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "size-xl": {
+    "lx": -0.02,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "size-2xl": {
+    "lx": -0.03,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "size-3xl": {
+    "lx": -0.04,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "size-4xl": {
+    "lx": -0.03,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "weight-thin": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "weight-light": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "weight-normal": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "weight-medium": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "weight-semibold": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "weight-bold": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "weight-black": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "leading-none": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "leading-tight": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "leading-normal": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "leading-loose": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "align-left": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "align-center": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "align-right": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "tcolor-slate": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "tcolor-red": {
+    "lx": -0.01,
+    "ly": 0.0,
+    "dw": 0.31,
+    "dh": 0.0
+   },
+   "tcolor-orange": {
+    "lx": 0.29,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "tcolor-amber": {
+    "lx": 0.28,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "tcolor-green": {
+    "lx": 0.28,
+    "ly": 0.0,
+    "dw": 0.3,
+    "dh": 0.0
+   },
+   "tcolor-emerald": {
+    "lx": 0.58,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "tcolor-teal": {
+    "lx": 0.56,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "tcolor-sky": {
+    "lx": 0.57,
+    "ly": 0.0,
+    "dw": 0.5,
+    "dh": 0.0
+   },
+   "tcolor-blue": {
+    "lx": 1.06,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "tcolor-indigo": {
+    "lx": 1.06,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "tcolor-violet": {
+    "lx": 1.05,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "tcolor-pink": {
+    "lx": 1.05,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   }
+  },
+  "sec-native": {
+   "sec-native": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 24.5
+   },
+   "native-h1": {
+    "lx": 0.0,
+    "ly": 97.56,
+    "dw": 0.0,
+    "dh": -14.0
+   },
+   "native-h2": {
+    "lx": 0.0,
+    "ly": 83.12,
+    "dw": 0.0,
+    "dh": -4.0
+   },
+   "native-h3": {
+    "lx": 0.0,
+    "ly": 78.22,
+    "dw": 0.0,
+    "dh": 3.0
+   },
+   "native-p": {
+    "lx": 0.0,
+    "ly": 80.5,
+    "dw": 0.0,
+    "dh": 5.0
+   },
+   "native-blockquote": {
+    "lx": -40.0,
+    "ly": 85.5,
+    "dw": 80.0,
+    "dh": 5.0
+   },
+   "native-ul": {
+    "lx": 0.0,
+    "ly": 74.5,
+    "dw": 0.0,
+    "dh": 10.0
+   },
+   "native-li-1": {
+    "lx": -40.0,
+    "ly": 74.5,
+    "dw": 40.0,
+    "dh": 5.0
+   },
+   "native-li-2": {
+    "lx": -40.0,
+    "ly": 79.5,
+    "dw": 40.0,
+    "dh": 5.0
+   },
+   "native-ol": {
+    "lx": 0.0,
+    "ly": 68.5,
+    "dw": 0.0,
+    "dh": 10.0
+   },
+   "native-oli-1": {
+    "lx": -40.0,
+    "ly": 68.5,
+    "dw": 40.0,
+    "dh": 5.0
+   },
+   "native-oli-2": {
+    "lx": -40.0,
+    "ly": 73.5,
+    "dw": 40.0,
+    "dh": 5.0
+   },
+   "native-inline": {
+    "lx": 0.0,
+    "ly": 62.5,
+    "dw": 0.0,
+    "dh": 5.0
+   },
+   "native-span": {
+    "lx": -5.09,
+    "ly": 62.5,
+    "dw": -0.0,
+    "dh": 5.0
+   },
+   "native-b": {
+    "lx": -10.18,
+    "ly": 62.5,
+    "dw": -4.84,
+    "dh": 5.0
+   },
+   "native-strong": {
+    "lx": -20.1,
+    "ly": 62.5,
+    "dw": -7.64,
+    "dh": 5.0
+   },
+   "native-i": {
+    "lx": -32.82,
+    "ly": 62.5,
+    "dw": -0.01,
+    "dh": 5.0
+   },
+   "native-em": {
+    "lx": -37.92,
+    "ly": 62.5,
+    "dw": -0.01,
+    "dh": 5.0
+   },
+   "native-code": {
+    "lx": -43.01,
+    "ly": 59.5,
+    "dw": 0.78,
+    "dh": 9.0
+   },
+   "native-small": {
+    "lx": -47.32,
+    "ly": 59.5,
+    "dw": 7.1,
+    "dh": 9.0
+   },
+   "native-a": {
+    "lx": -45.29,
+    "ly": 62.5,
+    "dw": -0.0,
+    "dh": 5.0
+   },
+   "native-pre": {
+    "lx": 0.0,
+    "ly": -453.5,
+    "dw": -927.0,
+    "dh": -6.0
+   }
+  },
+  "sec-colors": {
+   "sec-colors": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "swatch-red": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.01,
+    "dh": 0.0
+   },
+   "swatch-orange": {
+    "lx": 0.01,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-amber": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-yellow": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.01,
+    "dh": 0.0
+   },
+   "swatch-lime": {
+    "lx": 0.01,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-green": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-emerald": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.01,
+    "dh": 0.0
+   },
+   "swatch-teal": {
+    "lx": 0.01,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-cyan": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-sky": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.01,
+    "dh": 0.0
+   },
+   "swatch-blue": {
+    "lx": 0.01,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-indigo": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-violet": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.01,
+    "dh": 0.0
+   },
+   "swatch-purple": {
+    "lx": 0.01,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-fuchsia": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-pink": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.01,
+    "dh": 0.0
+   },
+   "swatch-rose": {
+    "lx": 0.01,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "swatch-slate": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-50": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-100": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-200": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-300": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-400": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-500": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-600": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-700": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-800": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-900": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ramp-slate-950": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "on-color-1": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.24,
+    "dh": 0.0
+   },
+   "on-color-2": {
+    "lx": 0.24,
+    "ly": 0.0,
+    "dw": 0.25,
+    "dh": 0.0
+   },
+   "on-color-3": {
+    "lx": 0.49,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   }
+  },
+  "sec-borders": {
+   "sec-borders": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "border-1": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "border-2": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "border-4": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "border-8": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "border-colored": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "border-none": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "rounded-none": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "rounded-sm": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "rounded-md": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "rounded-lg": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "rounded-xl": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "rounded-2xl": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "rounded-3xl": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "rounded-full": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   }
+  },
+  "sec-spacing": {
+   "sec-spacing": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "pad-1": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "pad-2": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "pad-4": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "pad-8": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "pad-px": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "pad-0": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "margin-a": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "margin-b": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "margin-c": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   }
+  },
+  "sec-sizing": {
+   "sec-sizing": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "w-16": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "w-24": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "w-32": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "w-48": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "w-64": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "h-8": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "h-16": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "h-24": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "h-40": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "w-full-box": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "min-w-box": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "max-w-box": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "w-auto-box": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   }
+  },
+  "sec-flex": {
+   "sec-flex": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-start": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-center": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-end": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-between": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-items-start": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-items-center": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-items-end": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-items-stretch": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-col": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-wrap": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "flex-grow": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grow-fixed": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grow-one": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grow-two": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   }
+  },
+  "sec-grid": {
+   "sec-grid": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grid-basic": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grid-c1": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grid-c2": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grid-c3": {
+    "lx": 0.01,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "grid-c4": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grid-c5": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grid-c6": {
+    "lx": 0.01,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "grid-span": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "span-wide": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.01,
+    "dh": 0.0
+   },
+   "span-side": {
+    "lx": 0.01,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "span-full": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grid-rows": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grow-cell-1": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grow-cell-2": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grow-cell-3": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "grow-cell-4": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   }
+  },
+  "sec-controls": {
+   "sec-controls": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ctl-input": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ctl-readonly": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ctl-disabled": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ctl-textarea": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ctl-btn-primary": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 2.44,
+    "dh": 0.0
+   },
+   "ctl-btn-secondary": {
+    "lx": 2.44,
+    "ly": 0.0,
+    "dw": 3.84,
+    "dh": 0.0
+   },
+   "ctl-btn-disabled": {
+    "lx": 6.27,
+    "ly": 0.0,
+    "dw": 6.34,
+    "dh": 0.0
+   },
+   "ctl-link": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 12.61,
+    "dh": 0.0
+   },
+   "ctl-badge-green": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": -0.0,
+    "dh": 0.0
+   },
+   "ctl-badge-amber": {
+    "lx": -0.0,
+    "ly": 0.0,
+    "dw": -0.01,
+    "dh": 0.0
+   },
+   "ctl-badge-red": {
+    "lx": -0.01,
+    "ly": 0.0,
+    "dw": 0.42,
+    "dh": 0.0
+   }
+  },
+  "sec-controls-native": {
+   "sec-controls-native": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 62.0
+   },
+   "native-input": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 19.0,
+    "dh": 15.0
+   },
+   "native-textarea": {
+    "lx": 19.0,
+    "ly": 0.0,
+    "dw": 60.0,
+    "dh": 62.0
+   },
+   "native-button": {
+    "lx": 79.0,
+    "ly": 0.0,
+    "dw": 19.11,
+    "dh": 7.0
+   },
+   "native-select": {
+    "lx": 98.11,
+    "ly": 0.0,
+    "dw": 71.98,
+    "dh": 7.0
+   }
+  },
+  "sec-images": {
+   "sec-images": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "img-natural": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "img-scaled": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "img-thumb": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "img-round": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   }
+  },
+  "sec-overflow": {
+   "sec-overflow": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "overflow-hidden": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "overflow-visible": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   },
+   "ws-nowrap": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": 0.0
+   }
+  },
+  "sec-inline-flex": {
+   "sec-inline-flex": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": -56.0
+   },
+   "inline-flex-col": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": 0.0,
+    "dh": -44.0
+   },
+   "inflex-1": {
+    "lx": 0.0,
+    "ly": 0.0,
+    "dw": -963.28,
+    "dh": 4.0
+   },
+   "inflex-2": {
+    "lx": 141.17,
+    "ly": -24.0,
+    "dw": -963.83,
+    "dh": 4.0
+   },
+   "inflex-3": {
+    "lx": 281.79,
+    "ly": -48.0,
+    "dw": -951.99,
+    "dh": 4.0
+   },
+   "inline-flex-row": {
+    "lx": 0.0,
+    "ly": -44.0,
+    "dw": 0.0,
+    "dh": 4.0
+   },
+   "inflex-r1": {
+    "lx": 0.0,
+    "ly": -44.0,
+    "dw": 0.3,
+    "dh": 4.0
+   },
+   "inflex-r2": {
+    "lx": -11.25,
+    "ly": -44.0,
+    "dw": 0.3,
+    "dh": 4.0
+   },
+   "inline-size": {
+    "lx": 0.0,
+    "ly": -40.0,
+    "dw": 0.0,
+    "dh": -16.0
+   },
+   "inflex-big": {
+    "lx": 0.0,
+    "ly": -39.0,
+    "dw": -0.0,
+    "dh": -17.0
+   },
+   "inflex-small": {
+    "lx": 6.35,
+    "ly": -61.0,
+    "dw": 0.2,
+    "dh": 10.0
+   }
+  }
+ },
+ "globalSections": [
+  {
+   "section": "sec-type",
+   "dx": 0.0,
+   "dy": 0.0,
+   "dw": 0.0,
+   "dh": 0.0
+  },
+  {
+   "section": "sec-native",
+   "dx": 0.0,
+   "dy": 0.0,
+   "dw": 0.0,
+   "dh": 24.5
+  },
+  {
+   "section": "sec-colors",
+   "dx": 0.0,
+   "dy": 24.5,
+   "dw": 0.0,
+   "dh": 0.0
+  },
+  {
+   "section": "sec-borders",
+   "dx": 0.0,
+   "dy": 24.5,
+   "dw": 0.0,
+   "dh": 0.0
+  },
+  {
+   "section": "sec-spacing",
+   "dx": 0.0,
+   "dy": 24.5,
+   "dw": 0.0,
+   "dh": 0.0
+  },
+  {
+   "section": "sec-sizing",
+   "dx": 0.0,
+   "dy": 24.5,
+   "dw": 0.0,
+   "dh": 0.0
+  },
+  {
+   "section": "sec-flex",
+   "dx": 0.0,
+   "dy": 24.5,
+   "dw": 0.0,
+   "dh": 0.0
+  },
+  {
+   "section": "sec-grid",
+   "dx": 0.0,
+   "dy": 24.5,
+   "dw": 0.0,
+   "dh": 0.0
+  },
+  {
+   "section": "sec-controls",
+   "dx": 0.0,
+   "dy": 24.5,
+   "dw": 0.0,
+   "dh": 0.0
+  },
+  {
+   "section": "sec-controls-native",
+   "dx": 0.0,
+   "dy": 24.5,
+   "dw": 0.0,
+   "dh": 62.0
+  },
+  {
+   "section": "sec-images",
+   "dx": 0.0,
+   "dy": 86.5,
+   "dw": 0.0,
+   "dh": 0.0
+  },
+  {
+   "section": "sec-overflow",
+   "dx": 0.0,
+   "dy": 86.5,
+   "dw": 0.0,
+   "dh": 0.0
+  },
+  {
+   "section": "sec-inline-flex",
+   "dx": 0.0,
+   "dy": 86.5,
+   "dw": 0.0,
+   "dh": -56.0
+  }
+ ],
+ "pageHeights": {
+  "velqu_png": 5695,
+  "browser_png": 5721
+ },
+ "velquRaster": {
+  "page": "309a0fe61640109ea624ff266035df7cbab8622ebb5a42606080f580fd446603",
+  "sec-type": "5233b3435f769c3c8a9e325ad252ba61627652abe0b4324da4e393154ee07a49",
+  "sec-native": "8793656e94afc842ee0f99894e002778bc5c6ef2600d37e417973e5e8a1fbc56",
+  "sec-colors": "181f058d95b1768d025e31111a624ebc91a64998fad06bfaf2eec03aed6d8eca",
+  "sec-borders": "e57cd901a13b1b7a85d6105df8c0210c92e17e1e2390e7b805e9eee8731ade08",
+  "sec-spacing": "8060dc0c6a5f2eddf5cb9979ca2ecce3c21d6004e5d7ec0d3a5d449ca10ca2e3",
+  "sec-sizing": "7bc3944a9690dfc409335e235767e25be5a17dd756994078de33642c543291b7",
+  "sec-flex": "af7cc61194f39a1a9124cf1ee32e979981abffa00d30d2584364741befe40cb3",
+  "sec-grid": "53ac1b1529fc081840311613f060e72d9250471f1f04eedaadf9632576f0f10f",
+  "sec-controls": "173da1a3af92fb2283de6c57f0b6bcdad86ce6583c9bb66ed6b8a5903ba3ff05",
+  "sec-controls-native": "acb6dca719d0d9a3e5fb858b86f49ecbb6e04069c3b290bec3a101116808b3ca",
+  "sec-images": "8309d513b88d61d65fe3658308c0ec62a7a076d248cd359b02741814088641ed",
+  "sec-overflow": "01198374e7ba952a652204c59d467434b7c83669a35fb18b5906046fe849664a",
+  "sec-inline-flex": "d603f7598bf2622c1dc83fb0fce7f6fe7b08bb572b5eab85c80fecd1b46ca608"
+ }
+}

@@ -1,0 +1,23 @@
+/* Live showcase shell (NOT the frozen comparison pipeline).
+   Same reset as the ops app: the preflight-lite sets only box-sizing,
+   so the UA body margin would frame the page in white. */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Sidebar nav: pointer affordance + hover raise. cursor is in the
+   allowed paint set; hover (#1e293b) is deliberately dimmer than the
+   active :class state (bg-sky-600), so the selected item stays
+   identifiable while pointed at. The reactive SetClass replaces the
+   class attribute, so the active item also matches .vv-nav:hover —
+   it just re-paints the background while hovered, no conflict. */
+.vv-nav { cursor: pointer; }
+.vv-nav:hover { background-color: #1e293b; }
+
+/* Card footer divider (per-side border widths are outside the v0
+   utility profile; author CSS carries it instead). */
+.vv-divider { border-width: 1px 0 0 0; border-style: solid; border-color: #f1f5f9; }
+
+/* Footer top rule (gray-100), same per-side-border rationale. */
+.vv-rule { border-width: 1px 0 0 0; border-style: solid; border-color: #f3f4f6; }

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VelquView · Sign in (Flowbite port)</title>
+</head>
+<body class="bg-gray-50">
+  <!--
+    Flowbite "Card with form inputs" (sign-in), ported for the
+    same-component A/B: this ONE file renders in velqu (native Tailwind
+    v0) and in Chromium (real Tailwind v3.4 compiled from these exact
+    classes + the parity base: box-sizing, border base, DejaVu font).
+    v0 adaptations, applied identically in both engines: fractional
+    spacing -> integer steps (mb-2.5->mb-2, py-2.5->py-2), logical
+    ms-2 -> ml-2, shadow/focus/hover variants dropped (no variants in
+    v0), checkbox -> styled box div, anchors -> divs, explicit h-10 on
+    inputs and button so intrinsic control sizes cannot diverge.
+  -->
+  <main class="h-full flex items-center justify-center px-4" data-vv-test="login-shell">
+    <div class="w-full max-w-sm bg-white p-6 border border-gray-200 rounded-xl" data-vv-test="login-card">
+
+      <h5 class="text-xl font-semibold text-gray-900 m-0 mb-6">Sign in to our platform</h5>
+
+      <div class="flex flex-col mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-900 m-0 mb-2">Your email</label>
+        <input id="email" type="text" placeholder="example@company.com" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full h-10 px-3" data-vv-test="login-email">
+      </div>
+
+      <div class="flex flex-col">
+        <label for="password" class="block text-sm font-medium text-gray-900 m-0 mb-2">Your password</label>
+        <input id="password" type="text" placeholder="•••••••••" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full h-10 px-3" data-vv-test="login-password">
+      </div>
+
+      <div class="flex items-center justify-between my-6">
+        <div class="flex items-center">
+          <div class="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50" data-vv-test="login-checkbox"></div>
+          <div class="ml-2 text-sm font-medium text-gray-900">Remember me</div>
+        </div>
+        <div class="text-sm font-medium text-blue-700">Lost password?</div>
+      </div>
+
+      <button type="submit" class="text-white bg-blue-700 border-none font-medium rounded-lg text-sm w-full h-10 mb-3" data-vv-test="login-submit">Login to your account</button>
+
+      <div class="text-sm font-medium text-gray-500 flex gap-1">Not registered?<div class="text-blue-700">Create account</div></div>
+
+    </div>
+  </main>
+</body>
+</html>

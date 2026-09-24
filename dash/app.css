@@ -1,0 +1,25 @@
+/* Dashboard sample shell (NOT the frozen comparison pipeline).
+   Same reset rationale as the ops app: preflight-lite sets only
+   box-sizing, so the UA body margin would frame the page. */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Sidebar nav + toggles: pointer affordance, tonal hover. Hover is
+   deliberately dimmer than the teal active :class state. */
+.vv-nav { cursor: pointer; }
+.vv-nav:hover { background-color: #1e293b; }
+.vv-tab { cursor: pointer; }
+.vv-tab:hover { background-color: #334155; }
+
+/* Row separators (per-side border widths are outside the v0 utility
+   profile; author CSS carries them). slate-800 = #1e293b. */
+.vv-line { border-width: 0 0 1px 0; border-style: solid; border-color: #1e293b; }
+
+/* Top bar underline (same per-side-border rationale). */
+.vv-topline { border-width: 0 0 1px 0; border-style: solid; border-color: #1e293b; }
+
+/* Clickable non-nav affordances (Export button, modal rows): pointer
+   cursor; tonal hover kept per-element via :class state, not here. */
+.vv-click { cursor: pointer; }

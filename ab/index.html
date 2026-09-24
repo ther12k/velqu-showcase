@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VelquView · Component A/B</title>
+</head>
+<body class="bg-gray-50">
+  <!--
+    Six classic components (Flowbite/HyperUI patterns) in ONE file,
+    rendered by BOTH engines for side-by-side comparison: velqu native
+    Tailwind v0; Chromium real Tailwind v3.4 compiled from these exact
+    classes + parity base (box-sizing, border base, DejaVu). Same rules
+    as login/: integer spacing, no variants/shadows/positioning, block
+    leaves in flex containers, explicit control heights.
+  -->
+  <main class="min-h-full flex justify-center" data-vv-test="ab-shell">
+    <div class="w-full max-w-3xl px-10 py-10 flex flex-col" data-vv-test="ab-page">
+
+      <!-- ========== 1. Buttons ========== -->
+      <section class="flex flex-col" data-vv-test="ab-buttons">
+        <h2 class="text-xl font-semibold text-gray-900 m-0">Buttons</h2>
+        <div class="mt-4 bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-4">
+          <div class="flex flex-wrap gap-3 items-center">
+            <button class="h-10 px-4 rounded-lg bg-blue-600 text-white text-sm font-semibold border-none">Save changes</button>
+            <button class="h-10 px-4 rounded-lg bg-white text-gray-700 text-sm font-semibold border border-gray-300">Preview</button>
+            <button class="h-10 px-4 rounded-lg bg-green-600 text-white text-sm font-semibold border-none">Approve</button>
+            <button class="h-10 px-4 rounded-lg bg-red-600 text-white text-sm font-semibold border-none">Delete</button>
+            <button class="h-10 px-4 rounded-lg bg-gray-100 text-gray-400 text-sm font-semibold border border-gray-200">Disabled</button>
+          </div>
+          <div class="flex flex-wrap gap-3 items-center">
+            <button class="h-8 px-3 rounded-lg bg-blue-600 text-white text-xs font-semibold border-none">Small</button>
+            <button class="h-10 px-4 rounded-lg bg-blue-600 text-white text-sm font-semibold border-none">Medium</button>
+            <button class="h-12 px-5 rounded-lg bg-blue-600 text-white text-base font-semibold border-none">Large</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 2. Alerts ========== -->
+      <section class="flex flex-col mt-12" data-vv-test="ab-alerts">
+        <h2 class="text-xl font-semibold text-gray-900 m-0">Alerts</h2>
+        <div class="mt-4 flex flex-col gap-3">
+          <div class="flex justify-between items-start gap-3 bg-blue-50 border border-blue-200 rounded-xl p-4">
+            <div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center shrink-0"><div class="w-3 h-3 rounded-full bg-blue-600"></div></div>
+            <div class="flex flex-col">
+              <div class="text-sm font-semibold text-blue-900 m-0">Heads up</div>
+              <div class="text-sm text-blue-700 m-0 mt-1">A new pack format is available. Migration is optional this cycle.</div>
+            </div>
+            </div>
+            <div class="w-7 h-7 rounded-md bg-blue-100 flex items-center justify-center text-blue-500 text-sm font-bold shrink-0">×</div>
+          </div>
+          <div class="flex justify-between items-start gap-3 bg-green-50 border border-green-200 rounded-xl p-4">
+            <div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center shrink-0"><div class="w-3 h-3 rounded-full bg-green-600"></div></div>
+            <div class="flex flex-col">
+              <div class="text-sm font-semibold text-green-900 m-0">Saved</div>
+              <div class="text-sm text-green-700 m-0 mt-1">Your changes were written to the device.</div>
+            </div>
+            </div>
+            <div class="w-7 h-7 rounded-md bg-green-100 flex items-center justify-center text-green-500 text-sm font-bold shrink-0">×</div>
+          </div>
+          <div class="flex justify-between items-start gap-3 bg-red-50 border border-red-200 rounded-xl p-4">
+            <div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center shrink-0"><div class="w-3 h-3 rounded-full bg-red-600"></div></div>
+            <div class="flex flex-col">
+              <div class="text-sm font-semibold text-red-900 m-0">Validation failed</div>
+              <div class="text-sm text-red-700 m-0 mt-1">Driver name must be 1–80 characters after trimming.</div>
+            </div>
+            </div>
+            <div class="w-7 h-7 rounded-md bg-red-100 flex items-center justify-center text-red-500 text-sm font-bold shrink-0">×</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 3. Badges ========== -->
+      <section class="flex flex-col mt-12" data-vv-test="ab-badges">
+        <h2 class="text-xl font-semibold text-gray-900 m-0">Badges</h2>
+        <div class="mt-4 bg-white border border-gray-200 rounded-xl p-6 flex flex-wrap gap-2 items-center">
+          <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-blue-50 border border-blue-200"><div class="w-2 h-2 rounded-full bg-blue-500"></div><div class="text-xs font-semibold text-blue-700">Beta</div></div>
+          <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-green-50 border border-green-200"><div class="w-2 h-2 rounded-full bg-green-500"></div><div class="text-xs font-semibold text-green-700">Operational</div></div>
+          <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-yellow-50 border border-yellow-200"><div class="w-2 h-2 rounded-full bg-yellow-500"></div><div class="text-xs font-semibold text-yellow-700">Degraded</div></div>
+          <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-red-50 border border-red-200"><div class="w-2 h-2 rounded-full bg-red-500"></div><div class="text-xs font-semibold text-red-700">Outage</div></div>
+          <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-purple-50 border border-purple-200"><div class="w-2 h-2 rounded-full bg-purple-500"></div><div class="text-xs font-semibold text-purple-700">Canary</div></div>
+          <div class="flex items-center gap-2 px-3 h-7 rounded-full bg-gray-100 border border-gray-200"><div class="w-2 h-2 rounded-full bg-gray-400"></div><div class="text-xs font-semibold text-gray-600">Archived</div></div>
+        </div>
+      </section>
+
+      <!-- ========== 4. Pricing ========== -->
+      <section class="flex flex-col mt-12" data-vv-test="ab-pricing">
+        <h2 class="text-xl font-semibold text-gray-900 m-0">Pricing</h2>
+        <div class="mt-4 grid grid-cols-2 gap-6">
+          <div class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col">
+            <div class="text-sm font-semibold text-gray-500 m-0">Starter</div>
+            <div class="flex items-baseline gap-1 mt-2"><div class="text-3xl font-bold text-gray-900">$20</div><div class="text-sm text-gray-500">/month</div></div>
+            <div class="flex flex-col gap-2 mt-6">
+              <div class="flex items-center gap-2"><div class="text-sm font-bold text-blue-600 m-0">✓</div><div class="text-sm text-gray-700 m-0">10 users included</div></div>
+              <div class="flex items-center gap-2"><div class="text-sm font-bold text-blue-600 m-0">✓</div><div class="text-sm text-gray-700 m-0">2GB of storage</div></div>
+              <div class="flex items-center gap-2"><div class="text-sm font-bold text-blue-600 m-0">✓</div><div class="text-sm text-gray-700 m-0">Email support</div></div>
+              <div class="flex items-center gap-2"><div class="text-sm font-bold text-blue-600 m-0">✓</div><div class="text-sm text-gray-700 m-0">Help center access</div></div>
+            </div>
+            <button class="mt-8 h-10 rounded-lg bg-white border border-blue-600 text-blue-600 text-sm font-semibold">Get Started</button>
+          </div>
+          <div class="bg-white border-2 border-blue-600 rounded-xl p-6 flex flex-col">
+            <div class="flex items-center gap-2"><div class="text-sm font-semibold text-gray-500 m-0">Pro</div><div class="px-2 h-5 rounded-full bg-blue-600 flex items-center"><div class="text-xs font-semibold text-white m-0">Popular</div></div></div>
+            <div class="flex items-baseline gap-1 mt-2"><div class="text-3xl font-bold text-gray-900">$30</div><div class="text-sm text-gray-500">/month</div></div>
+            <div class="flex flex-col gap-2 mt-6">
+              <div class="flex items-center gap-2"><div class="text-sm font-bold text-blue-600 m-0">✓</div><div class="text-sm text-gray-700 m-0">20 users included</div></div>
+              <div class="flex items-center gap-2"><div class="text-sm font-bold text-blue-600 m-0">✓</div><div class="text-sm text-gray-700 m-0">5GB of storage</div></div>
+              <div class="flex items-center gap-2"><div class="text-sm font-bold text-blue-600 m-0">✓</div><div class="text-sm text-gray-700 m-0">Email support</div></div>
+              <div class="flex items-center gap-2"><div class="text-sm font-bold text-blue-600 m-0">✓</div><div class="text-sm text-gray-700 m-0">Phone support</div></div>
+            </div>
+            <button class="mt-8 h-10 rounded-lg bg-blue-600 border-none text-white text-sm font-semibold">Get Started</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 5. Table ========== -->
+      <section class="flex flex-col mt-12" data-vv-test="ab-table">
+        <h2 class="text-xl font-semibold text-gray-900 m-0">Table</h2>
+        <div class="mt-4 bg-white border border-gray-200 rounded-xl flex flex-col overflow-hidden">
+          <div class="flex px-6 py-3 bg-gray-50 vv-line">
+            <div class="w-24 text-xs font-bold text-gray-500 m-0">TXN</div>
+            <div class="flex-1 text-xs font-bold text-gray-500 m-0">DRIVER</div>
+            <div class="w-32 text-xs font-bold text-gray-500 m-0">LANE</div>
+            <div class="w-28 text-xs font-bold text-gray-500 m-0">STATUS</div>
+          </div>
+          <div class="flex px-6 py-4 vv-line items-center">
+            <div class="w-24 text-xs font-semibold text-blue-600 m-0">GT-2418</div>
+            <div class="flex-1 text-sm text-gray-800 m-0">Dwi Santoso</div>
+            <div class="w-32 text-xs text-gray-500 m-0">Inbound · 04</div>
+            <div class="w-28"><div class="flex items-center gap-2 px-2 h-6 rounded-full bg-green-100 w-24"><div class="w-2 h-2 rounded-full bg-green-500"></div><div class="text-xs font-semibold text-green-800 m-0">Cleared</div></div></div>
+          </div>
+          <div class="flex px-6 py-4 vv-line items-center">
+            <div class="w-24 text-xs font-semibold text-blue-600 m-0">GT-2417</div>
+            <div class="flex-1 text-sm text-gray-800 m-0">Rina Halim</div>
+            <div class="w-32 text-xs text-gray-500 m-0">Outbound · 11</div>
+            <div class="w-28"><div class="flex items-center gap-2 px-2 h-6 rounded-full bg-green-100 w-24"><div class="w-2 h-2 rounded-full bg-green-500"></div><div class="text-xs font-semibold text-green-800 m-0">Cleared</div></div></div>
+          </div>
+          <div class="flex px-6 py-4 vv-line items-center">
+            <div class="w-24 text-xs font-semibold text-blue-600 m-0">GT-2416</div>
+            <div class="flex-1 text-sm text-gray-800 m-0">Bambang Utomo</div>
+            <div class="w-32 text-xs text-gray-500 m-0">Inbound · 02</div>
+            <div class="w-28"><div class="flex items-center gap-2 px-2 h-6 rounded-full bg-yellow-100 w-24"><div class="w-2 h-2 rounded-full bg-yellow-500"></div><div class="text-xs font-semibold text-yellow-800 m-0">Pending</div></div></div>
+          </div>
+          <div class="flex px-6 py-4 items-center">
+            <div class="w-24 text-xs font-semibold text-blue-600 m-0">GT-2415</div>
+            <div class="flex-1 text-sm text-gray-800 m-0">Agus Wijaya</div>
+            <div class="w-32 text-xs text-gray-500 m-0">Depot · A</div>
+            <div class="w-28"><div class="flex items-center gap-2 px-2 h-6 rounded-full bg-red-100 w-24"><div class="w-2 h-2 rounded-full bg-red-500"></div><div class="text-xs font-semibold text-red-800 m-0">Rejected</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 6. Testimonial ========== -->
+      <section class="flex flex-col mt-12" data-vv-test="ab-quote">
+        <h2 class="text-xl font-semibold text-gray-900 m-0">Testimonial</h2>
+        <div class="mt-4 bg-white border border-gray-200 rounded-xl p-8 flex flex-col">
+          <div class="text-yellow-400 text-base m-0">★★★★★</div>
+          <p class="text-base text-gray-700 m-0 mt-3 leading-relaxed">"We replaced an embedded webview with VelquView and shipped the same Tailwind markup on a render loop we can actually measure. The gate team stopped noticing the UI — which is the compliment."</p>
+          <div class="flex items-center gap-4 mt-6">
+            <div class="w-12 h-12 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center"><div class="text-sm font-bold text-blue-700 m-0">RP</div></div>
+            <div class="flex flex-col">
+              <div class="text-sm font-semibold text-gray-900 m-0">Rizky Pratama</div>
+              <div class="text-xs text-gray-500 m-0 mt-1">Platform engineer, Kalibaru Terminal</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>

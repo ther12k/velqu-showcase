@@ -1,0 +1,9 @@
+/* Chat comparison sample (NOT the frozen pipeline).
+   Shared shell reset only; loaded by BOTH engines. */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.vv-line { border-width: 0 0 1px 0; border-style: solid; border-color: #f3f4f6; }
+.vv-topline { border-width: 1px 0 0 0; border-style: solid; border-color: #f3f4f6; }
+.vv-rline { border-width: 0 1px 0 0; border-style: solid; border-color: #e5e7eb; }
