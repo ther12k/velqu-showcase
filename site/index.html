@@ -43,7 +43,7 @@
         <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-sky-500 flex items-center justify-center shadow-lg shadow-violet-500/25">
           <div class="w-3 h-3 rounded-sm bg-white"></div>
         </div>
-        <span class="text-lg font-semibold text-slate-900 dark:text-white">VelquView</span>
+        <span class="hidden sm:inline text-lg font-semibold text-slate-900 dark:text-white">VelquView</span>
       </a>
       <nav class="hidden md:flex items-center gap-8 text-sm text-slate-600 dark:text-slate-300">
         <a href="#features" class="hover:text-slate-900 dark:hover:text-white transition">Features</a>
@@ -83,7 +83,7 @@
           Phase 1 accepted · Tailwind v0 profile · fully testable
         </div>
       </div>
-      <h1 class="mt-6 text-center text-5xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
+      <h1 class="mt-6 text-center text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
         The Tailwind renderer for<br>
         <span class="bg-gradient-to-r from-violet-500 via-sky-500 to-emerald-500 dark:from-violet-400 dark:via-sky-400 dark:to-emerald-400 bg-clip-text text-transparent">native applications.</span>
       </h1>
@@ -120,7 +120,7 @@
           </div>
           <div class="pill pill-green hidden sm:inline-flex">measured drift: 0 px</div>
         </div>
-        <div class="ab-slider" id="heroSlider">
+        <div class="ab-slider" id="heroSlider" role="slider" tabindex="0" aria-label="Compare Chromium and VelquView renders" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
           <img class="ab-base" src="assets/ab-login-browser.png" alt="Sign-in card rendered by Chromium with real Tailwind v3.4" draggable="false">
           <div class="ab-overlay"><img src="assets/ab-login-velqu.png" alt="The same card rendered natively by VelquView" draggable="false"></div>
           <div class="ab-divider"><div class="ab-handle">
@@ -353,28 +353,30 @@ cd velqu-view-starter
         <p>One type, one loop. The host owns the window (winit), calls the view, and presents the frame.</p>
         <div class="api-grid">
           <div class="code-card"><div class="code-head">document</div>
-<pre><code>view.<span class="c-fn">load_html</span>(&amp;html)?;
-view.<span class="c-fn">load_document</span>(<span class="c-type">DocumentSource</span>::File(path))?;
-view.<span class="c-fn">load_stylesheet</span>(id, css)?;
-view.<span class="c-fn">reload_bundle</span>(html)?;  <span class="c-cm">// state-preserving</span></code></pre>
+<pre><code><span class="c-kw">let</span> doc = <span class="c-type">DocumentSource</span>::<span class="c-fn">new</span>(<span class="c-str">"app"</span>, html).<span class="c-fn">with_base</span>(dir);
+view.<span class="c-fn">load_document</span>(doc)?;
+view.<span class="c-fn">load_stylesheet</span>(<span class="c-type">StylesheetSource</span>::<span class="c-fn">new</span>(<span class="c-str">"app.css"</span>, css))?;
+<span class="c-cm">// hot reload, state-preserving:</span>
+view.<span class="c-fn">reload_bundle</span>(doc, sheets, viewport)?;</code></pre>
           </div>
           <div class="code-card"><div class="code-head">events → state → frame</div>
-<pre><code><span class="c-kw">let</span> batch = view.<span class="c-fn">take_events</span>();
+<pre><code><span class="c-kw">let</span> batch = view.<span class="c-fn">take_events</span>();      <span class="c-cm">// Vec&lt;Event&gt;</span>
 view.<span class="c-fn">pump_reactive</span>(&amp;batch);
-<span class="c-kw">let</span> frame = view.<span class="c-fn">render</span>(viewport)?;
-<span class="c-cm">// hit_test → pointer_press / release</span></code></pre>
+<span class="c-kw">let</span> frame = view.<span class="c-fn">render</span>(viewport)?;  <span class="c-cm">// FrameResult</span>
+frame.<span class="c-fn">pixels</span>()                     <span class="c-cm">// &amp;[u8] RGBA</span></code></pre>
           </div>
-          <div class="code-card"><div class="code-head">text input</div>
-<pre><code>view.<span class="c-fn">set_focus</span>(node_id)?;
+          <div class="code-card"><div class="code-head">input &amp; text</div>
+<pre><code>view.<span class="c-fn">set_focus</span>(<span class="c-type">Some</span>(<span class="c-str">"email"</span>));
 view.<span class="c-fn">insert_text</span>(<span class="c-str">"typed"</span>);
-<span class="c-kw">let</span> value = view.<span class="c-fn">control_value</span>(node_id)?;
-view.<span class="c-fn">wheel</span>(dx, dy);  <span class="c-cm">// scroll containers</span></code></pre>
+<span class="c-cm">// values arrive as events:</span>
+<span class="c-cm">// Event::ValueChanged { target, value }</span>
+view.<span class="c-fn">wheel</span>(viewport, x, y, dx, dy);</code></pre>
           </div>
           <div class="code-card"><div class="code-head">inspection &amp; gates</div>
-<pre><code>view.<span class="c-fn">tailwind_diagnostics</span>();   <span class="c-cm">// Vec&lt;String&gt;</span>
+<pre><code>view.<span class="c-fn">tailwind_diagnostics</span>();      <span class="c-cm">// Vec&lt;String&gt;</span>
 view.<span class="c-fn">reactive_diagnostics</span>();
-view.<span class="c-fn">layout_facts</span>();  <span class="c-cm">// geometry for tests</span>
-view.<span class="c-fn">reactive_plan</span>();  <span class="c-cm">// binding graph</span></code></pre>
+view.<span class="c-fn">layout_facts</span>(viewport)?;       <span class="c-cm">// geometry</span>
+view.<span class="c-fn">hit_test</span>(viewport, x, y)?;     <span class="c-cm">// Option&lt;HitTarget&gt;</span></code></pre>
           </div>
         </div>
         <p class="text-sm mt-4">Persistence is not in the API on purpose: the host observes <code class="code-inline">Click</code>/<code class="code-inline">ValueChanged</code> events, validates, writes storage atomically, then calls <code class="code-inline">reload_bundle</code> — selection and scroll survive.</p>
@@ -577,7 +579,11 @@ reactive diagnostic: node 7 vx-show: expression has an unterminated string liter
         var pos = 50;
         var m = location.hash.match(/slider=(\d+)/);
         if (m) pos = Math.max(0, Math.min(100, Number(m[1])));
-        var set = function (p) { sl.style.setProperty("--pos", p + "%"); };
+        var set = function (p) {
+          sl.style.setProperty("--pos", p + "%");
+          sl.setAttribute("aria-valuenow", String(Math.round(p)));
+          pos = p;
+        };
         set(pos);
         var drag = false;
         var move = function (e) {
@@ -589,6 +595,13 @@ reactive diagnostic: node 7 vx-show: expression has an unterminated string liter
         sl.addEventListener("pointerdown", function (e) { drag = true; sl.setPointerCapture(e.pointerId); move(e); });
         sl.addEventListener("pointermove", move);
         window.addEventListener("pointerup", function () { drag = false; });
+        sl.addEventListener("keydown", function (e) {
+          var step = e.shiftKey ? 25 : 5;
+          if (e.key === "ArrowLeft" || e.key === "ArrowDown") { set(Math.max(0, pos - step)); e.preventDefault(); }
+          else if (e.key === "ArrowRight" || e.key === "ArrowUp") { set(Math.min(100, pos + step)); e.preventDefault(); }
+          else if (e.key === "Home") { set(0); e.preventDefault(); }
+          else if (e.key === "End") { set(100); e.preventDefault(); }
+        });
       }
     })();
     (function () {

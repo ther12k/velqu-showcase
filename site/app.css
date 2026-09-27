@@ -91,6 +91,10 @@ html.dark {
 html.dark .code-inline { color: #c4b5fd; }
 
 /* cards */
+/* grid/flex children must be allowed to shrink below min-content so
+   long code lines scroll inside the code card instead of the page */
+.feature-card, .doc-step, .code-card, .render-card { min-width: 0; }
+.doc-step .code-card pre { max-width: 100%; }
 .feature-card, .doc-step {
   border-radius: 16px;
   border: 1px solid var(--border);
@@ -131,7 +135,7 @@ html.dark .code-inline { color: #c4b5fd; }
 .doc-sec .anchor { color: #a78bfa; font-size: 15px; text-decoration: none; opacity: 0; transition: opacity .15s; }
 .doc-sec > h3:hover .anchor { opacity: 1; }
 .doc-sec p { color: var(--text); margin-top: 10px; }
-.api-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 16px; }
+.api-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px; margin-top: 16px; }
 .doc-note {
   margin-top: 16px; border-radius: 12px; padding: 14px 16px;
   border: 1px solid rgba(251, 191, 36, 0.35);

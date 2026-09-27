@@ -16,13 +16,11 @@ REMOTE_ROOT="/home/opc/$APP"
 PORT=8121
 STAMP=$(date -u +%Y%m%d-%H%M%S)
 
-echo "── building tw.css (skipped if fresh)"
-if [ ! -f site/tw.css ] || [ site/index.html -nt site/tw.css ]; then
-  printf '@tailwind base;\n@tailwind components;\n@tailwind utilities;\n' > /tmp/tw-input.css
-  # tailwind.config.js is REQUIRED: darkMode:'class' powers the theme toggle
-  (cd site && npx -y tailwindcss@3.4.17 -i /tmp/tw-input.css -o tw.css \
-     -c tailwind.config.js --minify)
-fi
+echo "── building tw.css (always: cookbook.html + config are inputs too)"
+printf '@tailwind base;\n@tailwind components;\n@tailwind utilities;\n' > /tmp/tw-input.css
+# tailwind.config.js is REQUIRED: darkMode:'class' powers the theme toggle
+(cd site && npx -y tailwindcss@3.4.17 -i /tmp/tw-input.css -o tw.css \
+   -c tailwind.config.js --minify)
 
 echo "── uploading release $STAMP"
 ssh -i "$KEY" -o IdentitiesOnly=yes "$HOST" "mkdir -p $REMOTE_ROOT/releases/$STAMP/dist"
@@ -32,8 +30,13 @@ rsync -az -e "ssh -i $KEY -o IdentitiesOnly=yes" \
 rsync -az -e "ssh -i $KEY -o IdentitiesOnly=yes" \
   site/server.cjs "$HOST:$REMOTE_ROOT/releases/$STAMP/server/"
 
+# Cache-bust compiled assets: HTML is no-cache but CSS is cached 1h —
+# returning visitors must not keep the previous release's stylesheet.
 ssh -i "$KEY" -o IdentitiesOnly=yes "$HOST" "
 set -e
+cd $REMOTE_ROOT/releases/$STAMP/dist
+sed -i 's/app\.css\"/app.css?v=$STAMP\"/g; s/tw\.css\"/tw.css?v=$STAMP\"/g' index.html cookbook.html
+
 cd $REMOTE_ROOT
 mkdir -p data   # none today; convention kept for future state
 ln -sfn releases/$STAMP/dist dist.new
