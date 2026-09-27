@@ -238,3 +238,48 @@ html.js .reveal:not(.revealed) { animation: vv-reveal-fail 0s 2.5s forwards; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* ── A/B comparison slider (hero signature) ── */
+.ab-slider {
+  --pos: 50%;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: none;
+  aspect-ratio: 1280 / 800;
+}
+.ab-slider img { width: 100%; height: 100%; display: block; object-fit: cover; pointer-events: none; }
+.ab-overlay {
+  position: absolute; inset: 0;
+  clip-path: inset(0 0 0 var(--pos));
+}
+.ab-divider {
+  position: absolute; top: 0; bottom: 0; left: var(--pos);
+  width: 2px; margin-left: -1px;
+  background: #8b5cf6;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.25), 0 0 18px rgba(139,92,246,0.55);
+  pointer-events: none;
+}
+.ab-handle {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 38px; height: 38px; border-radius: 999px;
+  background: #8b5cf6; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 20px rgba(139,92,246,0.5);
+  pointer-events: none;
+}
+.ab-tag {
+  position: absolute; bottom: 12px;
+  font: 600 11px/1 'Inter', system-ui;
+  padding: 7px 11px; border-radius: 999px;
+  color: #fff; background: rgba(2, 6, 23, 0.72);
+  border: 1px solid rgba(255,255,255,0.18);
+  pointer-events: none;
+}
+.ab-tag-l { left: 12px; }
+.ab-tag-r { right: 12px; }
