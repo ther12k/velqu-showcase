@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VelquView · Windmill clone</title>
+</head>
+<body class="bg-gray-50">
+  <!--
+    Clone of estevanmaito/windmill-dashboard (MIT, 3k+ stars) public/
+    index.html — sidebar + header + stat cards + transactions table +
+    two bottom panels, ported to the v0 profile: shadows → borders,
+    uppercase class → literal caps, absolute active-indicator bar →
+    author CSS .vv-bar left border, SVG icons → tonal tiles with mark,
+    avatars → initials circles, responsive/dark/Alpine bits dropped.
+    Same file renders in BOTH engines for the A/B series.
+  -->
+  <main class="h-full flex" data-vv-test="wm-shell">
+
+    <!-- ==================== Sidebar ==================== -->
+    <aside class="w-64 h-full bg-white vv-rline flex flex-col" data-vv-test="wm-sidebar">
+      <div class="h-16 px-6 flex items-center gap-2" data-vv-test="wm-brand">
+        <div class="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center"><div class="w-3 h-3 rounded-sm bg-white"></div></div>
+        <div class="text-lg font-semibold text-gray-800 m-0">Windmill</div>
+      </div>
+
+      <div class="flex flex-col py-4 text-gray-600" data-vv-test="wm-nav">
+        <div class="px-6 m-0 mb-2 text-xs font-bold text-gray-500">GENERAL</div>
+        <div class="flex items-center gap-4 px-6 py-3 vv-bar bg-gray-100" data-vv-test="wm-nav-active">
+          <div class="w-5 h-5 rounded-md bg-purple-600"></div>
+          <div class="text-sm font-semibold text-gray-800 m-0">Dashboard</div>
+        </div>
+        <div class="flex items-center gap-4 px-6 py-3">
+          <div class="w-5 h-5 rounded-md bg-gray-300"></div>
+          <div class="text-sm font-medium text-gray-600 m-0">Forms</div>
+        </div>
+        <div class="flex items-center gap-4 px-6 py-3">
+          <div class="w-5 h-5 rounded-md bg-gray-300"></div>
+          <div class="text-sm font-medium text-gray-600 m-0">Cards</div>
+        </div>
+        <div class="flex items-center gap-4 px-6 py-3">
+          <div class="w-5 h-5 rounded-md bg-gray-300"></div>
+          <div class="text-sm font-medium text-gray-600 m-0">Charts</div>
+        </div>
+        <div class="px-6 m-0 mt-6 mb-2 text-xs font-bold text-gray-500">PAGES</div>
+        <div class="flex items-center gap-4 px-6 py-3">
+          <div class="w-5 h-5 rounded-md bg-gray-300"></div>
+          <div class="text-sm font-medium text-gray-600 m-0">404</div>
+        </div>
+        <div class="flex items-center gap-4 px-6 py-3">
+          <div class="w-5 h-5 rounded-md bg-gray-300"></div>
+          <div class="text-sm font-medium text-gray-600 m-0">Blank</div>
+        </div>
+      </div>
+
+      <div class="px-6 my-6" data-vv-test="wm-cta">
+        <div class="flex flex-col rounded-lg bg-purple-600 p-5">
+          <div class="text-sm font-semibold text-white m-0">Check the full docs</div>
+          <div class="text-xs text-purple-200 m-0 mt-2">Components, charts and layouts for your next project.</div>
+          <div class="mt-4 px-3 h-8 rounded-md bg-purple-800 border border-purple-500 flex items-center justify-center text-xs font-semibold text-white m-0">Documentation</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==================== Right column ==================== -->
+    <div class="flex flex-col flex-1 w-full h-full" data-vv-test="wm-right">
+
+      <!-- Header -->
+      <header class="h-16 bg-white vv-bline flex items-center px-6 gap-6" data-vv-test="wm-header">
+        <div class="flex justify-center flex-1">
+          <div class="w-full max-w-md">
+            <input type="text" placeholder="Search for projects" class="w-full h-10 rounded-lg bg-gray-100 border border-gray-200 px-4 text-sm text-gray-600" data-vv-test="wm-search">
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-9 h-9 rounded-md bg-gray-100 border border-gray-200 flex items-center justify-center">
+            <div class="w-2 h-2 rounded-full bg-purple-600"></div>
+          </div>
+          <div class="w-9 h-9 rounded-full bg-purple-100 border border-purple-200 flex items-center justify-center"><div class="text-xs font-bold text-purple-700 m-0">RZ</div></div>
+        </div>
+      </header>
+
+      <!-- Main -->
+      <div class="flex-1 h-full overflow-y-auto" data-vv-test="wm-main">
+        <div class="flex justify-center">
+          <div class="w-full max-w-6xl px-6 py-6 flex flex-col">
+
+            <h1 class="text-3xl font-semibold text-gray-800 m-0 my-6">Business overview</h1>
+
+            <!-- Stat cards -->
+            <div class="grid grid-cols-4 gap-6 mb-8" data-vv-test="wm-stats">
+              <div class="flex items-center p-4 bg-white rounded-lg border border-gray-200">
+                <div class="p-3 mr-4 bg-orange-100 rounded-full"><div class="w-4 h-4 rounded-full bg-orange-500"></div></div>
+                <div class="flex flex-col">
+                  <div class="text-sm font-medium text-gray-600 m-0 mb-1">Total clients</div>
+                  <div class="text-lg font-semibold text-gray-700 m-0">6389</div>
+                </div>
+              </div>
+              <div class="flex items-center p-4 bg-white rounded-lg border border-gray-200">
+                <div class="p-3 mr-4 bg-green-100 rounded-full"><div class="w-4 h-4 rounded-full bg-green-500"></div></div>
+                <div class="flex flex-col">
+                  <div class="text-sm font-medium text-gray-600 m-0 mb-1">Account balance</div>
+                  <div class="text-lg font-semibold text-gray-700 m-0">$ 46,760.89</div>
+                </div>
+              </div>
+              <div class="flex items-center p-4 bg-white rounded-lg border border-gray-200">
+                <div class="p-3 mr-4 bg-blue-100 rounded-full"><div class="w-4 h-4 rounded-full bg-blue-500"></div></div>
+                <div class="flex flex-col">
+                  <div class="text-sm font-medium text-gray-600 m-0 mb-1">New sales</div>
+                  <div class="text-lg font-semibold text-gray-700 m-0">376</div>
+                </div>
+              </div>
+              <div class="flex items-center p-4 bg-white rounded-lg border border-gray-200">
+                <div class="p-3 mr-4 bg-teal-100 rounded-full"><div class="w-4 h-4 rounded-full bg-teal-500"></div></div>
+                <div class="flex flex-col">
+                  <div class="text-sm font-medium text-gray-600 m-0 mb-1">Pending contacts</div>
+                  <div class="text-lg font-semibold text-gray-700 m-0">35</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Transactions table -->
+            <div class="w-full bg-white rounded-lg border border-gray-200 mb-8 flex flex-col overflow-hidden" data-vv-test="wm-table">
+              <div class="flex items-center justify-between px-6 py-4">
+                <div class="text-lg font-semibold text-gray-800 m-0">Latest transactions</div>
+                <div class="flex items-center gap-2">
+                  <div class="w-8 h-8 rounded-md bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 text-sm font-bold m-0">‹</div>
+                  <div class="w-8 h-8 rounded-md bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 text-sm font-bold m-0">›</div>
+                </div>
+              </div>
+              <div class="flex px-6 py-3 bg-gray-50 vv-line">
+                <div class="flex-1 text-xs font-bold text-gray-500 m-0">CLIENT</div>
+                <div class="w-28 text-xs font-bold text-gray-500 m-0">AMOUNT</div>
+                <div class="w-28 text-xs font-bold text-gray-500 m-0">STATUS</div>
+                <div class="w-24 text-xs font-bold text-gray-500 m-0">DATE</div>
+              </div>
+              <div class="flex px-6 py-3 items-center vv-line">
+                <div class="flex-1 flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-orange-100 border border-orange-200 flex items-center justify-center shrink-0"><div class="text-xs font-bold text-orange-700 m-0">HS</div></div>
+                  <div class="flex flex-col"><div class="text-sm font-semibold text-gray-800 m-0">Hans Burger</div><div class="text-xs text-gray-500 m-0 mt-1">hans@example.com</div></div>
+                </div>
+                <div class="w-28 text-sm text-gray-700 m-0">$ 863.45</div>
+                <div class="w-28"><div class="px-2 h-6 rounded-full bg-green-100 flex items-center"><div class="text-xs font-semibold text-green-700 m-0">Approved</div></div></div>
+                <div class="w-24 text-sm text-gray-700 m-0">6/10/2020</div>
+              </div>
+              <div class="flex px-6 py-3 items-center vv-line">
+                <div class="flex-1 flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-purple-100 border border-purple-200 flex items-center justify-center shrink-0"><div class="text-xs font-bold text-purple-700 m-0">SM</div></div>
+                  <div class="flex flex-col"><div class="text-sm font-semibold text-gray-800 m-0">Sarah Mbeki</div><div class="text-xs text-gray-500 m-0 mt-1">sarah@example.com</div></div>
+                </div>
+                <div class="w-28 text-sm text-gray-700 m-0">$ 874.78</div>
+                <div class="w-28"><div class="px-2 h-6 rounded-full bg-orange-100 flex items-center"><div class="text-xs font-semibold text-orange-700 m-0">Pending</div></div></div>
+                <div class="w-24 text-sm text-gray-700 m-0">6/10/2020</div>
+              </div>
+              <div class="flex px-6 py-3 items-center vv-line">
+                <div class="flex-1 flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-teal-100 border border-teal-200 flex items-center justify-center shrink-0"><div class="text-xs font-bold text-teal-700 m-0">RJ</div></div>
+                  <div class="flex flex-col"><div class="text-sm font-semibold text-gray-800 m-0">Robert Johnson</div><div class="text-xs text-gray-500 m-0 mt-1">robert@example.com</div></div>
+                </div>
+                <div class="w-28 text-sm text-gray-700 m-0">$ 731.94</div>
+                <div class="w-28"><div class="px-2 h-6 rounded-full bg-red-100 flex items-center"><div class="text-xs font-semibold text-red-700 m-0">Declined</div></div></div>
+                <div class="w-24 text-sm text-gray-700 m-0">6/10/2020</div>
+              </div>
+              <div class="flex px-6 py-3 items-center">
+                <div class="flex-1 flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-pink-100 border border-pink-200 flex items-center justify-center shrink-0"><div class="text-xs font-bold text-pink-700 m-0">PT</div></div>
+                  <div class="flex flex-col"><div class="text-sm font-semibold text-gray-800 m-0">Patricia Thomas</div><div class="text-xs text-gray-500 m-0 mt-1">patricia@example.com</div></div>
+                </div>
+                <div class="w-28 text-sm text-gray-700 m-0">$ 1,203.10</div>
+                <div class="w-28"><div class="px-2 h-6 rounded-full bg-green-100 flex items-center"><div class="text-xs font-semibold text-green-700 m-0">Approved</div></div></div>
+                <div class="w-24 text-sm text-gray-700 m-0">6/10/2020</div>
+              </div>
+            </div>
+
+            <!-- Bottom panels -->
+            <div class="grid grid-cols-2 gap-6 mb-8" data-vv-test="wm-bottom">
+              <div class="bg-white rounded-lg border border-gray-200 flex flex-col p-6">
+                <div class="text-lg font-semibold text-gray-800 m-0 mb-4">Page visits</div>
+                <div class="flex justify-between items-center py-3 vv-line">
+                  <div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-purple-100 border border-purple-200"></div><div class="text-sm text-gray-700 m-0">/cards</div></div>
+                  <div class="px-2 h-6 rounded-full bg-purple-100 flex items-center"><div class="text-xs font-semibold text-purple-700 m-0">428</div></div>
+                </div>
+                <div class="flex justify-between items-center py-3 vv-line">
+                  <div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-purple-100 border border-purple-200"></div><div class="text-sm text-gray-700 m-0">/forms</div></div>
+                  <div class="px-2 h-6 rounded-full bg-purple-100 flex items-center"><div class="text-xs font-semibold text-purple-700 m-0">314</div></div>
+                </div>
+                <div class="flex justify-between items-center py-3">
+                  <div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-purple-100 border border-purple-200"></div><div class="text-sm text-gray-700 m-0">/charts</div></div>
+                  <div class="px-2 h-6 rounded-full bg-purple-100 flex items-center"><div class="text-xs font-semibold text-purple-700 m-0">198</div></div>
+                </div>
+              </div>
+              <div class="bg-white rounded-lg border border-gray-200 flex flex-col p-6">
+                <div class="text-lg font-semibold text-gray-800 m-0 mb-4">Customize windmill</div>
+                <div class="text-sm text-gray-600 m-0">Change the color palette, spacing, typography of your dashboard in one place.</div>
+                <div class="flex gap-3 mt-5">
+                  <div class="px-4 h-9 rounded-md bg-purple-600 flex items-center text-sm font-semibold text-white m-0">Documentation</div>
+                  <div class="px-4 h-9 rounded-md bg-gray-100 border border-gray-200 flex items-center text-sm font-semibold text-gray-700 m-0">Discord</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

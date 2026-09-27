@@ -1,0 +1,13 @@
+/* Windmill-dashboard clone sample (NOT the frozen pipeline).
+   Shared shell reset; loaded by BOTH engines. */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+/* Table row separators (divide-y is outside the v0 profile). */
+.vv-line { border-width: 0 0 1px 0; border-style: solid; border-color: #e5e7eb; }
+/* Windmill's active sidebar item = absolutely-positioned purple bar;
+   positioning is outside v0, author CSS carries the left bar. */
+.vv-bar { border-width: 0 0 0 4px; border-style: solid; border-color: #9333ea; border-radius: 0 0 0 6px; }
+.vv-rline { border-width: 0 1px 0 0; border-style: solid; border-color: #e5e7eb; }
+.vv-bline { border-width: 0 0 1px 0; border-style: solid; border-color: #e5e7eb; }
