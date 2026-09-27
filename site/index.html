@@ -5,30 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>VelquView — the Tailwind renderer for native apps</title>
   <meta name="description" content="VelquView lays out and rasterizes HTML + Tailwind CSS in pure Rust. No browser, no webview — same markup, measured pixel-for-pixel against Chromium.">
+  <script>
+    (function () {
+      var t = "dark";
+      try {
+        t = localStorage.getItem("vv-theme")
+          || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        if (location.hash === "#theme-light") t = "light";
+        if (location.hash === "#theme-dark") t = "dark";
+      } catch (e) {}
+      document.documentElement.classList.toggle("dark", t === "dark");
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
   <link rel="stylesheet" href="tw.css">
   <link rel="stylesheet" href="app.css">
 </head>
-<body class="bg-slate-950 text-slate-200 antialiased">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-200 antialiased transition-colors">
 
   <!-- ==================== Nav ==================== -->
-  <header class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+  <header class="fixed top-0 inset-x-0 z-50 border-b border-slate-200 dark:border-white/10 bg-white/80 dark:bg-slate-950/80 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
       <a href="#" class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-sky-500 flex items-center justify-center shadow-lg shadow-violet-500/25">
           <div class="w-3 h-3 rounded-sm bg-white"></div>
         </div>
-        <span class="text-lg font-semibold text-white">VelquView</span>
+        <span class="text-lg font-semibold text-slate-900 dark:text-white">VelquView</span>
       </a>
-      <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300">
-        <a href="#features" class="hover:text-white transition">Features</a>
-        <a href="#renders" class="hover:text-white transition">Renders</a>
-        <a href="#docs" class="hover:text-white transition">Docs</a>
-        <a href="https://github.com/ther12k/velqu-view-starter" class="flex items-center gap-2 hover:text-white transition">
+      <nav class="hidden md:flex items-center gap-8 text-sm text-slate-600 dark:text-slate-300">
+        <a href="#features" class="hover:text-slate-900 dark:hover:text-white transition">Features</a>
+        <a href="#renders" class="hover:text-slate-900 dark:hover:text-white transition">Renders</a>
+        <a href="#docs" class="hover:text-slate-900 dark:hover:text-white transition">Docs</a>
+        <a href="https://github.com/ther12k/velqu-view-starter" class="flex items-center gap-2 hover:text-slate-900 dark:hover:text-white transition">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
           GitHub
         </a>
       </nav>
-      <a href="https://github.com/ther12k/velqu-view-starter" class="text-sm font-semibold px-4 h-9 flex items-center rounded-lg bg-violet-600 hover:bg-violet-500 text-white transition shadow-lg shadow-violet-600/25">Get started</a>
+      <div class="flex items-center gap-3">
+        <button class="theme-btn" onclick="VV.toggle()" title="Toggle light / dark" aria-label="Toggle theme">
+          <svg class="ico-sun w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ico-moon w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <a href="https://github.com/ther12k/velqu-view-starter" class="text-sm font-semibold px-4 h-9 flex items-center rounded-lg bg-violet-600 hover:bg-violet-500 text-white transition shadow-lg shadow-violet-600/25">Get started</a>
+      </div>
     </div>
   </header>
 
@@ -36,16 +55,16 @@
   <section class="hero-glow relative pt-36 pb-20">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex justify-center">
-        <div class="flex items-center gap-2 px-3 h-7 rounded-full border border-violet-400/30 bg-violet-500/10 text-xs font-semibold text-violet-300">
+        <div class="flex items-center gap-2 px-3 h-7 rounded-full border border-violet-400/30 bg-violet-500/10 text-xs font-semibold text-violet-600 dark:text-violet-300">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
           Phase 1 accepted · Tailwind v0 profile · fully testable
         </div>
       </div>
-      <h1 class="mt-6 text-center text-5xl font-extrabold text-white leading-tight tracking-tight">
+      <h1 class="mt-6 text-center text-5xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
         The Tailwind renderer for<br>
-        <span class="bg-gradient-to-r from-violet-400 via-sky-400 to-emerald-400 bg-clip-text text-transparent">native applications.</span>
+        <span class="bg-gradient-to-r from-violet-500 via-sky-500 to-emerald-500 dark:from-violet-400 dark:via-sky-400 dark:to-emerald-400 bg-clip-text text-transparent">native applications.</span>
       </h1>
-      <p class="mt-6 max-w-2xl mx-auto text-center text-lg text-slate-400 leading-relaxed">
+      <p class="mt-6 max-w-2xl mx-auto text-center text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
         VelquView lays out and rasterizes HTML + Tailwind CSS in pure Rust — taffy for layout,
         fontdue for glyphs, softbuffer for pixels. No browser, no webview, no DOM runtime.
         Same markup, measured pixel-for-pixel against Chromium.
@@ -54,12 +73,11 @@
         <a href="https://github.com/ther12k/velqu-view-starter" class="h-11 px-6 flex items-center rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition shadow-lg shadow-violet-600/30">
           Get started on GitHub
         </a>
-        <a href="#renders" class="h-11 px-6 flex items-center rounded-xl border border-white/15 hover:border-white/30 bg-white/5 text-slate-200 text-sm font-semibold transition">
+        <a href="#renders" class="h-11 px-6 flex items-center rounded-xl border border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 bg-white dark:bg-white/5 text-slate-800 dark:text-slate-200 text-sm font-semibold transition">
           See the proof ↓
         </a>
       </div>
 
-      <!-- Code sample -->
       <div class="mt-16 grid md:grid-cols-2 gap-4">
         <div class="code-card">
           <div class="code-head">host · Rust</div>
@@ -83,10 +101,9 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
         </div>
       </div>
 
-      <!-- Hero screenshot -->
       <div class="mt-16">
-        <div class="rounded-2xl border border-white/10 bg-slate-900 shadow-2xl shadow-black/50 overflow-hidden">
-          <div class="h-9 bg-slate-800/80 border-b border-white/5 flex items-center px-4 gap-2">
+        <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 shadow-2xl dark:shadow-black/50 overflow-hidden">
+          <div class="h-9 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-white/5 flex items-center px-4 gap-2">
             <div class="w-3 h-3 rounded-full bg-red-400/80"></div>
             <div class="w-3 h-3 rounded-full bg-yellow-400/80"></div>
             <div class="w-3 h-3 rounded-full bg-green-400/80"></div>
@@ -94,18 +111,18 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
           </div>
           <img src="assets/dash-velqu.png" alt="Telemetry dashboard rendered by VelquView" class="w-full">
         </div>
-        <p class="mt-4 text-center text-sm text-slate-500">A real VelquView frame — winit window, taffy layout, fontdue glyphs, softbuffer presentation.</p>
+        <p class="mt-4 text-center text-sm text-slate-500 dark:text-slate-500">A real VelquView frame — winit window, taffy layout, fontdue glyphs, softbuffer presentation.</p>
       </div>
     </div>
   </section>
 
   <!-- ==================== Stats ==================== -->
-  <section class="border-y border-white/10 bg-white/[0.02]">
+  <section class="border-y border-slate-200 dark:border-white/10 bg-slate-100/60 dark:bg-white/[0.02]">
     <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-      <div><div class="text-3xl font-extrabold text-white">0</div><div class="mt-1 text-sm text-slate-500">browsers, webviews, DOM runtimes</div></div>
-      <div><div class="text-3xl font-extrabold text-white">≤ 4px</div><div class="mt-1 text-sm text-slate-500">max layout drift vs Chromium, 4 sample sets</div></div>
-      <div><div class="text-3xl font-extrabold text-white">3</div><div class="mt-1 text-sm text-slate-500">regression gates — profile, geometry, raster</div></div>
-      <div><div class="text-3xl font-extrabold text-white">29</div><div class="mt-1 text-sm text-slate-500">integration tests in the starter app</div></div>
+      <div><div class="text-3xl font-extrabold text-slate-900 dark:text-white">0</div><div class="mt-1 text-sm text-slate-500">browsers, webviews, DOM runtimes</div></div>
+      <div><div class="text-3xl font-extrabold text-slate-900 dark:text-white">≤ 4px</div><div class="mt-1 text-sm text-slate-500">max layout drift vs Chromium, 4 sample sets</div></div>
+      <div><div class="text-3xl font-extrabold text-slate-900 dark:text-white">3</div><div class="mt-1 text-sm text-slate-500">regression gates — profile, geometry, raster</div></div>
+      <div><div class="text-3xl font-extrabold text-slate-900 dark:text-white">29</div><div class="mt-1 text-sm text-slate-500">integration tests in the starter app</div></div>
     </div>
   </section>
 
@@ -113,39 +130,39 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
   <section id="features" class="py-24">
     <div class="max-w-6xl mx-auto px-6">
       <div class="max-w-2xl">
-        <div class="text-sm font-bold text-violet-400">WHY VELQUVIEW</div>
-        <h2 class="mt-3 text-3xl font-bold text-white">A renderer you can put in a test suite.</h2>
-        <p class="mt-4 text-slate-400">Not a webview with an API bolted on. A deterministic engine whose outputs can be pinned, diffed and gated in CI.</p>
+        <div class="text-sm font-bold text-violet-500 dark:text-violet-400">WHY VELQUVIEW</div>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900 dark:text-white">A renderer you can put in a test suite.</h2>
+        <p class="mt-4 text-slate-600 dark:text-slate-400">Not a webview with an API bolted on. A deterministic engine whose outputs can be pinned, diffed and gated in CI.</p>
       </div>
       <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         <div class="feature-card">
           <div class="feature-dot bg-violet-400"></div>
-          <h3 class="text-white font-semibold">Native Tailwind v0 profile</h3>
+          <h3>Native Tailwind v0 profile</h3>
           <p class="mt-2 text-sm leading-relaxed">The spacing scale, 21 color families, flex, grid, borders, radius, typography — compiled by the engine, not a CDN. Every class outside the profile is a <em>compile-time diagnostic</em>, never a silent drop.</p>
         </div>
         <div class="feature-card">
           <div class="feature-dot bg-sky-400"></div>
-          <h3 class="text-white font-semibold">Reactive documents</h3>
+          <h3>Reactive documents</h3>
           <p class="mt-2 text-sm leading-relaxed"><code class="code-inline">vx-state</code> + <code class="code-inline">@click</code> + <code class="code-inline">:class</code> + <code class="code-inline">vx-show</code> — a small state machine evaluates bindings each frame and mutates only what changed. Tabs, modals, dashboards.</p>
         </div>
         <div class="feature-card">
           <div class="feature-dot bg-emerald-400"></div>
-          <h3 class="text-white font-semibold">Deterministic rasterizer</h3>
+          <h3>Deterministic rasterizer</h3>
           <p class="mt-2 text-sm leading-relaxed">Same document, same viewport → same RGBA bytes, every time. Frame digests are pinned in tests; a rendering change is a build failure, not a vibe.</p>
         </div>
         <div class="feature-card">
           <div class="feature-dot bg-amber-400"></div>
-          <h3 class="text-white font-semibold">Diagnostics gate</h3>
-          <p class="mt-2 text-sm leading-relaxed">Unsupported utilities report themselves: <code class="code-inline">tailwind diagnostic: class "shadow-md" is outside profile v0</code>. Port real-world markup and watch the compiler catch every assumption.</p>
+          <h3>Diagnostics gate</h3>
+          <p class="mt-2 text-sm leading-relaxed">Unsupported utilities report themselves: <code class="code-inline">tailwind diagnostic: class "shadow-md" …</code>. Port real-world markup and watch the compiler catch every assumption.</p>
         </div>
         <div class="feature-card">
           <div class="feature-dot bg-rose-400"></div>
-          <h3 class="text-white font-semibold">Differential test suite</h3>
+          <h3>Differential test suite</h3>
           <p class="mt-2 text-sm leading-relaxed">A 3-gate external suite compares against real Chromium with real compiled Tailwind: utility contracts, section geometry vs reviewed baselines, raster digests. Regressions <em>and</em> unexpected improvements both fail.</p>
         </div>
         <div class="feature-card">
           <div class="feature-dot bg-teal-400"></div>
-          <h3 class="text-white font-semibold">Host-owned data</h3>
+          <h3>Host-owned data</h3>
           <p class="mt-2 text-sm leading-relaxed">The UI never claims durability. The starter's ops app observes public events, validates, persists atomically and reloads — the renderer renders, the host decides.</p>
         </div>
       </div>
@@ -153,52 +170,52 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
   </section>
 
   <!-- ==================== Renders ==================== -->
-  <section id="renders" class="py-24 border-t border-white/10 bg-white/[0.02]">
+  <section id="renders" class="py-24 border-t border-slate-200 dark:border-white/10 bg-slate-100/60 dark:bg-white/[0.02]">
     <div class="max-w-6xl mx-auto px-6">
       <div class="max-w-2xl">
-        <div class="text-sm font-bold text-sky-400">SIDE BY SIDE</div>
-        <h2 class="mt-3 text-3xl font-bold text-white">Same file. Two engines. Measured.</h2>
-        <p class="mt-4 text-slate-400">Four sample sets — a login card, a component stack, a chat UI, and a full admin dashboard — each rendered by VelquView and by Chromium with real Tailwind v3.4. Geometry measured, not eyeballed.</p>
+        <div class="text-sm font-bold text-sky-500 dark:text-sky-400">SIDE BY SIDE</div>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900 dark:text-white">Same file. Two engines. Measured.</h2>
+        <p class="mt-4 text-slate-600 dark:text-slate-400">Four sample sets — a login card, a component stack, a chat UI, and a full admin dashboard — each rendered by VelquView and by Chromium with real Tailwind v3.4. Geometry measured, not eyeballed.</p>
       </div>
       <div class="mt-12 grid md:grid-cols-2 gap-6">
         <a href="https://github.com/ther12k/velqu-showcase/blob/main/login/compare.png" class="render-card">
           <img src="assets/ab-login.png" alt="Login card: velqu vs Chromium">
           <div class="p-5">
-            <div class="flex items-center justify-between">
-              <h3 class="text-white font-semibold">Sign-in card</h3>
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-slate-900 dark:text-white font-semibold">Sign-in card</h3>
               <span class="pill pill-green">geometry identical to the pixel</span>
             </div>
-            <p class="mt-2 text-sm text-slate-400">Card at exactly x 450–830, y 204–594 in both engines. Ported from Flowbite's card-with-form.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Card at exactly x 450–830, y 204–594 in both engines. Ported from Flowbite's card-with-form.</p>
           </div>
         </a>
         <a href="https://github.com/ther12k/velqu-showcase/blob/main/ab/compare.png" class="render-card">
           <img src="assets/ab-components.png" alt="Six components: velqu vs Chromium">
           <div class="p-5">
-            <div class="flex items-center justify-between">
-              <h3 class="text-white font-semibold">Component stack ×6</h3>
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-slate-900 dark:text-white font-semibold">Component stack ×6</h3>
               <span class="pill pill-green">4 of 6 sections at 0px</span>
             </div>
-            <p class="mt-2 text-sm text-slate-400">Buttons, alerts, badges, pricing, table, testimonial — max drift 4px, from text metrics alone.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Buttons, alerts, badges, pricing, table, testimonial — max drift 4px, from text metrics alone.</p>
           </div>
         </a>
         <a href="https://github.com/ther12k/velqu-showcase/blob/main/chat/compare.png" class="render-card">
           <img src="assets/ab-chat.png" alt="Chat UI: velqu vs Chromium">
           <div class="p-5">
-            <div class="flex items-center justify-between">
-              <h3 class="text-white font-semibold">Chat UI</h3>
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-slate-900 dark:text-white font-semibold">Chat UI</h3>
               <span class="pill pill-green">bubbles exact, both engines</span>
             </div>
-            <p class="mt-2 text-sm text-slate-400">Outgoing bubbles via flex-row-reverse land at identical coordinates in taffy and Chromium.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Outgoing bubbles via flex-row-reverse land at identical coordinates in taffy and Chromium.</p>
           </div>
         </a>
         <a href="https://github.com/ther12k/velqu-showcase/blob/main/windmill/compare.png" class="render-card">
           <img src="assets/ab-windmill.png" alt="Windmill dashboard clone: velqu vs Chromium">
           <div class="p-5">
-            <div class="flex items-center justify-between">
-              <h3 class="text-white font-semibold">Windmill dashboard clone</h3>
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-slate-900 dark:text-white font-semibold">Windmill dashboard clone</h3>
               <span class="pill pill-green">full page, no layout divergence</span>
             </div>
-            <p class="mt-2 text-sm text-slate-400">A complete MIT admin template (3k★) — sidebar, stats, table, panels — cloned and measured.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">A complete MIT admin template (3k★) — sidebar, stats, table, panels — cloned and measured.</p>
           </div>
         </a>
       </div>
@@ -207,99 +224,244 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
   </section>
 
   <!-- ==================== Docs ==================== -->
-  <section id="docs" class="py-24 border-t border-white/10">
+  <section id="docs" class="py-24 border-t border-slate-200 dark:border-white/10">
     <div class="max-w-6xl mx-auto px-6">
       <div class="max-w-2xl">
-        <div class="text-sm font-bold text-emerald-400">QUICK START</div>
-        <h2 class="mt-3 text-3xl font-bold text-white">From clone to native frame.</h2>
+        <div class="text-sm font-bold text-emerald-500 dark:text-emerald-400">DOCUMENTATION</div>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900 dark:text-white">Everything between <code class="code-inline">clone</code> and a native frame.</h2>
+        <p class="mt-4 text-slate-600 dark:text-slate-400">The public surface is small on purpose. This is the whole model — plus the sharp edges we documented while building four sample apps on it.</p>
       </div>
-      <div class="mt-12 grid md:grid-cols-3 gap-5">
-        <div class="doc-step">
-          <div class="step-num">1</div>
-          <h3 class="text-white font-semibold">Clone the starter</h3>
-          <div class="code-card mt-4"><div class="code-head">shell</div>
+
+      <nav class="doc-toc mt-8">
+        <a href="#doc-quickstart">Quick start</a>
+        <a href="#doc-api">API surface</a>
+        <a href="#doc-reactive">Reactive documents</a>
+        <a href="#doc-diagnostics">Diagnostics</a>
+        <a href="#doc-profile">Profile v0 reference</a>
+        <a href="#doc-samples">Sample apps</a>
+        <a href="#doc-cli">Runner CLI</a>
+        <a href="#doc-limits">Known limits</a>
+      </nav>
+
+      <!-- Quick start -->
+      <div class="doc-sec" id="doc-quickstart">
+        <h3><span>Quick start</span><a class="anchor" href="#doc-quickstart">§</a></h3>
+        <div class="grid md:grid-cols-3 gap-5 mt-4">
+          <div class="doc-step">
+            <div class="step-num">1</div>
+            <h3 class="text-base">Clone the starter</h3>
+            <div class="code-card mt-4"><div class="code-head">shell</div>
 <pre><code>git clone https://github.com/ther12k/<span class="c-type">velqu-view-starter</span>
 cd velqu-view-starter
 ./dev.sh  <span class="c-cm"># pinned toolchain, hot reload</span></code></pre>
+            </div>
           </div>
-        </div>
-        <div class="doc-step">
-          <div class="step-num">2</div>
-          <h3 class="text-white font-semibold">Write HTML + Tailwind</h3>
-          <div class="code-card mt-4"><div class="code-head">app/index.html</div>
+          <div class="doc-step">
+            <div class="step-num">2</div>
+            <h3 class="text-base">Write HTML + Tailwind</h3>
+            <div class="code-card mt-4"><div class="code-head">app/index.html</div>
 <pre><code><span class="c-tag">&lt;body</span> <span class="c-attr">class</span>=<span class="c-str">"bg-slate-950"</span><span class="c-tag">&gt;</span>
   <span class="c-tag">&lt;main</span> <span class="c-attr">class</span>=<span class="c-str">"flex h-full"</span><span class="c-tag">&gt;</span>
     …your UI, v0 utilities…
   <span class="c-tag">&lt;/main&gt;</span>
 <span class="c-tag">&lt;/body&gt;</span></code></pre>
+            </div>
           </div>
-        </div>
-        <div class="doc-step">
-          <div class="step-num">3</div>
-          <h3 class="text-white font-semibold">Ship the release binary</h3>
-          <div class="code-card mt-4"><div class="code-head">shell</div>
+          <div class="doc-step">
+            <div class="step-num">3</div>
+            <h3 class="text-base">Ship the release binary</h3>
+            <div class="code-card mt-4"><div class="code-head">shell</div>
 <pre><code>cargo build --release --locked
 ./target/release/velqu-view-starter \
   --app-dir app --size 1440x900</code></pre>
+            </div>
+          </div>
+        </div>
+        <p class="text-sm mt-4">The starter pins two revisions separately: the <b>runtime</b> crate set (Cargo.lock) and the <b>dev tool</b> (dev.sh → velqu-lab). They move only together, deliberately.</p>
+      </div>
+
+      <!-- API -->
+      <div class="doc-sec" id="doc-api">
+        <h3><span>API surface</span><a class="anchor" href="#doc-api">§</a></h3>
+        <p>One type, one loop. The host owns the window (winit), calls the view, and presents the frame.</p>
+        <div class="api-grid">
+          <div class="code-card"><div class="code-head">document</div>
+<pre><code>view.<span class="c-fn">load_html</span>(&amp;html)?;
+view.<span class="c-fn">load_document</span>(<span class="c-type">DocumentSource</span>::File(path))?;
+view.<span class="c-fn">load_stylesheet</span>(id, css)?;
+view.<span class="c-fn">reload_bundle</span>(html)?;  <span class="c-cm">// state-preserving</span></code></pre>
+          </div>
+          <div class="code-card"><div class="code-head">events → state → frame</div>
+<pre><code><span class="c-kw">let</span> batch = view.<span class="c-fn">take_events</span>();
+view.<span class="c-fn">pump_reactive</span>(&amp;batch);
+<span class="c-kw">let</span> frame = view.<span class="c-fn">render</span>(viewport)?;
+<span class="c-cm">// hit_test → pointer_press / release</span></code></pre>
+          </div>
+          <div class="code-card"><div class="code-head">text input</div>
+<pre><code>view.<span class="c-fn">set_focus</span>(node_id)?;
+view.<span class="c-fn">insert_text</span>(<span class="c-str">"typed"</span>);
+<span class="c-kw">let</span> value = view.<span class="c-fn">control_value</span>(node_id)?;
+view.<span class="c-fn">wheel</span>(dx, dy);  <span class="c-cm">// scroll containers</span></code></pre>
+          </div>
+          <div class="code-card"><div class="code-head">inspection &amp; gates</div>
+<pre><code>view.<span class="c-fn">tailwind_diagnostics</span>();   <span class="c-cm">// Vec&lt;String&gt;</span>
+view.<span class="c-fn">reactive_diagnostics</span>();
+view.<span class="c-fn">layout_facts</span>();  <span class="c-cm">// geometry for tests</span>
+view.<span class="c-fn">reactive_plan</span>();  <span class="c-cm">// binding graph</span></code></pre>
+          </div>
+        </div>
+        <p class="text-sm mt-4">Persistence is not in the API on purpose: the host observes <code class="code-inline">Click</code>/<code class="code-inline">ValueChanged</code> events, validates, writes storage atomically, then calls <code class="code-inline">reload_bundle</code> — selection and scroll survive.</p>
+      </div>
+
+      <!-- Reactive -->
+      <div class="doc-sec" id="doc-reactive">
+        <h3><span>Reactive documents</span><a class="anchor" href="#doc-reactive">§</a></h3>
+        <div class="code-card mt-4"><div class="code-head">vx-state grammar — strict, one pair per line, trailing commas</div>
+<pre><code><span class="c-tag">&lt;main</span> <span class="c-attr">vx-state</span>=<span class="c-str">"{
+  current: 'overview',
+  range: '7d',
+  modal: '',
+}"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">@click</span>=<span class="c-str">"modal = 'export'"</span><span class="c-tag">&gt;</span>Open<span class="c-tag">&lt;/div&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">vx-show</span>=<span class="c-str">"modal === 'export'"</span><span class="c-tag">&gt;</span>…dialog…<span class="c-tag">&lt;/div&gt;</span>
+<span class="c-tag">&lt;/main&gt;</span></code></pre>
+        </div>
+        <div class="doc-note"><b>Sharp edges, learned the hard way:</b>
+          <ul class="mt-2 list-disc pl-5 space-y-1">
+            <li><code class="code-inline">:class</code> <b>replaces the entire class attribute</b> — every branch must carry the full class list, or your layout classes vanish when the binding applies.</li>
+            <li>No <code class="code-inline">{{ }}</code> text interpolation — bake values per state and switch with <code class="code-inline">vx-show</code>, or duplicate the node.</li>
+            <li>Inline elements (<code class="code-inline">span</code>) inside flex containers flow as text — use block leaves (<code class="code-inline">div</code>) for flex items.</li>
+            <li>Declaration order follows class order: write <code class="code-inline">m-0 mt-6</code>, never the reverse, or the shorthand silently wins.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Diagnostics -->
+      <div class="doc-sec" id="doc-diagnostics">
+        <h3><span>Diagnostics</span><a class="anchor" href="#doc-diagnostics">§</a></h3>
+        <p>Every class outside the profile reports itself at load — port real-world markup and the compiler lists every assumption you made:</p>
+        <div class="code-card mt-4"><div class="code-head">stdout</div>
+<pre><code>tailwind diagnostic: class <span class="c-str">"shadow-md"</span>: utility is outside the renderer profile v0
+tailwind diagnostic: class <span class="c-str">"ml-auto"</span>: margin: auto is deferred in profile v0
+tailwind diagnostic: class <span class="c-str">"border-b"</span>: unknown border utility <span class="c-str">"border-b"</span>
+reactive diagnostic: node 7 vx-show: expression has an unterminated string literal</code></pre>
+        </div>
+        <p class="text-sm mt-4">In the comparison suite this is a gate: sample pages must compile with <b>zero diagnostics</b> before any render is measured.</p>
+      </div>
+
+      <!-- Profile -->
+      <div class="doc-sec" id="doc-profile">
+        <h3><span>Profile v0 reference</span><a class="anchor" href="#doc-profile">§</a></h3>
+        <div class="grid md:grid-cols-2 gap-5 mt-4">
+          <div class="feature-card">
+            <h3>In the v0 profile</h3>
+            <ul class="mt-3 space-y-2 text-sm" style="color: var(--text)">
+              <li class="flex gap-2"><span class="text-emerald-500 font-bold">✓</span>Flow &amp; grid layout, gap, justify, items, self</li>
+              <li class="flex gap-2"><span class="text-emerald-500 font-bold">✓</span>4px spacing scale · w/h · min/max sizes · max-w breakpoints</li>
+              <li class="flex gap-2"><span class="text-emerald-500 font-bold">✓</span>21 color families × 11 shades, text/bg/border</li>
+              <li class="flex gap-2"><span class="text-emerald-500 font-bold">✓</span>Border, radius scale, overflow &amp; container scroll</li>
+              <li class="flex gap-2"><span class="text-emerald-500 font-bold">✓</span>Typography scale + weights, text alignment, whitespace</li>
+              <li class="flex gap-2"><span class="text-emerald-500 font-bold">✓</span>Text inputs &amp; textareas, focus, IME, hit-testing</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h3>Outside v0 (diagnosed, not silent)</h3>
+            <ul class="mt-3 space-y-2 text-sm" style="color: var(--text)">
+              <li class="flex gap-2"><span class="text-rose-500 font-bold">×</span>Shadows, gradients, opacity, transforms</li>
+              <li class="flex gap-2"><span class="text-rose-500 font-bold">×</span>Responsive variants &amp; media queries</li>
+              <li class="flex gap-2"><span class="text-rose-500 font-bold">×</span>Positioning (absolute/fixed/sticky) · z-index</li>
+              <li class="flex gap-2"><span class="text-rose-500 font-bold">×</span>Per-side borders, tracking, decorations</li>
+              <li class="flex gap-2"><span class="text-rose-500 font-bold">×</span>Transitions &amp; animations</li>
+              <li class="flex gap-2"><span class="text-slate-400 dark:text-slate-500 font-bold">→</span>Author CSS covers interaction paint (<code class="code-inline">:hover</code>, <code class="code-inline">cursor</code>)</li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <div class="mt-12 grid md:grid-cols-2 gap-5">
-        <div class="feature-card">
-          <h3 class="text-white font-semibold">In the v0 profile</h3>
-          <ul class="mt-3 space-y-2 text-sm text-slate-400">
-            <li class="flex gap-2"><span class="text-emerald-400 font-bold">✓</span>Flow &amp; grid layout, gap, justify, items, self</li>
-            <li class="flex gap-2"><span class="text-emerald-400 font-bold">✓</span>4px spacing scale · w/h · min/max sizes · max-w breakpoints</li>
-            <li class="flex gap-2"><span class="text-emerald-400 font-bold">✓</span>21 color families × 11 shades, text/bg/border</li>
-            <li class="flex gap-2"><span class="text-emerald-400 font-bold">✓</span>Border, radius scale, overflow &amp; container scroll</li>
-            <li class="flex gap-2"><span class="text-emerald-400 font-bold">✓</span>Typography scale + weights, text alignment, whitespace</li>
-            <li class="flex gap-2"><span class="text-emerald-400 font-bold">✓</span>Text inputs &amp; textareas, focus, IME, hit-testing</li>
-          </ul>
+      <!-- Samples -->
+      <div class="doc-sec" id="doc-samples">
+        <h3><span>Sample apps</span><a class="anchor" href="#doc-samples">§</a></h3>
+        <p>Six runnable apps live in the <a href="https://github.com/ther12k/velqu-showcase" class="link">velqu-showcase</a> repo — one command each:</p>
+        <div class="code-card mt-4"><div class="code-head">run any sample</div>
+<pre><code>./target/release/velqu-view-starter --app-dir &lt;sample&gt; --data-dir /tmp/vv --size 1440x900
+<span class="c-cm"># &lt;sample&gt; = live/        17-section component showcase (HyperUI ports)</span>
+<span class="c-cm">#          dash/        telemetry dashboard — tabs, KPI ranges, takeover modal</span>
+<span class="c-cm">#          login/ ab/ chat/ windmill/   the four A/B comparison sets</span></code></pre>
         </div>
-        <div class="feature-card">
-          <h3 class="text-white font-semibold">Outside v0 (diagnosed, not silent)</h3>
-          <ul class="mt-3 space-y-2 text-sm text-slate-400">
-            <li class="flex gap-2"><span class="text-rose-400 font-bold">×</span>Shadows, gradients, opacity, transforms</li>
-            <li class="flex gap-2"><span class="text-rose-400 font-bold">×</span>Responsive variants &amp; media queries</li>
-            <li class="flex gap-2"><span class="text-rose-400 font-bold">×</span>Positioning (absolute/fixed/sticky) · z-index</li>
-            <li class="flex gap-2"><span class="text-rose-400 font-bold">×</span>Per-side borders, tracking, decorations</li>
-            <li class="flex gap-2"><span class="text-rose-400 font-bold">×</span>Transitions &amp; animations</li>
-            <li class="flex gap-2"><span class="text-slate-500 font-bold">→</span>Author CSS covers interaction paint (<code class="code-inline">:hover</code>, <code class="code-inline">cursor</code>)</li>
-          </ul>
+        <p class="text-sm mt-4">The window title comes from the document's <code class="code-inline">&lt;title&gt;</code>; each sample is a plain directory — <code class="code-inline">index.html</code> plus any <code class="code-inline">*.css</code>, loaded in sorted cascade order.</p>
+      </div>
+
+      <!-- CLI -->
+      <div class="doc-sec" id="doc-cli">
+        <h3><span>Runner CLI</span><a class="anchor" href="#doc-cli">§</a></h3>
+        <table class="cli-table">
+          <thead><tr><th>Flag</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td>--app-dir DIR</td><td>Load a directory app (index.html + sorted *.css). Title comes from the document.</td></tr>
+            <tr><td>--data-dir DIR</td><td>Where the host persists its data (ops app: records.json under flock).</td></tr>
+            <tr><td>--size WxH · --scale F</td><td>Logical window size and DPI scale for the first presentation.</td></tr>
+            <tr><td>--headless --out P</td><td>Render offscreen and write a PNG; no window. The CI path.</td></tr>
+            <tr><td>--frames N</td><td>Headless: render N frames and verify byte determinism.</td></tr>
+            <tr><td>--exit-after-ms N</td><td>Window mode: auto-close (smoke tests, automation).</td></tr>
+            <tr><td>--measure</td><td>Print launch→first-frame and uptime stats.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Limits -->
+      <div class="doc-sec" id="doc-limits">
+        <h3><span>Known limits</span><a class="anchor" href="#doc-limits">§</a></h3>
+        <p class="mt-2">Stated plainly, because the measurements say so — these are engine-level items on the post-acceptance list, frozen until the supervised operator session:</p>
+        <div class="grid sm:grid-cols-3 gap-5 mt-4">
+          <div class="feature-card"><div class="feature-dot bg-amber-400"></div><h3>Glyph weight</h3><p class="mt-2 text-sm">fontdue rasterizes plain coverage; Chromium's FreeType stem-darkens. Same font renders lighter in velqu — measured, zoomed, documented.</p></div>
+          <div class="feature-card"><div class="feature-dot bg-slate-400"></div><h3>One typeface</h3><p class="mt-2 text-sm">A single bundled DejaVu face. No webfonts, no italic/mono variants, no emoji coverage — missing glyphs simply don't render.</p></div>
+          <div class="feature-card"><div class="feature-dot bg-rose-400"></div><h3>Flat by profile</h3><p class="mt-2 text-sm">No shadows, gradients or opacity in v0 — depth comes from tonal steps and borders, which dark UIs do beautifully.</p></div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ==================== CTA + Footer ==================== -->
-  <footer class="border-t border-white/10 bg-white/[0.02]">
+  <!-- ==================== Footer ==================== -->
+  <footer class="border-t border-slate-200 dark:border-white/10 bg-slate-100/60 dark:bg-white/[0.02]">
     <div class="max-w-6xl mx-auto px-6 py-16">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div>
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-sky-500 flex items-center justify-center"><div class="w-3 h-3 rounded-sm bg-white"></div></div>
-            <span class="text-lg font-semibold text-white">VelquView</span>
+            <span class="text-lg font-semibold text-slate-900 dark:text-white">VelquView</span>
           </div>
           <p class="mt-3 text-sm text-slate-500 max-w-md">Phase 1 engine closed 2026-09-19 at <code class="code-inline">624bd1e</code>. Starter runtime <code class="code-inline">1d0a562</code> · dev-tool <code class="code-inline">3c1ee34</code>, frozen for the supervised operator acceptance.</p>
         </div>
         <div class="flex gap-4">
           <a href="https://github.com/ther12k/velqu-view-starter" class="h-11 px-6 flex items-center rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition shadow-lg shadow-violet-600/30">Star the starter ★</a>
-          <a href="https://github.com/ther12k/velqu-showcase" class="h-11 px-6 flex items-center rounded-xl border border-white/15 hover:border-white/30 bg-white/5 text-slate-200 text-sm font-semibold transition">Comparison suite</a>
+          <a href="https://github.com/ther12k/velqu-showcase" class="h-11 px-6 flex items-center rounded-xl border border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 bg-white dark:bg-white/5 text-slate-800 dark:text-slate-200 text-sm font-semibold transition">Comparison suite</a>
         </div>
       </div>
-      <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-sm text-slate-600">
+      <div class="mt-12 pt-8 border-t border-slate-200 dark:border-white/5 flex flex-col md:flex-row justify-between gap-4 text-sm text-slate-500">
         <div>© 2026 ther12k · Built with the velqu framework</div>
         <div class="flex gap-6">
-          <a href="https://github.com/taffy-rs/taffy" class="hover:text-slate-400 transition">taffy</a>
-          <a href="https://github.com/expo/fontdue" class="hover:text-slate-400 transition">fontdue</a>
-          <a href="https://github.com/rust-windowing/winit" class="hover:text-slate-400 transition">winit</a>
-          <a href="https://github.com/rust-windowing/softbuffer" class="hover:text-slate-400 transition">softbuffer</a>
-          <a href="https://tailwindcss.com" class="hover:text-slate-400 transition">Tailwind CSS</a>
+          <a href="https://github.com/taffy-rs/taffy" class="hover:text-slate-700 dark:hover:text-slate-400 transition">taffy</a>
+          <a href="https://github.com/expo/fontdue" class="hover:text-slate-700 dark:hover:text-slate-400 transition">fontdue</a>
+          <a href="https://github.com/rust-windowing/winit" class="hover:text-slate-700 dark:hover:text-slate-400 transition">winit</a>
+          <a href="https://github.com/rust-windowing/softbuffer" class="hover:text-slate-700 dark:hover:text-slate-400 transition">softbuffer</a>
+          <a href="https://tailwindcss.com" class="hover:text-slate-700 dark:hover:text-slate-400 transition">Tailwind CSS</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <script>
+    window.VV = {
+      toggle: function () {
+        var el = document.documentElement;
+        var dark = !el.classList.contains("dark");
+        el.classList.toggle("dark", dark);
+        el.dataset.theme = dark ? "dark" : "light";
+        try { localStorage.setItem("vv-theme", dark ? "dark" : "light"); } catch (e) {}
+      },
+    };
+  </script>
 
 </body>
 </html>

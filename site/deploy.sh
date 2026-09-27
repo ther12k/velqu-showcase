@@ -19,8 +19,9 @@ STAMP=$(date -u +%Y%m%d-%H%M%S)
 echo "── building tw.css (skipped if fresh)"
 if [ ! -f site/tw.css ] || [ site/index.html -nt site/tw.css ]; then
   printf '@tailwind base;\n@tailwind components;\n@tailwind utilities;\n' > /tmp/tw-input.css
-  (cd tools && npx -y tailwindcss@3.4.17 -i /tmp/tw-input.css -o ../site/tw.css \
-     --content "../site/index.html" --minify)
+  # tailwind.config.js is REQUIRED: darkMode:'class' powers the theme toggle
+  (cd site && npx -y tailwindcss@3.4.17 -i /tmp/tw-input.css -o tw.css \
+     -c tailwind.config.js --minify)
 fi
 
 echo "── uploading release $STAMP"
