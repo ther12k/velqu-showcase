@@ -13,7 +13,7 @@ KEY="${RIZEVA_KEY:-$HOME/Downloads/ssh-key-2026-07-03.key}"
 HOST="opc@100.124.71.117"
 APP=velqu-landing
 REMOTE_ROOT="/home/opc/$APP"
-PORT=8120
+PORT=8121
 STAMP=$(date -u +%Y%m%d-%H%M%S)
 
 echo "── building tw.css (skipped if fresh)"
@@ -29,7 +29,7 @@ rsync -az -e "ssh -i $KEY -o IdentitiesOnly=yes" \
   site/index.html site/tw.css site/app.css site/assets \
   "$HOST:$REMOTE_ROOT/releases/$STAMP/dist/"
 rsync -az -e "ssh -i $KEY -o IdentitiesOnly=yes" \
-  site/server.js "$HOST:$REMOTE_ROOT/releases/$STAMP/server/"
+  site/server.cjs "$HOST:$REMOTE_ROOT/releases/$STAMP/server/"
 
 ssh -i "$KEY" -o IdentitiesOnly=yes "$HOST" "
 set -e
@@ -48,7 +48,7 @@ After=network-online.target
 Environment=VELQU_LANDING_PORT=$PORT
 Environment=VELQU_LANDING_DIST=$REMOTE_ROOT/dist
 WorkingDirectory=$REMOTE_ROOT
-ExecStart=/usr/bin/node $REMOTE_ROOT/server/server.js
+ExecStart=/usr/bin/node $REMOTE_ROOT/server/server.cjs
 Restart=on-failure
 User=opc
 
