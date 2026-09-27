@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cookbook — VelquView</title>
+  <meta name="description" content="Porting real-world Tailwind markup to the VelquView v0 profile: the adaptation table, interaction patterns, sharp edges, and the testing method.">
+  <script>
+    (function () {
+      var t = "dark";
+      try {
+        t = localStorage.getItem("vv-theme")
+          || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        if (location.hash === "#theme-light") t = "light";
+        if (location.hash === "#theme-dark") t = "dark";
+      } catch (e) {}
+      document.documentElement.classList.toggle("dark", t === "dark");
+      document.documentElement.dataset.theme = t;
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tw.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-200 antialiased">
+
+  <!-- ==================== Nav ==================== -->
+  <header class="fixed top-0 inset-x-0 z-50 border-b border-slate-200 dark:border-white/10 bg-white/80 dark:bg-slate-950/80 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-sky-500 flex items-center justify-center shadow-lg shadow-violet-500/25">
+          <div class="w-3 h-3 rounded-sm bg-white"></div>
+        </div>
+        <span class="text-lg font-semibold text-slate-900 dark:text-white">VelquView</span>
+        <span class="hidden sm:flex items-center px-2.5 h-6 rounded-full border border-violet-400/30 bg-violet-500/10 text-xs font-semibold text-violet-600 dark:text-violet-300">Cookbook</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-slate-600 dark:text-slate-300">
+        <a href="index.html#features" class="hover:text-slate-900 dark:hover:text-white transition">Features</a>
+        <a href="index.html#renders" class="hover:text-slate-900 dark:hover:text-white transition">Renders</a>
+        <a href="index.html#docs" class="hover:text-slate-900 dark:hover:text-white transition">Docs</a>
+        <a href="https://github.com/ther12k/velqu-view-starter" class="flex items-center gap-2 hover:text-slate-900 dark:hover:text-white transition">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-btn md:hidden" onclick="VV.menu()" title="Menu" aria-label="Menu">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <button class="theme-btn" onclick="VV.toggle()" title="Toggle light / dark" aria-label="Toggle theme">
+          <svg class="ico-sun w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ico-moon w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <a href="https://github.com/ther12k/velqu-view-starter" class="text-sm font-semibold px-4 h-9 flex items-center rounded-lg bg-violet-600 hover:bg-violet-500 text-white transition shadow-lg shadow-violet-600/25">Get started</a>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 px-6 py-4 flex-col gap-1">
+      <a href="index.html#features" class="block py-2 text-sm text-slate-600 dark:text-slate-300">Features</a>
+      <a href="index.html#renders" class="block py-2 text-sm text-slate-600 dark:text-slate-300">Renders</a>
+      <a href="index.html#docs" class="block py-2 text-sm text-slate-600 dark:text-slate-300">Docs</a>
+      <a href="https://github.com/ther12k/velqu-view-starter" class="block py-2 text-sm text-slate-600 dark:text-slate-300">GitHub →</a>
+    </div>
+  </header>
+
+  <!-- ==================== Content ==================== -->
+  <section class="hero-glow relative pt-36 pb-14">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-3xl">
+        <div class="text-sm font-bold text-violet-500 dark:text-violet-400">COOKBOOK</div>
+        <h1 class="mt-3 text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Porting real-world Tailwind to profile v0.</h1>
+        <p class="mt-5 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Everything on this page came out of porting four real component libraries — Flowbite, HyperUI, Windmill — into VelquView and measuring the result against Chromium. No theory; every replacement below shipped in a verified sample.</p>
+      </div>
+      <nav class="doc-toc mt-8">
+        <a href="#cb-porting">Adaptation table</a>
+        <a href="#cb-patterns">Interaction patterns</a>
+        <a href="#cb-edges">The four edges</a>
+        <a href="#cb-testing">Testing your UI</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="pb-24">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col">
+
+      <!-- Adaptation table -->
+      <div class="doc-sec" id="cb-porting">
+        <h3><span>Adaptation table</span><a class="anchor" href="#cb-porting">§</a></h3>
+        <p>Browser markup uses the full Tailwind language. The v0 profile is a deliberate subset. This is the complete mapping we applied across all four sample sets:</p>
+        <div class="overflow-x-auto mt-4">
+          <table class="cli-table">
+            <thead><tr><th>Browser pattern</th><th>v0 replacement</th><th>Seen in</th></tr></thead>
+            <tbody>
+              <tr><td><code class="code-inline">shadow-sm/md/xs</code></td><td>1px <code class="code-inline">border</code>; emphasized cards use <code class="code-inline">border-2</code> in the accent color; dark UIs use tonal steps instead</td><td>pricing, windmill</td></tr>
+              <tr><td><code class="code-inline">rounded-e-lg</code> (per-corner)</td><td>uniform <code class="code-inline">rounded-xl</code></td><td>chat bubbles</td></tr>
+              <tr><td><code class="code-inline">mx-auto / ml-auto</code></td><td>center: parent <code class="code-inline">flex justify-center</code>; push-right: <code class="code-inline">justify-between</code> with a wrapper</td><td>all sets</td></tr>
+              <tr><td><code class="code-inline">absolute</code> left-indicator bar</td><td>author CSS: <code class="code-inline">.vv-bar { border-left: 4px solid … }</code></td><td>windmill sidebar</td></tr>
+              <tr><td><code class="code-inline">py-2.5</code>, <code class="code-inline">mt-0.5</code></td><td>nearest integer step (<code class="code-inline">py-2</code>/<code class="code-inline">py-3</code>) — the scale is integers × 4px</td><td>all sets</td></tr>
+              <tr><td><code class="code-inline">space-x-3</code></td><td><code class="code-inline">gap-3</code> on a flex parent</td><td>all sets</td></tr>
+              <tr><td><code class="code-inline">uppercase</code> class</td><td>literal uppercase text</td><td>windmill table head</td></tr>
+              <tr><td><code class="code-inline">sm:/md:/lg:</code> variants</td><td>single static layout (no media queries in v0)</td><td>all sets</td></tr>
+              <tr><td><code class="code-inline">hover:</code> on utilities</td><td>author CSS <code class="code-inline">.vv-nav:hover { … }</code> — paint properties only</td><td>sidebar navs</td></tr>
+              <tr><td><code class="code-inline">fixed inset-0</code> modal + <code class="code-inline">opacity</code> backdrop</td><td>takeover: state swap to a full-viewport layer, solid backdrop, <code class="code-inline">flex items-center justify-center</code></td><td>dash export modal</td></tr>
+              <tr><td>SVG stroke icons</td><td>tonal tiles: tinted rounded square + small solid mark (or a text glyph — <b>✓</b> and <b>★</b> render fine in DejaVu)</td><td>features, pricing, windmill</td></tr>
+              <tr><td><code class="code-inline">object-cover</code> images</td><td>flat panels, or initials avatars (a stretched bitmap smears — no object-fit in v0)</td><td>team grid, avatars</td></tr>
+              <tr><td>photos via URL</td><td>local files via <code class="code-inline">--app-dir</code> assets; remote images don't load</td><td>live showcase</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Patterns -->
+      <div class="doc-sec" id="cb-patterns">
+        <h3><span>Interaction patterns</span><a class="anchor" href="#cb-patterns">§</a></h3>
+
+        <p class="mt-3"><b style="color: var(--heading)">Tabs.</b> One state key, a nav row, and content sections gated by <code class="code-inline">vx-show</code>:</p>
+        <div class="code-card mt-3"><div class="code-head">tabs</div>
+<pre><code><span class="c-tag">&lt;div</span> <span class="c-attr">@click</span>=<span class="c-str">"current = 'traffic'"</span>
+  <span class="c-attr">:class</span>=<span class="c-str">"current === 'traffic'
+    ? 'bg-teal-600 text-white vv-nav … FULL list …'
+    : 'text-slate-400 vv-nav … FULL list …'"</span><span class="c-tag">&gt;</span>Traffic<span class="c-tag">&lt;/div&gt;</span>
+…
+<span class="c-tag">&lt;section</span> <span class="c-attr">vx-show</span>=<span class="c-str">"current === 'traffic'"</span><span class="c-tag">&gt;</span>…<span class="c-tag">&lt;/section&gt;</span></code></pre>
+        </div>
+
+        <p class="mt-6"><b style="color: var(--heading)">Data ranges (7d/30d).</b> No text interpolation exists — numbers can't bind. Duplicate the block per range with real data and switch structurally:</p>
+        <div class="code-card mt-3"><div class="code-head">range-reactive counters</div>
+<pre><code><span class="c-tag">&lt;div</span> <span class="c-attr">vx-show</span>=<span class="c-str">"range === '7d'"</span><span class="c-tag">&gt;</span>… 1,284 trucks · +12.4% vs last week …<span class="c-tag">&lt;/div&gt;</span>
+<span class="c-tag">&lt;div</span> <span class="c-attr">vx-show</span>=<span class="c-str">"range === '30d'"</span><span class="c-tag">&gt;</span>… 5,132 trucks · +18.9% vs last month …<span class="c-tag">&lt;/div&gt;</span></code></pre>
+        </div>
+
+        <p class="mt-6"><b style="color: var(--heading)">Takeover modal.</b> v0 has no fixed positioning or opacity, so a modal is a viewport-level state swap — the app layers hide, the dialog layer centers on a solid backdrop:</p>
+        <div class="code-card mt-3"><div class="code-head">export dialog (Flowbite structure)</div>
+<pre><code><span class="c-tag">&lt;main</span> <span class="c-attr">vx-state</span>=<span class="c-str">"{ current: 'overview', modal: '', fmt: 'csv', }"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">vx-show</span>=<span class="c-str">"modal === ''"</span><span class="c-tag">&gt;</span>…app: topbar + content…<span class="c-tag">&lt;/div&gt;</span>
+
+  <span class="c-tag">&lt;div</span> <span class="c-attr">vx-show</span>=<span class="c-str">"modal === 'export'"</span>
+       <span class="c-attr">class</span>=<span class="c-str">"h-full bg-slate-950 flex items-center justify-center"</span><span class="c-tag">&gt;</span>
+    <span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-str">"w-full max-w-lg bg-slate-900 border rounded-xl p-6"</span><span class="c-tag">&gt;</span>
+      <span class="c-cm">&lt;!-- header / body (fmt rows set fmt) / footer --&gt;</span>
+      <span class="c-tag">&lt;div</span> <span class="c-attr">@click</span>=<span class="c-str">"modal = ''"</span><span class="c-tag">&gt;</span>Cancel<span class="c-tag">&lt;/div&gt;</span>
+    <span class="c-tag">&lt;/div&gt;</span>
+  <span class="c-tag">&lt;/div&gt;</span>
+<span class="c-tag">&lt;/main&gt;</span></code></pre>
+        </div>
+
+        <p class="mt-6"><b style="color: var(--heading)">Charts without SVG.</b> Bars are flex columns with fixed heights; the container's <code class="code-inline">items-end</code> is the baseline:</p>
+        <div class="code-card mt-3"><div class="code-head">bar chart</div>
+<pre><code><span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-str">"flex items-end gap-3"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-str">"flex-1 flex flex-col items-center gap-2"</span><span class="c-tag">&gt;</span>
+    <span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-str">"w-full h-32 bg-teal-500 rounded-sm"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+    <span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-str">"text-xs text-slate-400"</span><span class="c-tag">&gt;</span>Tue<span class="c-tag">&lt;/div&gt;</span>
+  <span class="c-tag">&lt;/div&gt;</span>…
+<span class="c-tag">&lt;/div&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <!-- Edges -->
+      <div class="doc-sec" id="cb-edges">
+        <h3><span>The four edges</span><a class="anchor" href="#cb-edges">§</a></h3>
+        <p>Each of these cost a debugging round before it became a rule. They are engine behaviors, documented as facts.</p>
+        <div class="grid sm:grid-cols-2 gap-5 mt-4">
+          <div class="doc-step">
+            <div class="step-num">1</div>
+            <h3 class="text-base">:class replaces everything</h3>
+            <p class="mt-2 text-sm">The binding swaps the <b>entire</b> class attribute. Any static classes on the element vanish when it applies — put the complete list in every branch.</p>
+            <div class="code-card mt-3"><div class="code-head">✗ breaks</div>
+<pre><code><span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-str">"flex items-center gap-3"</span>
+     <span class="c-attr">:class</span>=<span class="c-str">"on ? 'bg-teal-600' : ''"</span><span class="c-tag">&gt;</span></code></pre>
+            </div>
+          </div>
+          <div class="doc-step">
+            <div class="step-num">2</div>
+            <h3 class="text-base">No interpolation</h3>
+            <p class="mt-2 text-sm"><code class="code-inline">{{ value }}</code> is plain text, not a binding. Bake values per state; duplicate nodes and switch with <code class="code-inline">vx-show</code>.</p>
+            <div class="code-card mt-3"><div class="code-head">✗ renders literally</div>
+<pre><code><span class="c-tag">&lt;div&gt;</span>Export {{ fmt === 'csv' ? 'CSV' : 'JSON' }}<span class="c-tag">&lt;/div&gt;</span></code></pre>
+            </div>
+          </div>
+          <div class="doc-step">
+            <div class="step-num">3</div>
+            <h3 class="text-base">Inline leaves in flex</h3>
+            <p class="mt-2 text-sm">A <code class="code-inline">span</code> inside a flex container flows as text — it does not become a flex item. Name/subtitle stacks collapse into one wrapped line. Use block leaves.</p>
+            <div class="code-card mt-3"><div class="code-head">✓</div>
+<pre><code><span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-str">"flex items-center gap-3"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-str">"w-8 h-8 rounded-full"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+  <span class="c-tag">&lt;div&gt;</span>Bonnie Green<span class="c-tag">&lt;/div&gt;</span>  <span class="c-cm">&lt;!-- not span --&gt;</span>
+<span class="c-tag">&lt;/div&gt;</span></code></pre>
+            </div>
+          </div>
+          <div class="doc-step">
+            <div class="step-num">4</div>
+            <h3 class="text-base">Class order wins</h3>
+            <p class="mt-2 text-sm">Declarations emit in class-attribute order. <code class="code-inline">mt-6 m-0</code> is flush (the shorthand wins); <code class="code-inline">m-0 mt-6</code> keeps the gap. Shorthands first, always.</p>
+            <div class="code-card mt-3"><div class="code-head">✗ margin silently gone</div>
+<pre><code><span class="c-tag">&lt;p</span> <span class="c-attr">class</span>=<span class="c-str">"text-sm mt-6 m-0"</span><span class="c-tag">&gt;</span>label<span class="c-tag">&lt;/p&gt;</span></code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="doc-note"><b>Also real:</b> the UA stylesheet margins <code class="code-inline">&lt;p&gt;</code> like a browser — every <code class="code-inline">&lt;p&gt;</code> needs an explicit <code class="code-inline">m-0</code> or you'll chase phantom spacing (this exact bug made one sidebar's first item sit lower than the rest).
+        </div>
+      </div>
+
+      <!-- Testing -->
+      <div class="doc-sec" id="cb-testing">
+        <h3><span>Testing your UI</span><a class="anchor" href="#cb-testing">§</a></h3>
+        <p class="mt-2">The starter binary doubles as the test harness. Three layers, cheapest first:</p>
+        <div class="api-grid">
+          <div class="code-card"><div class="code-head">1 · compile gate</div>
+<pre><code>./velqu-view-starter --headless \
+  --app-dir app --out /tmp/f.png
+<span class="c-cm"># stdout: 'tailwind diagnostic: …' lines</span>
+<span class="c-cm"># ZERO lines = every class in profile</span></code></pre>
+          </div>
+          <div class="code-card"><div class="code-head">2 · golden frames</div>
+<pre><code>… --headless --out base.png --frames 4
+<span class="c-cm"># renders 4×, fails unless all byte-identical;</span>
+<span class="c-cm"># diff base.png vs run.png in CI</span></code></pre>
+          </div>
+          <div class="code-card"><div class="code-head">3 · differential vs Chromium</div>
+<pre><code>npx tailwindcss@3.4.17 --content app/index.html …
+<span class="c-cm"># render same file in Chrome w/ parity base;</span>
+<span class="c-cm"># measure geometry, don't eyeball — our sets:</span>
+<span class="c-cm"># most sections 0px, worst 4px cumulative</span></code></pre>
+          </div>
+        </div>
+        <p class="text-sm mt-4">For interaction flows, drive the real window with synthetic input on a scratch display and assert on screenshots per step — the samples' open → select → cancel sequences were verified exactly that way, with per-step captures.</p>
+        <p class="mt-6">All patterns above are executable: every snippet corresponds to a file in <a href="https://github.com/ther12k/velqu-showcase" class="link">velqu-showcase</a> you can run with one command.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="border-t border-slate-200 dark:border-white/10 bg-slate-100/60 dark:bg-white/[0.02]">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-4 text-sm text-slate-500">
+      <div><a href="index.html" class="link">← Back to the landing page</a></div>
+      <div>© 2026 ther12k · Built with the velqu framework</div>
+    </div>
+  </footer>
+
+  <script>
+    window.VV = {
+      copy: function (btn) {
+        var cmd = document.getElementById("install-cmd");
+        if (!cmd) return;
+        cmd = cmd.textContent.trim();
+        if (navigator.clipboard) { navigator.clipboard.writeText(cmd); }
+      },
+      menu: function () {
+        var m = document.getElementById("mobile-menu");
+        m.classList.toggle("hidden"); m.classList.toggle("flex");
+      },
+      toggle: function () {
+        var el = document.documentElement;
+        var dark = !el.classList.contains("dark");
+        el.classList.toggle("dark", dark);
+        el.dataset.theme = dark ? "dark" : "light";
+        try { localStorage.setItem("vv-theme", dark ? "dark" : "light"); } catch (e) {}
+      },
+    };
+  </script>
+
+</body>
+</html>
