@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; font-family: 'Inter', system-ui, sans-serif;
+         background:
+           radial-gradient(900px 480px at 75% -10%, rgba(139,92,246,.28), transparent 60%),
+           radial-gradient(700px 420px at 10% 110%, rgba(56,189,248,.16), transparent 60%),
+           #020617; color: #e2e8f0; position: relative; }
+  body::before { content:""; position:absolute; inset:0;
+    background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(1000px 620px at 60% 20%, black, transparent 80%); }
+  .wrap { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 0 72px; }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .mark { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg,#8b5cf6,#0ea5e9);
+          display:flex; align-items:center; justify-content:center; box-shadow: 0 12px 40px rgba(139,92,246,.45); }
+  .mark div { width: 22px; height: 22px; border-radius: 5px; background: #fff; }
+  .brand span { font-size: 30px; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+  h1 { margin-top: 34px; font-size: 66px; line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; color: #fff; width: 900px; }
+  h1 em { font-style: normal; background: linear-gradient(90deg,#a78bfa,#38bdf8,#6ee7b7); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  p { margin-top: 22px; font-size: 24px; line-height: 1.5; color: #94a3b8; width: 820px; }
+  .chips { position: absolute; right: 72px; bottom: 56px; display: flex; gap: 10px; }
+  .chip { font-size: 15px; font-weight: 600; padding: 9px 16px; border-radius: 999px;
+          border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); color: #cbd5e1; }
+  .foot { position: absolute; left: 72px; bottom: 56px; font-family: 'JetBrains Mono', monospace;
+          font-size: 17px; color: #64748b; }
+  .foot b { color: #a78bfa; font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand"><div class="mark"><div></div></div><span>VelquView</span></div>
+    <h1>The Tailwind renderer for <em>native applications.</em></h1>
+    <p>HTML + Tailwind CSS laid out and rasterized in pure Rust — no browser, no webview. Same markup, measured pixel-for-pixel against Chromium.</p>
+  </div>
+  <div class="foot">cargo build · <b>./velqu-view-starter --app-dir app</b></div>
+  <div class="chips"><div class="chip">taffy</div><div class="chip">fontdue</div><div class="chip">winit</div><div class="chip">softbuffer</div></div>
+</body>
+</html>
