@@ -1,0 +1,98 @@
+/* velqu-view landing — custom paint beyond utilities (hero glow, code
+   cards, feature cards). Loaded after tw.css. */
+
+.hero-glow {
+  background:
+    radial-gradient(900px 480px at 50% -10%, rgba(139, 92, 246, 0.18), transparent 60%),
+    radial-gradient(700px 380px at 80% 10%, rgba(56, 189, 248, 0.10), transparent 60%),
+    #020617;
+}
+.hero-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(720px 420px at 50% 0%, black, transparent 75%);
+  pointer-events: none;
+}
+
+/* code blocks */
+.code-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: #0b1020;
+  box-shadow: 0 16px 40px -18px rgba(0,0,0,0.8);
+}
+.code-head {
+  padding: 8px 14px;
+  font: 600 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #7c86a8;
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.code-card pre { margin: 0; padding: 16px; overflow-x: auto; }
+.code-card code {
+  font: 400 12.5px/1.7 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #c9d2ee;
+  white-space: pre;
+}
+.c-kw  { color: #c4b5fd; }
+.c-type{ color: #7dd3fc; }
+.c-fn  { color: #fbbf24; }
+.c-str { color: #86efac; }
+.c-num { color: #f9a8d4; }
+.c-tag { color: #f472b6; }
+.c-attr{ color: #fbbf24; }
+.c-cm  { color: #64748b; }
+.code-inline {
+  font: 500 0.85em ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 1px 6px;
+  color: #dbe3ff;
+}
+
+/* features / docs */
+.feature-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.025);
+  padding: 24px;
+  transition: border-color .15s, background .15s;
+}
+.feature-card:hover { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.045); }
+.feature-dot { width: 10px; height: 10px; border-radius: 4px; margin-bottom: 14px; box-shadow: 0 0 16px currentColor; }
+.feature-card h3 { font-size: 15px; }
+.feature-card p  { color: #94a3b8; }
+.doc-step { border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.025); padding: 20px; }
+.step-num {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px; color: #0b1020;
+  background: linear-gradient(135deg, #a78bfa, #38bdf8);
+  margin-bottom: 14px;
+}
+
+/* render gallery */
+.render-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: #0b1020;
+  transition: border-color .15s, transform .15s;
+  display: block;
+}
+.render-card:hover { border-color: rgba(139,92,246,0.5); transform: translateY(-2px); }
+.render-card img { width: 100%; height: 300px; object-fit: cover; object-position: top center; display: block; }
+.pill {
+  font: 600 11px/1 ui-sans-serif, system-ui;
+  padding: 6px 10px; border-radius: 999px; white-space: nowrap;
+}
+.pill-green { color: #6ee7b7; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); }
+.link { color: #93c5fd; text-decoration: underline; text-underline-offset: 3px; }
+.link:hover { color: #bfdbfe; }
