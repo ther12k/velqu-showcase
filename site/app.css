@@ -179,3 +179,62 @@ html.dark .link:link, html.dark .link:visited { color: #93c5fd; }
 .theme-btn .ico-moon { display: none; }
 html.dark .theme-btn .ico-moon { display: block; }
 html.dark .theme-btn .ico-sun { display: none; }
+
+/* ── polish pass: typography, install row, reveal, details ── */
+
+html { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+h1, h2, h3, .font-semibold, .font-bold, .font-extrabold { letter-spacing: -0.015em; }
+h1 { letter-spacing: -0.03em; }
+.code-card code, .code-inline, .install-row code {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+}
+
+::selection { background: rgba(139, 92, 246, 0.30); }
+
+html.dark ::-webkit-scrollbar { width: 10px; }
+html.dark ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 6px; }
+html.dark ::-webkit-scrollbar-track { background: #020617; }
+
+/* install command row */
+.install-row {
+  display: flex; align-items: center; gap: 10px;
+  max-width: min(92vw, 760px);
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #0b1020;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+}
+.install-row code {
+  font-size: 12.5px; color: #c9d2ee; white-space: nowrap;
+}
+.copy-btn {
+  display: flex; align-items: center; gap: 6px;
+  font: 600 11px/1 'Inter', system-ui;
+  color: #94a3b8; background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; padding: 7px 10px;
+  cursor: pointer; transition: all .15s; flex-shrink: 0;
+  margin-left: auto;
+}
+.copy-btn:hover { color: #fff; background: rgba(139,92,246,0.25); border-color: rgba(139,92,246,0.5); }
+
+/* engine credits row */
+.cred {
+  color: var(--muted); transition: color .15s;
+  padding: 4px 0;
+}
+.cred:hover { color: var(--heading); }
+
+/* scroll reveal */
+/* reveal only hides content when JS is confirmed running (html.js);
+   no-JS users, crawlers and failed observers see everything */
+html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
+html.js .reveal.revealed { opacity: 1; transform: none; }
+/* safety net: anything still hidden after 2s of real time shows itself */
+@keyframes vv-reveal-fail { to { opacity: 1; transform: none; } }
+html.js .reveal:not(.revealed) { animation: vv-reveal-fail 0s 2.5s forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
