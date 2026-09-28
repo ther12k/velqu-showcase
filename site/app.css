@@ -254,7 +254,8 @@ html.js .reveal:not(.revealed) { animation: vv-reveal-fail 0s 2.5s forwards; }
   cursor: ew-resize;
   user-select: none;
   touch-action: none;
-  aspect-ratio: 1280 / 800;
+  aspect-ratio: var(--ar, 1280 / 800);
+  max-height: 82vh;
 }
 .ab-slider img { width: 100%; height: 100%; display: block; object-fit: cover; pointer-events: none; }
 .ab-overlay {
