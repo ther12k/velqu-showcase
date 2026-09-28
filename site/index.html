@@ -67,9 +67,9 @@
       </div>
     </div>
     <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 px-6 py-4 flex-col gap-1">
-      <a href="#features" class="block py-2 text-sm text-slate-600 dark:text-slate-300">Features</a>
-      <a href="#renders" class="block py-2 text-sm text-slate-600 dark:text-slate-300">Renders</a>
-      <a href="#docs" class="block py-2 text-sm text-slate-600 dark:text-slate-300">Docs</a>
+      <a href="#features" class="block py-2 text-sm text-slate-600 dark:text-slate-300" onclick="VV.menu()">Features</a>
+      <a href="#renders" class="block py-2 text-sm text-slate-600 dark:text-slate-300" onclick="VV.menu()">Renders</a>
+      <a href="#docs" class="block py-2 text-sm text-slate-600 dark:text-slate-300" onclick="VV.menu()">Docs</a>
       <a href="https://github.com/ther12k/velqu-view-starter" class="block py-2 text-sm text-slate-600 dark:text-slate-300">GitHub →</a>
     </div>
   </header>
@@ -121,8 +121,8 @@
           <div class="pill pill-green hidden sm:inline-flex">measured drift: 0 px</div>
         </div>
         <div class="ab-slider" id="heroSlider" role="slider" tabindex="0" aria-label="Compare Chromium and VelquView renders" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-          <img class="ab-base" src="assets/ab-login-browser.png" alt="Sign-in card rendered by Chromium with real Tailwind v3.4" draggable="false">
-          <div class="ab-overlay"><img src="assets/ab-login-velqu.png" alt="The same card rendered natively by VelquView" draggable="false"></div>
+          <img class="ab-base" src="assets/ab-login-browser.png" alt="Sign-in card rendered by Chromium with real Tailwind v3.4" width="2560" height="1600" draggable="false" fetchpriority="high">
+          <div class="ab-overlay"><img src="assets/ab-login-velqu.png" alt="The same card rendered natively by VelquView" width="2560" height="1600" draggable="false" fetchpriority="high"></div>
           <div class="ab-divider"><div class="ab-handle">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
           </div></div>
@@ -181,7 +181,7 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
             <div class="w-3 h-3 rounded-full bg-green-400/80"></div>
             <div class="ml-4 text-xs text-slate-500">VelquView · Telemetry Dashboard — rendered natively, not in a browser</div>
           </div>
-          <img src="assets/dash-velqu.png" alt="Telemetry dashboard rendered by VelquView" class="w-full">
+          <img src="assets/dash-velqu.webp" alt="Telemetry dashboard rendered by VelquView" class="w-full" width="1800" height="1125" loading="lazy" decoding="async">
         </div>
         <p class="mt-4 text-center text-sm text-slate-500">A real VelquView frame — winit window, taffy layout, fontdue glyphs, softbuffer presentation.</p>
       </div>
@@ -245,7 +245,7 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
       </div>
       <div class="mt-12 grid md:grid-cols-2 gap-6">
         <a href="https://github.com/ther12k/velqu-showcase/blob/main/login/compare.png" class="render-card">
-          <img src="assets/shot-login.png" alt="Sign-in card rendered by VelquView" style="object-position: center;">
+          <img src="assets/shot-login.png" alt="Sign-in card rendered by VelquView" width="2560" height="1600" loading="lazy" decoding="async" style="object-position: center;">
           <div class="p-5">
             <div class="flex items-center justify-between gap-3">
               <h3 class="text-slate-900 dark:text-white font-semibold">Sign-in card</h3>
@@ -255,7 +255,7 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
           </div>
         </a>
         <a href="https://github.com/ther12k/velqu-showcase/blob/main/ab/compare.png" class="render-card">
-          <img src="assets/shot-ab.png" alt="Component stack rendered by VelquView">
+          <img src="assets/shot-ab.webp" alt="Component stack rendered by VelquView" width="1800" height="3375" loading="lazy" decoding="async">
           <div class="p-5">
             <div class="flex items-center justify-between gap-3">
               <h3 class="text-slate-900 dark:text-white font-semibold">Component stack ×6</h3>
@@ -265,7 +265,7 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
           </div>
         </a>
         <a href="https://github.com/ther12k/velqu-showcase/blob/main/chat/compare.png" class="render-card">
-          <img src="assets/shot-chat.png" alt="Chat UI rendered by VelquView">
+          <img src="assets/shot-chat.webp" alt="Chat UI rendered by VelquView" width="1800" height="1125" loading="lazy" decoding="async">
           <div class="p-5">
             <div class="flex items-center justify-between gap-3">
               <h3 class="text-slate-900 dark:text-white font-semibold">Chat UI</h3>
@@ -275,7 +275,7 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
           </div>
         </a>
         <a href="https://github.com/ther12k/velqu-showcase/blob/main/windmill/compare.png" class="render-card">
-          <img src="assets/shot-windmill.png" alt="Windmill dashboard clone rendered by VelquView">
+          <img src="assets/shot-windmill.webp" alt="Windmill dashboard clone rendered by VelquView" width="1800" height="2813" loading="lazy" decoding="async">
           <div class="p-5">
             <div class="flex items-center justify-between gap-3">
               <h3 class="text-slate-900 dark:text-white font-semibold">Windmill dashboard clone</h3>
@@ -527,9 +527,10 @@ reactive diagnostic: node 7 vx-show: expression has an unterminated string liter
         <div>
           <div class="font-semibold text-slate-900 dark:text-white">Engine</div>
           <div class="mt-3 flex flex-col gap-2 text-slate-500">
-            <a href="https://github.com/taffy-rs/taffy" class="hover:text-slate-700 dark:hover:text-slate-400 transition">taffy</a>
-            <a href="https://github.com/expo/fontdue" class="hover:text-slate-700 dark:hover:text-slate-400 transition">fontdue</a>
-            <a href="https://github.com/rust-windowing/winit" class="hover:text-slate-700 dark:hover:text-slate-400 transition">winit · softbuffer</a>
+            <a href="https://github.com/DioxusLabs/taffy" class="hover:text-slate-700 dark:hover:text-slate-400 transition">taffy</a>
+            <a href="https://github.com/mooman219/fontdue" class="hover:text-slate-700 dark:hover:text-slate-400 transition">fontdue</a>
+            <a href="https://github.com/rust-windowing/winit" class="hover:text-slate-700 dark:hover:text-slate-400 transition">winit</a>
+            <a href="https://github.com/rust-windowing/softbuffer" class="hover:text-slate-700 dark:hover:text-slate-400 transition">softbuffer</a>
           </div>
         </div>
         <div>

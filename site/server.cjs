@@ -19,6 +19,8 @@ const TYPES = {
   ".ico": "image/x-icon",
   ".json": "application/json",
   ".txt": "text/plain; charset=utf-8",
+  ".xml": "application/xml; charset=utf-8",
+  ".webp": "image/webp",
   ".woff2": "font/woff2",
 };
 
@@ -31,13 +33,23 @@ const server = http.createServer((req, res) => {
     res.writeHead(403).end("forbidden");
     return;
   }
+  const headers = {
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+    "referrer-policy": "strict-origin-when-cross-origin",
+  };
   fs.readFile(file, (err, buf) => {
     if (err) {
-      // SPA-less static: 404 page is a redirect home
-      res.writeHead(404, { "content-type": "text/plain" }).end("not found");
+      // Branded 404 for pages, plain for missing assets
+      const notFound = path.join(DIST, "404.html");
+      fs.readFile(notFound, (e2, page) => {
+        if (e2) { res.writeHead(404, headers).end("not found"); return; }
+        res.writeHead(404, { ...headers, "content-type": "text/html; charset=utf-8" }).end(page);
+      });
       return;
     }
     res.writeHead(200, {
+      ...headers,
       "content-type": TYPES[path.extname(file).toLowerCase()] || "application/octet-stream",
       "cache-control": path.extname(file) === ".html" ? "no-cache" : "public, max-age=3600",
     });

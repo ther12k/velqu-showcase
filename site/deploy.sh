@@ -25,7 +25,7 @@ printf '@tailwind base;\n@tailwind components;\n@tailwind utilities;\n' > /tmp/t
 echo "── uploading release $STAMP"
 ssh -i "$KEY" -o IdentitiesOnly=yes "$HOST" "mkdir -p $REMOTE_ROOT/releases/$STAMP/dist"
 rsync -az -e "ssh -i $KEY -o IdentitiesOnly=yes" \
-  site/index.html site/cookbook.html site/tw.css site/app.css site/assets \
+  site/index.html site/cookbook.html site/404.html site/robots.txt site/sitemap.xml site/tw.css site/app.css site/assets \
   "$HOST:$REMOTE_ROOT/releases/$STAMP/dist/"
 rsync -az -e "ssh -i $KEY -o IdentitiesOnly=yes" \
   site/server.cjs "$HOST:$REMOTE_ROOT/releases/$STAMP/server/"
