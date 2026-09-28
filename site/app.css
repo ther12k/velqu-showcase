@@ -3,7 +3,7 @@
    themes (docs-site convention). */
 
 :root {
-  --bg: #ffffff;
+  --bg: #f8fafc;
   --panel: #ffffff;
   --panel-soft: #f1f5f9;
   --border: #e2e8f0;
@@ -71,17 +71,7 @@ html.dark .hero-glow::after {
   background: rgba(255, 255, 255, 0.04);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
-.code-card pre {
-  margin: 0; padding: 16px 16px 16px 0; overflow-x: auto;
-  counter-reset: line;
-}
-.code-card pre code { display: block; padding-left: 16px; }
-.code-card pre code::before {
-  counter-increment: line;
-  content: counter(line);
-  display: inline-block; width: 34px; margin-right: 14px;
-  text-align: right; color: #3d4763; user-select: none;
-}
+.code-card pre { margin: 0; padding: 16px; overflow-x: auto; }
 .code-head {
   display: flex; align-items: center; gap: 8px;
   padding: 0 8px; height: 34px;
