@@ -9,7 +9,6 @@
 import { chromium } from 'playwright';
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, mkdirSync, cpSync, rmSync } from 'node:fs';
-import { mkdirSync as _m } from 'node:fs';
 
 const root = new URL('..', import.meta.url).pathname; // crate root
 const set = process.argv[2] ?? 'login';
