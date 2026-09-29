@@ -14,7 +14,10 @@
     spacing -> integer steps (mb-2.5->mb-2, py-2.5->py-2), logical
     ms-2 -> ml-2, shadow/focus/hover variants dropped (no variants in
     v0), checkbox -> styled box div, anchors -> divs, explicit h-10 on
-    inputs and button so intrinsic control sizes cannot diverge.
+    inputs and button so intrinsic control sizes cannot diverge,
+    placeholder attr (not rendered by v0) -> value + text-gray-400,
+    button labels: text-center + per-height padding (py-2) because v0
+    has no UA centering for buttons.
   -->
   <main class="h-full flex items-center justify-center px-4" data-vv-test="login-shell">
     <div class="w-full max-w-sm bg-white p-6 border border-gray-200 rounded-xl" data-vv-test="login-card">
@@ -23,12 +26,12 @@
 
       <div class="flex flex-col mb-4">
         <label for="email" class="block text-sm font-medium text-gray-900 m-0 mb-2">Your email</label>
-        <input id="email" type="text" placeholder="example@company.com" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full h-10 px-3" data-vv-test="login-email">
+        <input id="email" type="text" value="example@company.com" class="bg-white border border-gray-300 text-gray-400 text-sm rounded-lg block w-full h-10 px-3" data-vv-test="login-email">
       </div>
 
       <div class="flex flex-col">
         <label for="password" class="block text-sm font-medium text-gray-900 m-0 mb-2">Your password</label>
-        <input id="password" type="text" placeholder="•••••••••" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full h-10 px-3" data-vv-test="login-password">
+        <input id="password" type="text" value="*********" class="bg-white border border-gray-300 text-gray-400 text-sm rounded-lg block w-full h-10 px-3" data-vv-test="login-password">
       </div>
 
       <div class="flex items-center justify-between my-6">
