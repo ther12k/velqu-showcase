@@ -1,0 +1,6 @@
+/* Shop comparison sample (NOT the frozen pipeline).
+   Shared shell reset only; loaded by BOTH engines. */
+html, body {
+  height: 100%;
+  margin: 0;
+}
