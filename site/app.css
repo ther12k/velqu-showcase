@@ -328,13 +328,39 @@ html.js .reveal:not(.revealed) { animation: vv-reveal-fail 0s 2.5s forwards; }
   box-shadow: 0 6px 20px rgba(139,92,246,0.5);
   pointer-events: none;
 }
-.ab-tag {
-  position: absolute; bottom: 12px;
+/* window frame: a split title bar above the slider. Each half labels its
+   side (browser left / desktop right) and the seam tracks --pos, so the
+   bar itself shows which engine you are looking at as you drag. */
+.ab-win { --pos: 50%; }
+.ab-win-bar {
+  position: relative;
+  display: flex;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
   font: 600 11px/1 'Inter', system-ui;
-  padding: 7px 11px; border-radius: 999px;
-  color: #fff; background: rgba(2, 6, 23, 0.72);
-  border: 1px solid rgba(255,255,255,0.18);
-  pointer-events: none;
+  letter-spacing: 0.02em;
+  user-select: none;
 }
-.ab-tag-l { left: 12px; }
-.ab-tag-r { right: 12px; }
+.ab-win-half {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 12px; min-width: 0;
+  white-space: nowrap; overflow: hidden;
+}
+.ab-win-b { width: var(--pos); background: #0f172a; color: #e2e8f0; }
+.ab-win-v { flex: 1; justify-content: flex-end; background: linear-gradient(90deg, #191330, #211a40); color: #ede9fe; }
+.ab-win .ab-slider { border-radius: 0 0 18px 18px; }
+.ab-dots { display: flex; gap: 6px; flex: none; }
+.ab-dots i { width: 9px; height: 9px; border-radius: 50%; }
+.ab-dots i:nth-child(1) { background: #f87171; }
+.ab-dots i:nth-child(2) { background: #fbbf24; }
+.ab-dots i:nth-child(3) { background: #34d399; }
+.ab-win-gem { width: 9px; height: 9px; flex: none; background: #8b5cf6; transform: rotate(45deg); border-radius: 2px; }
+.ab-win-t { overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 640px) {
+  .ab-win-x { display: none; }
+  .ab-win-bar { height: 30px; }
+  .ab-win-half { gap: 6px; padding: 0 10px; }
+}

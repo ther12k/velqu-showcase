@@ -78,6 +78,24 @@ Revert `Cargo.toml` to the accepted rev when done; the operator
 application and its pins are untouched by this procedure.
 
 
+## A/B sample sets (same HTML file, two engines)
+
+`login/`, `ab/`, `chat/`, `windmill/`, `flows/` each hold ONE
+`index.html` rendered twice: by VelquView (native v0 utilities, via the
+starter's `--app-dir --headless --scale 2.0`) and by Chromium with real
+Tailwind v3.4.17 compiled from that same file's classes plus the
+documented parity base. `app.css` is loaded by both engines (velqu
+auto-loads `*.css`; the browser copy links it). Each set carries a
+labeled `compare.png` (BROWSER left / DESKTOP right).
+
+    # browser reference for a set (builds the copy, compiles CSS, shoots @2x):
+    (cd tools && node ab-shot.mjs login 800)     # → out/ab-login-browser.png
+
+Measured results and the porting rules live in the site's cookbook;
+one rule worth repeating here: **browsers center `<button>` text via the
+UA stylesheet, v0 does not** — every button carries `text-center`
+(a no-op in Chromium, so the file stays shared byte-for-byte).
+
 ## Live view (browse the sample in the app itself)
 
 `live/` holds the same component coverage restructured for the app's

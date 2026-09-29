@@ -97,6 +97,7 @@
             <thead><tr><th>Browser pattern</th><th>v0 replacement</th><th>Seen in</th></tr></thead>
             <tbody>
               <tr><td><code class="code-inline">shadow-sm/md/xs</code></td><td>1px <code class="code-inline">border</code>; emphasized cards use <code class="code-inline">border-2</code> in the accent color; dark UIs use tonal steps instead</td><td>pricing, windmill</td></tr>
+              <tr><td><code class="code-inline">&lt;button&gt;</code> label alignment</td><td>browsers center button text via the UA stylesheet; v0 does not — add <code class="code-inline">text-center</code> to every button (a no-op in Chromium, so the shared A/B file stays byte-identical for both engines)</td><td>sign-in card, component stack</td></tr>
               <tr><td><code class="code-inline">rounded-e-lg</code> (per-corner)</td><td>uniform <code class="code-inline">rounded-xl</code></td><td>chat bubbles</td></tr>
               <tr><td><code class="code-inline">mx-auto / ml-auto</code></td><td>center: parent <code class="code-inline">flex justify-center</code>; push-right: <code class="code-inline">justify-between</code> with a wrapper</td><td>all sets</td></tr>
               <tr><td><code class="code-inline">absolute</code> left-indicator bar</td><td>author CSS: <code class="code-inline">.vv-bar { border-left: 4px solid … }</code></td><td>windmill sidebar</td></tr>
