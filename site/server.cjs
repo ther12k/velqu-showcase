@@ -1,4 +1,4 @@
-// velqu.rizeva.my.id — static file server for the VelquView landing.
+// velquview.rizeva.my.id — static file server for the VelquView landing.
 // Serves VELQU_LANDING_DIST (absolute path, pinned by the systemd unit)
 // on 127.0.0.1:$VELQU_LANDING_PORT. No deps: plain node:http.
 const http = require("http");

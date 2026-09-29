@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Atomic deploy for velqu.rizeva.my.id (VelquView landing).
+# Atomic deploy for velquview.rizeva.my.id (VelquView landing).
 # build -> upload timestamped release -> flip symlinks -> restart ->
 # health check. Rollback = flip symlinks back to a previous release.
 #
 # Requires: SSH key for opc@100.124.71.117 (pass via RIZEVA_KEY or
 # default ~/Downloads/ssh-key-2026-07-03.key) and, first run only,
-# the NPM proxy host + certificate for velqu.rizeva.my.id.
+# the NPM proxy host + certificate for velquview.rizeva.my.id.
 set -euo pipefail
 cd "$(dirname "$0")/.."   # repo root (velqu-showcase)
 
@@ -45,7 +45,7 @@ mv -Tf dist.new dist && mv -Tf server.new server
 if [ ! -f /etc/systemd/system/$APP.service ]; then
   sudo tee /etc/systemd/system/$APP.service >/dev/null <<UNIT
 [Unit]
-Description=VelquView landing (velqu.rizeva.my.id)
+Description=VelquView landing (velquview.rizeva.my.id)
 After=network-online.target
 
 [Service]
@@ -70,4 +70,4 @@ curl -sfS http://127.0.0.1:$PORT/ >/dev/null && echo ' local: OK'
 "
 
 echo "── verifying public URL"
-curl -sfSI "https://velqu.rizeva.my.id" | head -3 && echo " ✓ live"
+curl -sfSI "https://velquview.rizeva.my.id" | head -3 && echo " ✓ live"
