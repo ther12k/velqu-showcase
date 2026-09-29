@@ -157,6 +157,25 @@
         <p class="mt-3 text-sm text-slate-500">CTA card identical to the pixel; sections start at the same y; +6px cumulative text-metric drift. <a class="link" href="https://github.com/ther12k/velqu-showcase/blob/main/windmill/compare.png">Full side-by-side on GitHub →</a></p>
       </div>
 
+      <!-- ============ 5. Navigation & feedback ============ -->
+      <div class="reveal">
+        <div class="flex items-end justify-between px-1 pb-3 gap-3 flex-wrap">
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Navigation &amp; feedback</h2>
+            <div class="mt-1 text-sm text-slate-500">Flowbite ports: breadcrumb, stepper, progress, toasts, pagination.</div>
+          </div>
+          <span class="pill pill-green">all 5 sections at 0px</span>
+        </div>
+        <div class="ab-slider" style="--ar: 1280 / 1600" role="slider" tabindex="0" aria-label="Navigation and feedback: Chromium versus VelquView" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img class="ab-base" src="assets/smp-flows-browser.webp" alt="Navigation and feedback components rendered by Chromium" width="2560" height="3200" draggable="false" loading="lazy" decoding="async">
+          <div class="ab-overlay"><img src="assets/smp-flows-velqu.webp" alt="The same components rendered by VelquView" width="2560" height="3200" draggable="false" loading="lazy" decoding="async"></div>
+          <div class="ab-divider"><div class="ab-handle"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
+          <div class="ab-tag ab-tag-l">CHROMIUM · real Tailwind v3.4</div>
+          <div class="ab-tag ab-tag-r">VELQUVIEW · native v0</div>
+        </div>
+        <p class="mt-3 text-sm text-slate-500">Every section band identical to the pixel — steps, connector bars, progress fills, toast rows, pagination strip. <a class="link" href="https://github.com/ther12k/velqu-showcase/blob/main/flows/compare.png">Full side-by-side on GitHub →</a></p>
+      </div>
+
     </div>
   </section>
 

@@ -1,0 +1,10 @@
+/* Flows sample (breadcrumb/stepper/progress/toast/pagination).
+   Shared shell reset only; loaded by BOTH engines. */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.vv-line { border-width: 0 0 1px 0; border-style: solid; border-color: #f3f4f6; }
+/* Pagination shared dividers (per-side borders outside v0). */
+.vv-pr { border-width: 0 1px 0 0; border-style: solid; border-color: #d1d5db; }
+.vv-pr-teal { border-width: 0 1px 0 0; border-style: solid; border-color: #0d9488; }
