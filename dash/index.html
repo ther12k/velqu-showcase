@@ -110,11 +110,11 @@
                 <div class="flex items-center gap-3">
                   <div class="flex gap-1 rounded-md bg-slate-900 border border-slate-800 p-1">
                     <div id="rng-7d" data-vv-test="rng-7d" @click="range = '7d'"
-                      :class="range === '7d' ? 'bg-teal-600 text-white vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold' : 'text-slate-400 vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold'"
-                      class="vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold">7d</div>
+                      :class="range === '7d' ? 'bg-teal-600 text-white vv-tab rounded-md px-3 h-7 text-center pt-1 pb-2 text-xs font-semibold' : 'text-slate-400 vv-tab rounded-md px-3 h-7 text-center pt-1 pb-2 text-xs font-semibold'"
+                      class="vv-tab rounded-md px-3 h-7 text-xs font-semibold text-center pt-1 pb-2">7d</div>
                     <div id="rng-30d" data-vv-test="rng-30d" @click="range = '30d'"
-                      :class="range === '30d' ? 'bg-teal-600 text-white vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold' : 'text-slate-400 vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold'"
-                      class="vv-tab rounded-md px-3 h-7 flex items-center text-xs font-semibold">30d</div>
+                      :class="range === '30d' ? 'bg-teal-600 text-white vv-tab rounded-md px-3 h-7 text-center pt-1 pb-2 text-xs font-semibold' : 'text-slate-400 vv-tab rounded-md px-3 h-7 text-center pt-1 pb-2 text-xs font-semibold'"
+                      class="vv-tab rounded-md px-3 h-7 text-xs font-semibold text-center pt-1 pb-2">30d</div>
                   </div>
                   <div @click="modal = 'export'" class="vv-click h-9 px-4 rounded-md bg-teal-600 text-white text-sm font-semibold flex items-center">Export</div>
                 </div>
@@ -423,14 +423,14 @@
       <div class="w-full max-w-lg bg-slate-900 border border-slate-700 rounded-xl p-6 flex flex-col" data-vv-test="modal-card">
         <div class="flex items-center justify-between pb-4 vv-line">
           <h3 class="text-lg font-semibold text-white m-0">Export report</h3>
-          <div @click="modal = ''" class="vv-click w-9 h-9 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 text-base">×</div>
+          <div @click="modal = ''" class="vv-click w-9 h-9 rounded-md bg-slate-800 border border-slate-700 text-slate-300 text-base text-center pt-1 pb-2">×</div>
         </div>
         <div class="py-5 flex flex-col gap-3">
           <div class="text-sm text-slate-400 m-0">Choose a format for the export. The file is written by the host process.</div>
           <div @click="fmt = 'csv'" data-vv-test="fmt-csv"
             :class="fmt === 'csv' ? 'border-teal-500 bg-slate-800' : 'border-slate-700 bg-slate-900'"
             class="vv-click rounded-lg border p-4 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-md bg-teal-600 flex items-center justify-center text-white text-xs font-bold">CSV</div>
+            <div class="w-10 h-10 rounded-md bg-teal-600 text-white text-xs font-bold text-center pt-2 pb-3">CSV</div>
             <div class="flex flex-col">
               <div class="text-sm font-semibold text-white m-0">Spreadsheet</div>
               <div class="text-xs text-slate-400 m-0 mt-1">Rows, lanes and timestamps — opens anywhere</div>
@@ -439,7 +439,7 @@
           <div @click="fmt = 'json'" data-vv-test="fmt-json"
             :class="fmt === 'json' ? 'border-teal-500 bg-slate-800' : 'border-slate-700 bg-slate-900'"
             class="vv-click rounded-lg border p-4 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-md bg-indigo-600 flex items-center justify-center text-white text-xs font-bold">JSON</div>
+            <div class="w-10 h-10 rounded-md bg-indigo-600 text-white text-xs font-bold text-center pt-2 pb-3">JSON</div>
             <div class="flex flex-col">
               <div class="text-sm font-semibold text-white m-0">Structured</div>
               <div class="text-xs text-slate-400 m-0 mt-1">Nested records for pipeline ingestion</div>
@@ -447,8 +447,8 @@
           </div>
         </div>
         <div class="flex items-center gap-3 pt-4 vv-topline flex-row-reverse">
-          <div @click="modal = ''" class="vv-click rounded-md bg-teal-600 px-5 h-9 flex items-center text-sm font-semibold text-white">Export now</div>
-          <div @click="modal = ''" class="vv-click rounded-md bg-slate-800 border border-slate-600 px-5 h-9 flex items-center text-sm font-semibold text-slate-300">Cancel</div>
+          <div @click="modal = ''" class="vv-click rounded-md bg-teal-600 px-5 h-9 text-sm font-semibold text-white text-center pt-1 pb-2">Export now</div>
+          <div @click="modal = ''" class="vv-click rounded-md bg-slate-800 border border-slate-600 px-5 h-9 text-sm font-semibold text-slate-300 text-center pt-1 pb-2">Cancel</div>
         </div>
       </div>
     </div>
