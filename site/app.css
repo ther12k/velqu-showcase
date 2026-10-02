@@ -236,7 +236,7 @@ html.dark .theme-btn .ico-sun { display: none; }
 
 /* ── polish pass: typography, install row, reveal, details ── */
 
-html { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+html { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; overflow-x: clip; }
 h1, h2, h3, .font-semibold, .font-bold, .font-extrabold { letter-spacing: -0.015em; }
 h1 { letter-spacing: -0.03em; }
 .code-card code, .code-inline, .install-row code {
@@ -261,7 +261,7 @@ html.dark ::-webkit-scrollbar-track { background: #020617; }
   overflow-x: auto;
 }
 .install-row code {
-  font-size: 12.5px; color: #c9d2ee; white-space: nowrap;
+  font-size: 12.5px; color: #c9d2ee; white-space: pre;
 }
 .copy-btn {
   display: flex; align-items: center; gap: 6px;
@@ -364,3 +364,225 @@ html.js .reveal:not(.revealed) { animation: vv-reveal-fail 0s 2.5s forwards; }
   .ab-win-bar { height: 30px; }
   .ab-win-half { gap: 6px; padding: 0 10px; }
 }
+
+/* ── isometric hero scene: markup → engine → native window ──
+   The stage keeps screen-space notes; .iso-world is a plane rotated
+   into an isometric floor. Cards float on it (translateZ), the window
+   stands up (rotateX about its bottom edge), and step labels are
+   "billboarded" back to face the viewer (inverse world rotation). */
+.iso-wrap { --iso-s: 1; display: flex; flex-direction: column; align-items: center; }
+.iso-sizer { position: relative; width: 100%; height: calc(470px * var(--iso-s)); overflow: visible; }
+.iso-stage {
+  position: absolute;
+  left: 50%; margin-left: -270px; top: 0;
+  width: 540px; height: 470px;
+  flex: none;
+  transform: scale(var(--iso-s));
+  transform-origin: top center;
+  perspective: 1500px;
+  pointer-events: none;
+}
+.iso-world {
+  position: absolute; inset: -120px 0 -120px 0;
+  transform-style: preserve-3d;
+  transform: rotateX(56deg) rotateZ(-40deg);
+}
+.iso-floor {
+  position: absolute; left: 96px; top: 126px; right: 40px; bottom: 126px;
+  border-radius: 28px;
+  background:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 38px 38px;
+  -webkit-mask-image: radial-gradient(78% 78% at 50% 46%, #000 26%, transparent 76%);
+  mask-image: radial-gradient(78% 78% at 50% 46%, #000 26%, transparent 76%);
+}
+.iso-shadow {
+  position: absolute;
+  background: radial-gradient(closest-side, rgba(2, 6, 23, 0.38), transparent 72%);
+}
+.s-markup { left: 30px; top: 128px; width: 244px; height: 178px; }
+.s-engine { left: 320px; top: 130px; width: 172px; height: 172px; }
+.s-window { left: -6px; top: 522px; width: 240px; height: 108px; }
+
+/* dashed flow lines on the floor, arrowheads pointing forward */
+.iso-flow {
+  position: absolute; height: 2px;
+  background: repeating-linear-gradient(90deg, rgba(139, 92, 246, 0.75) 0 9px, transparent 9px 16px);
+}
+.iso-flow::after {
+  content: ""; position: absolute; right: -2px; top: 50%;
+  width: 9px; height: 9px;
+  transform: translateY(-50%) rotate(45deg);
+  background: #8b5cf6;
+}
+.f1 { left: 152px; top: 213px; width: 176px; transform-origin: 0 50%; transform: rotateZ(14deg); }
+.f2 { left: 405px; top: 294px; width: 391px; transform-origin: 0 50%; transform: rotateZ(131.8deg); }
+
+.iso-card { position: absolute; transform-style: preserve-3d; border-radius: 13px; }
+
+/* 1 — your markup */
+.iso-markup {
+  left: 40px; top: 136px; width: 224px; height: 154px;
+  transform: translateZ(128px);
+  background: #0b1020;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 13px 15px;
+}
+.iso-markup::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: #070c18; transform: translateZ(-13px);
+}
+.iso-markup::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: rgba(2, 6, 23, 0.5); transform: translateZ(-26px); filter: blur(10px);
+}
+.mini-code {
+  font: 400 9.5px/2 'JetBrains Mono', ui-monospace, monospace;
+  color: #c9d2ee; text-align: left; white-space: nowrap;
+}
+
+/* 2 — the engine slab */
+.iso-engine {
+  left: 330px; top: 142px; width: 150px; height: 150px;
+  transform: translateZ(74px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
+  background: linear-gradient(150deg, #241b44, #171130);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+}
+.iso-engine::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: #130e28; transform: translateZ(-13px);
+}
+.iso-engine::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: #0b081a; transform: translateZ(-26px);
+}
+.eng-tile {
+  width: 44px; height: 44px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #8b5cf6, #38bdf8);
+  box-shadow: 0 0 26px rgba(139, 92, 246, 0.55);
+}
+.eng-glyph { width: 15px; height: 15px; border-radius: 3px; background: #fff; }
+.eng-name { font: 700 13px/1 'Inter', system-ui; color: #f1f5f9; letter-spacing: -0.01em; }
+.eng-sub { font: 500 8px/1.5 'JetBrains Mono', monospace; color: #8b94ab; }
+
+/* 3 — the native window (stands up, leaning back slightly) */
+.iso-window {
+  left: -10px; top: 412px; width: 248px; height: 170px;
+  transform-origin: 50% 100%;
+  transform: rotateX(-72deg);
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+}
+html.dark .iso-window { background: #0f172a; border-color: rgba(255, 255, 255, 0.16); }
+.iso-window::before {
+  content: ""; position: absolute; inset: 0;
+  background: #0b1020; transform: translateZ(-5px);
+}
+.win-bar {
+  height: 23px; flex: none; border-radius: 12px 12px 0 0;
+  display: flex; align-items: center; gap: 6px; padding: 0 8px;
+  background: #f1f5f9; border-bottom: 1px solid #e2e8f0;
+}
+html.dark .win-bar { background: rgba(255, 255, 255, 0.05); border-bottom-color: rgba(255, 255, 255, 0.09); }
+.win-gem { width: 7px; height: 7px; flex: none; background: #8b5cf6; transform: rotate(45deg); border-radius: 1.5px; }
+.win-title { flex: 1; font: 600 8.5px/1 'Inter', system-ui; color: #64748b; text-align: left; }
+.win-btns { display: flex; gap: 5px; }
+.win-btns i { width: 6px; height: 6px; border-radius: 50%; background: #cbd5e1; }
+html.dark .win-btns i { background: #334155; }
+.win-body { display: flex; height: 166px; }
+.win-side {
+  width: 36px; flex: none; padding: 8px 0;
+  display: flex; flex-direction: column; gap: 6px; align-items: center;
+  background: #1e293b;
+}
+.win-side i { width: 18px; height: 4px; border-radius: 2px; background: #475569; }
+.win-side i:first-child { background: #8b5cf6; }
+.win-main { flex: 1; padding: 10px 12px; display: flex; flex-direction: column; }
+.wb-title { width: 62%; height: 8px; border-radius: 4px; background: #334155; }
+html.dark .wb-title { background: #e2e8f0; }
+.wb-text { margin-top: 7px; width: 88%; height: 4px; border-radius: 2px; background: #cbd5e1; }
+.wb-text.short { width: 54%; }
+html.dark .wb-text { background: #334155; }
+.wb-chart { margin-top: auto; height: 34px; display: flex; align-items: flex-end; gap: 5px; }
+.wb-chart i { flex: 1; border-radius: 2px 2px 0 0; background: #8b5cf6; }
+.wb-chart i:nth-child(2n) { background: #38bdf8; }
+.wb-btn {
+  margin-top: 8px; align-self: flex-start;
+  font: 600 7.5px/1 'Inter', system-ui; color: #fff;
+  background: #7c3aed; border-radius: 4px; padding: 5px 8px;
+}
+
+/* billboarded step labels — inverse of the world rotation, so they
+   face the viewer while anchored to a point in the scene */
+/* shrink-wrapped: the lift box IS the chip box, kept inside the world
+   box — Chromium culls 3D-billboarded layout boxes that stick out of
+   the preserve-3d container's bounds */
+.iso-lift { position: absolute; transform-origin: 0 0; }
+.l-markup { left: 172px; top: 10px; transform: translateZ(150px) rotateZ(40deg) rotateX(-56deg); }
+.l-engine { left: 453px; top: 34px; transform: translateZ(96px) rotateZ(40deg) rotateX(-56deg); }
+.l-window { left: 98px; top: 387px; transform: translateZ(196px) rotateZ(40deg) rotateX(-56deg); }
+.iso-tag {
+  position: static;
+  display: flex; align-items: center; gap: 7px;
+  white-space: nowrap;
+  padding: 6px 11px 6px 6px; border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow);
+  font: 600 11px/1 'Inter', system-ui; color: var(--heading);
+}
+/* chips must be readable in both themes: opaque panel, not the
+   translucent dark panel token */
+html.dark .iso-tag { background: #101728; }
+.iso-tag b {
+  display: flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 999px; flex: none;
+  font-size: 10px; color: #0b1020;
+  background: linear-gradient(135deg, #a78bfa, #38bdf8);
+}
+
+/* screen-space floating notes */
+.iso-note {
+  position: absolute;
+  font: 500 10px/1 'JetBrains Mono', monospace;
+  color: var(--muted);
+  padding: 5px 9px; border-radius: 8px;
+  border: 1px dashed var(--border-strong);
+  background: var(--panel);
+}
+.n-a { top: 22px; right: -4px; }
+.n-b { bottom: 118px; left: -10px; }
+.n-c { bottom: 44px; right: 2px; }
+
+.iso-caption { margin-top: 10px; font-size: 13.5px; color: var(--muted); max-width: 420px; }
+.iso-caption b { color: var(--heading); }
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .iso-wrap { --iso-s: 0.92; }
+}
+@media (max-width: 640px) {
+  .iso-wrap { --iso-s: 0.7; }
+  .iso-stage { margin-left: -202px; }
+  .iso-note { display: none; }
+  .iso-tag { font-size: 14px; }
+  .iso-tag b { width: 22px; height: 22px; font-size: 12px; }
+}
+@media (max-width: 400px) {
+  .iso-wrap { --iso-s: 0.6; }
+  .iso-stage { margin-left: -212px; }
+}
+
+/* use-case icon tiles (hero-adjacent section) */
+.use-icon {
+  width: 40px; height: 40px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: #7c3aed;
+  background: rgba(139, 92, 246, 0.10);
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  margin-bottom: 14px;
+}
+.use-icon svg { width: 20px; height: 20px; }
+html.dark .use-icon { color: #a78bfa; }
