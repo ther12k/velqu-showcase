@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VelquView · Email inbox</title>
+</head>
+<body class="bg-gray-200">
+  <!--
+    Email inbox (folder rail + message list + reading pane), built for
+    the same-file A/B: this ONE document renders in velqu (native
+    Tailwind v0) and in Chromium (real Tailwind v3.4 compiled from
+    these exact classes + the parity base). v0 adaptations, applied
+    identically in both engines: search placeholder -> value +
+    text-gray-400 (v0 drops placeholder), per-side borders (border-b /
+    border-r) are outside v0 -> hairline gaps via gap-px on a gray
+    shell plus h-px divider divs, ml-auto (margin auto deferred) ->
+    justify-between, no text truncation in v0 -> preview lines kept
+    short, selected-row highlight via bg tint (no border-l accent),
+    stars as DejaVu &#9733; glyphs, and every fixed-height text element
+    (buttons, monograms, file chip) carries text-center + per-height
+    padding because v0 has no UA button centering and flex ignores
+    anonymous text runs. The set stays STATIC on purpose: :class /
+    vx-show are inert without the velqu runtime, so reactive variants
+    are demoed by dash/ and live/ instead.
+  -->
+  <main class="h-full flex flex-col gap-px bg-gray-200">
+
+    <!-- top bar -->
+    <header class="h-14 bg-white flex items-center px-6 gap-4">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white font-bold text-sm text-center pt-1 pb-2 border-none">V</div>
+      <div class="text-lg font-bold text-gray-900">Mail</div>
+      <input class="flex-1 h-9 rounded-lg border border-gray-200 bg-gray-50 px-4 text-sm text-gray-400" value="Search mail">
+      <button class="h-9 px-4 rounded-lg bg-indigo-600 text-white text-sm font-semibold text-center pt-1 pb-2 border-none">Compose</button>
+    </header>
+
+    <div class="flex-1 flex gap-px bg-gray-200">
+
+      <!-- folder rail -->
+      <aside class="w-52 bg-white py-5 flex flex-col gap-1">
+        <div class="px-4 text-xs font-semibold text-gray-400">FOLDERS</div>
+        <div class="mx-2 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold">Inbox</div>
+        <div class="mx-2 px-4 py-2 rounded-lg text-gray-700 text-sm">Starred</div>
+        <div class="mx-2 px-4 py-2 rounded-lg text-gray-700 text-sm">Sent mail</div>
+        <div class="mx-2 px-4 py-2 rounded-lg text-gray-700 text-sm">Drafts</div>
+        <div class="mx-2 px-4 py-2 rounded-lg text-gray-700 text-sm">Trash</div>
+
+        <div class="m-0 mt-6 h-px mx-4 bg-gray-100"></div>
+        <div class="mx-2 px-4 py-2 text-xs text-gray-400">6.2 GB of 15 GB used</div>
+        <div class="mx-4 h-2 rounded-full bg-gray-100">
+          <div class="w-14 h-2 rounded-full bg-indigo-400"></div>
+        </div>
+      </aside>
+
+      <!-- message list -->
+      <section class="w-96 bg-white flex flex-col">
+        <div class="h-12 px-4 flex items-center justify-between">
+          <div class="text-sm font-bold text-gray-900">Inbox</div>
+          <div class="text-xs text-gray-400">6 messages · 2 unread</div>
+        </div>
+
+        <div class="h-px bg-gray-100"></div>
+
+        <div class="flex gap-3 px-4 py-3 bg-indigo-50">
+          <div class="w-2 h-2 m-0 mt-2 rounded-full bg-blue-600"></div>
+          <div class="flex-1 flex flex-col gap-1">
+            <div class="flex justify-between gap-2">
+              <div class="text-sm font-semibold text-gray-900">Stripe</div>
+              <div class="text-xs text-gray-400">9:42 AM</div>
+            </div>
+            <div class="text-sm font-medium text-gray-800">Your receipt from Stripe</div>
+            <div class="text-xs text-gray-400">Thanks for your payment. Here is your receipt</div>
+          </div>
+          <div class="text-base text-amber-400 m-0 mt-1">&#9733;</div>
+        </div>
+
+        <div class="h-px bg-gray-100"></div>
+
+        <div class="flex gap-3 px-4 py-3 bg-white">
+          <div class="w-2 h-2 m-0 mt-2 rounded-full bg-blue-600"></div>
+          <div class="flex-1 flex flex-col gap-1">
+            <div class="flex justify-between gap-2">
+              <div class="text-sm font-semibold text-gray-900">GitHub</div>
+              <div class="text-xs text-gray-400">8:15 AM</div>
+            </div>
+            <div class="text-sm font-medium text-gray-800">[velqu-view] PR #212: chip padding map</div>
+            <div class="text-xs text-gray-400">ther12k merged 1 commit into main from</div>
+          </div>
+          <div class="text-base text-gray-300 m-0 mt-1">&#9733;</div>
+        </div>
+
+        <div class="h-px bg-gray-100"></div>
+
+        <div class="flex gap-3 px-4 py-3 bg-white">
+          <div class="w-2 h-2 m-0 mt-2 rounded-full bg-white"></div>
+          <div class="flex-1 flex flex-col gap-1">
+            <div class="flex justify-between gap-2">
+              <div class="text-sm font-semibold text-gray-900">Rizeva Deploy</div>
+              <div class="text-xs text-gray-400">Yesterday</div>
+            </div>
+            <div class="text-sm font-medium text-gray-800">velquview.rizeva.my.id release 20261002</div>
+            <div class="text-xs text-gray-400">Deployed release 20261002-085049 — health check OK</div>
+          </div>
+          <div class="text-base text-gray-300 m-0 mt-1">&#9733;</div>
+        </div>
+
+        <div class="h-px bg-gray-100"></div>
+
+        <div class="flex gap-3 px-4 py-3 bg-white">
+          <div class="w-2 h-2 m-0 mt-2 rounded-full bg-white"></div>
+          <div class="flex-1 flex flex-col gap-1">
+            <div class="flex justify-between gap-2">
+              <div class="text-sm font-semibold text-gray-900">Design Weekly</div>
+              <div class="text-xs text-gray-400">Yesterday</div>
+            </div>
+            <div class="text-sm font-medium text-gray-800">Issue #84: native is the new fast</div>
+            <div class="text-xs text-gray-400">Why small teams are shipping desktop apps</div>
+          </div>
+          <div class="text-base text-amber-400 m-0 mt-1">&#9733;</div>
+        </div>
+
+        <div class="h-px bg-gray-100"></div>
+
+        <div class="flex gap-3 px-4 py-3 bg-white">
+          <div class="w-2 h-2 m-0 mt-2 rounded-full bg-white"></div>
+          <div class="flex-1 flex flex-col gap-1">
+            <div class="flex justify-between gap-2">
+              <div class="text-sm font-semibold text-gray-900">Cargo Audit</div>
+              <div class="text-xs text-gray-400">Oct 1</div>
+            </div>
+            <div class="text-sm font-medium text-gray-800">Weekly report: 0 vulnerabilities</div>
+            <div class="text-xs text-gray-400">All 214 crates clean for another week</div>
+          </div>
+          <div class="text-base text-gray-300 m-0 mt-1">&#9733;</div>
+        </div>
+
+        <div class="h-px bg-gray-100"></div>
+
+        <div class="flex gap-3 px-4 py-3 bg-white">
+          <div class="w-2 h-2 m-0 mt-2 rounded-full bg-white"></div>
+          <div class="flex-1 flex flex-col gap-1">
+            <div class="flex justify-between gap-2">
+              <div class="text-sm font-semibold text-gray-900">Figma</div>
+              <div class="text-xs text-gray-400">Sep 30</div>
+            </div>
+            <div class="text-sm font-medium text-gray-800">3 comments on "Inbox redesign"</div>
+            <div class="text-xs text-gray-400">Ana and 2 others left comments on your file</div>
+          </div>
+          <div class="text-base text-gray-300 m-0 mt-1">&#9733;</div>
+        </div>
+      </section>
+
+      <!-- reading pane: message m1 (full detail) -->
+      <section class="flex-1 bg-white px-10 py-8 flex flex-col">
+        <div class="flex items-start justify-between gap-4">
+          <h2 class="m-0 text-xl font-bold text-gray-900">Your receipt from Stripe</h2>
+          <div class="flex gap-2">
+            <button class="h-9 px-4 rounded-lg bg-indigo-600 text-white text-sm font-semibold text-center pt-1 pb-2 border-none">Reply</button>
+            <button class="h-9 px-4 rounded-lg bg-white border border-gray-200 text-gray-700 text-sm font-medium text-center pt-1 pb-2">Forward</button>
+            <button class="h-9 px-4 rounded-lg bg-white border border-gray-200 text-gray-700 text-sm font-medium text-center pt-1 pb-2">Archive</button>
+            <button class="h-9 px-4 rounded-lg bg-white border border-gray-200 text-gray-500 text-sm font-medium text-center pt-1 pb-2">Delete</button>
+          </div>
+        </div>
+
+        <div class="m-0 mt-6 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 font-bold text-lg text-center py-2 border-none">S</div>
+          <div class="flex-1 flex flex-col gap-1">
+            <div class="text-sm font-semibold text-gray-900">Stripe &lt;receipts@stripe.com&gt;</div>
+            <div class="text-xs text-gray-400">to you · Oct 3, 2026, 9:42 AM</div>
+          </div>
+          <div class="text-xl text-amber-400">&#9733;</div>
+        </div>
+
+        <div class="m-0 mt-5 h-px bg-gray-100"></div>
+
+        <div class="m-0 mt-5 flex flex-col gap-4">
+          <p class="m-0 text-sm leading-relaxed text-gray-600">Hi Rizky,</p>
+          <p class="m-0 text-sm leading-relaxed text-gray-600">Thanks for your payment of $249.00 to Activewear Co. This email serves as your receipt. You can also download the PDF version attached below for your records.</p>
+          <p class="m-0 text-sm leading-relaxed text-gray-600">If you have any questions about this charge, reply to this email or visit the customer portal.</p>
+          <p class="m-0 text-sm leading-relaxed text-gray-600">— The Stripe Team</p>
+        </div>
+
+        <div class="m-0 mt-8 border border-gray-200 rounded-xl bg-gray-50 p-4 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-lg bg-white border border-gray-200 text-gray-500 font-bold text-sm text-center py-2">PDF</div>
+          <div class="flex-1 flex flex-col gap-1">
+            <div class="text-sm font-semibold text-gray-900">receipt-2026-10-03.pdf</div>
+            <div class="text-xs text-gray-400">48 KB · PDF document</div>
+          </div>
+          <button class="h-9 px-4 rounded-lg bg-white border border-gray-200 text-indigo-600 text-sm font-semibold text-center pt-1 pb-2">Download</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>

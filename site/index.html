@@ -220,7 +220,7 @@ cd velqu-view-starter && ./dev.sh</code>
   <section class="border-y border-slate-200 dark:border-white/10 bg-transparent dark:bg-white/[0.02]">
     <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
       <div><div class="text-3xl font-extrabold text-slate-900 dark:text-white">0</div><div class="mt-1 text-sm text-slate-500">browsers, webviews, DOM runtimes</div></div>
-      <div><div class="text-3xl font-extrabold text-slate-900 dark:text-white">≤ 4px</div><div class="mt-1 text-sm text-slate-500">max layout drift vs Chromium, 6 sample sets</div></div>
+      <div><div class="text-3xl font-extrabold text-slate-900 dark:text-white">≤ 4px</div><div class="mt-1 text-sm text-slate-500">max layout drift vs Chromium, 7 sample sets</div></div>
       <div><div class="text-3xl font-extrabold text-slate-900 dark:text-white">3</div><div class="mt-1 text-sm text-slate-500">regression gates — profile, geometry, raster</div></div>
       <div><div class="text-3xl font-extrabold text-slate-900 dark:text-white">29</div><div class="mt-1 text-sm text-slate-500">integration tests in the starter app</div></div>
     </div>
@@ -329,7 +329,7 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
       <div class="max-w-2xl">
         <div class="eyebrow">SEE THE PROOF, SIDE BY SIDE</div>
         <h2 class="mt-4 text-4xl font-bold text-slate-900 dark:text-white tracking-tight">Same file. Two engines. Measured.</h2>
-        <p class="mt-4 text-slate-600 dark:text-slate-400">Six sample sets — a login card, a component stack, a chat UI, a full admin dashboard, a navigation &amp; feedback set, and a product page — each rendered by VelquView and by Chromium with real Tailwind v3.4. Geometry measured, not eyeballed.</p>
+        <p class="mt-4 text-slate-600 dark:text-slate-400">Seven sample sets — a login card, a component stack, a chat UI, a full admin dashboard, a navigation &amp; feedback set, a product page, and an email inbox — each rendered by VelquView and by Chromium with real Tailwind v3.4. Geometry measured, not eyeballed.</p>
       </div>
 
       <div class="mt-12">
@@ -404,6 +404,16 @@ view.<span class="c-fn">load_html</span>(<span class="c-str">r#"&lt;main class="
               <span class="pill pill-green">all 5 sections at 0px</span>
             </div>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Breadcrumb, stepper, progress, toasts, pagination — every section band identical. <span class="link">Full side-by-side on GitHub →</span></p>
+          </div>
+        </a>
+        <a href="https://github.com/ther12k/velqu-showcase/blob/main/inbox/compare.png" class="render-card">
+          <img src="assets/shot-inbox.webp" alt="Email inbox rendered by VelquView" width="1800" height="1265" loading="lazy" decoding="async">
+          <div class="p-5">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-slate-900 dark:text-white font-semibold">Email inbox</h3>
+              <span class="pill pill-green">structure at 0px drift</span>
+            </div>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Folder rail, message list with unread dots &amp; stars, reading pane with attachment card — every divider at identical coordinates. <span class="link">Full side-by-side on GitHub →</span></p>
           </div>
         </a>
         <a href="https://github.com/ther12k/velqu-showcase/blob/main/shop/compare.png" class="render-card">
@@ -583,12 +593,12 @@ reactive diagnostic: node 7 vx-show: expression has an unterminated string liter
       <!-- Samples -->
       <div class="doc-sec" id="doc-samples">
         <h3><span>Sample apps</span><a class="anchor" href="#doc-samples">§</a></h3>
-        <p>Six runnable apps live in the <a href="https://github.com/ther12k/velqu-showcase" class="link">velqu-showcase</a> repo — one command each:</p>
+        <p>Seven runnable apps live in the <a href="https://github.com/ther12k/velqu-showcase" class="link">velqu-showcase</a> repo — one command each:</p>
         <div class="code-card mt-4"><div class="code-head">run any sample</div>
 <pre><code>./target/release/velqu-view-starter --app-dir &lt;sample&gt; --data-dir /tmp/vv --size 1440x900
 <span class="c-cm"># &lt;sample&gt; = live/        17-section component showcase (HyperUI ports)</span>
 <span class="c-cm">#          dash/        telemetry dashboard — tabs, KPI ranges, takeover modal</span>
-<span class="c-cm">#          login/ ab/ chat/ windmill/   the four A/B comparison sets</span></code></pre>
+<span class="c-cm">#          login/ ab/ chat/ windmill/ shop/ inbox/   the A/B comparison sets</span></code></pre>
         </div>
         <p class="text-sm mt-4">The window title comes from the document's <code class="code-inline">&lt;title&gt;</code>; each sample is a plain directory — <code class="code-inline">index.html</code> plus any <code class="code-inline">*.css</code>, loaded in sorted cascade order.</p>
       </div>
