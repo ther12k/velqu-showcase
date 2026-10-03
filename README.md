@@ -80,7 +80,7 @@ application and its pins are untouched by this procedure.
 
 ## A/B sample sets (same HTML file, two engines)
 
-`login/`, `ab/`, `chat/`, `windmill/`, `flows/`, `shop/`, `inbox/` each hold ONE
+`login/`, `ab/`, `chat/`, `windmill/`, `flows/`, `shop/`, `inbox/`, `settings/` each hold ONE
 `index.html` rendered twice: by VelquView (native v0 utilities, via the
 starter's `--app-dir --headless --scale 2.0`) and by Chromium with real
 Tailwind v3.4.17 compiled from that same file's classes plus the
