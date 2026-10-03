@@ -3,4 +3,7 @@
   <url><loc>https://velquview.rizeva.my.id/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://velquview.rizeva.my.id/cookbook.html</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://velquview.rizeva.my.id/samples.html</loc><changefreq>monthly</changefreq></url>
+  <url>
+    <loc>https://velquview.rizeva.my.id/playground.html</loc>
+  </url>
 </urlset>

@@ -2,6 +2,7 @@
 // Serves VELQU_LANDING_DIST (absolute path, pinned by the systemd unit)
 // on 127.0.0.1:$VELQU_LANDING_PORT. No deps: plain node:http.
 const http = require("http");
+const zlib = require("zlib");
 const fs = require("fs");
 const path = require("path");
 
@@ -22,7 +23,12 @@ const TYPES = {
   ".xml": "application/xml; charset=utf-8",
   ".webp": "image/webp",
   ".woff2": "font/woff2",
+  ".wasm": "application/wasm",
 };
+
+// Compressible types get on-the-fly gzip (the wasm engine is ~3 MB
+// raw, ~0.8 MB gzipped); only when the client advertises support.
+const GZIP = new Set([".wasm", ".js", ".css", ".svg", ".html"]);
 
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, "http://localhost");
@@ -48,11 +54,19 @@ const server = http.createServer((req, res) => {
       });
       return;
     }
-    res.writeHead(200, {
+    const ext = path.extname(file).toLowerCase();
+    const common = {
       ...headers,
-      "content-type": TYPES[path.extname(file).toLowerCase()] || "application/octet-stream",
-      "cache-control": path.extname(file) === ".html" ? "no-cache" : "public, max-age=3600",
-    });
+      "content-type": TYPES[ext] || "application/octet-stream",
+      "cache-control": ext === ".html" ? "no-cache" : "public, max-age=3600",
+    };
+    if (GZIP.has(ext) && /gzip/.test(req.headers["accept-encoding"] || "")) {
+      zlib.gzip(buf, { level: 9 }, (gzErr, gz) => {
+        if (gzErr) { res.writeHead(200, common).end(buf); return; }
+        res.writeHead(200, { ...common, "content-encoding": "gzip", vary: "Accept-Encoding" }).end(gz);
+      });
+      return;
+    }
     res.end(buf);
   });
 });

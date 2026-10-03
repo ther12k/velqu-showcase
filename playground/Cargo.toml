@@ -1,0 +1,21 @@
+[package]
+name = "vv-playground"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# The landing site's live-render playground: the frozen VelquView
+# engine (vendored at engine/velqu-view, see its Cargo.toml header)
+# compiled to WebAssembly. Consumes the same PUBLIC API the starter
+# uses; the framework repository itself is untouched.
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+velqu-view = { path = "engine/velqu-view" }
+wasm-bindgen = "0.2"
+
+[profile.release]
+opt-level = "s"
+lto = true

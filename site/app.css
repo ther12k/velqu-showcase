@@ -586,3 +586,38 @@ html.dark .iso-tag { background: #101728; }
 }
 .use-icon svg { width: 20px; height: 20px; }
 html.dark .use-icon { color: #a78bfa; }
+
+/* ── playground page ── */
+textarea#html-in, textarea#css-in {
+  display: block; width: 100%; box-sizing: border-box;
+  height: 320px; resize: vertical;
+  padding: 16px;
+  font: 400 12px/1.6 'JetBrains Mono', ui-monospace, monospace;
+  color: #c9d2ee; background: #0b1020;
+  border: 0; outline: none;
+}
+textarea#css-in { height: 110px; border-top: 1px solid rgba(255,255,255,0.06); }
+.preset-btn {
+  font: 600 11px/1 'Inter', system-ui;
+  color: var(--muted); background: var(--panel);
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 7px 11px; cursor: pointer; transition: all .15s;
+}
+.preset-btn:hover { color: var(--heading); border-color: var(--border-strong); }
+.pg-select {
+  font: 600 12px/1 'Inter', system-ui; color: var(--heading);
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; cursor: pointer;
+}
+#frame { width: 100%; height: auto; display: block; background: #fff; }
+.pg-mono { font: 500 11px/1 'JetBrains Mono', monospace; color: var(--heading); }
+.pg-diags { display: flex; flex-direction: column; gap: 6px; max-height: 180px; overflow-y: auto; }
+.pg-diag-line {
+  font: 400 11px/1.5 'JetBrains Mono', monospace;
+  color: #b45309; background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 8px; padding: 7px 10px;
+}
+html.dark .pg-diag-line { color: #fbbf24; }
+.pill-amber { color: #b45309; background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(180, 83, 9, 0.35); }
+html.dark .pill-amber { color: #fcd34d; }

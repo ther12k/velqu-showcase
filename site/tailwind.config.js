@@ -1,4 +1,4 @@
 module.exports = {
   darkMode: 'class',
-  content: ['./index.html', './cookbook.html', './samples.html'],
+  content: ['./index.html', './cookbook.html', './samples.html', './playground.html'],
 };

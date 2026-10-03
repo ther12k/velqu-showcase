@@ -1,0 +1,15 @@
+# STUB of velqu-reactive for the wasm playground build.
+#
+# The real crate embeds QuickJS (rquickjs), which has no bindings for
+# wasm32-unknown-unknown. The playground keeps the reactive engine
+# disabled (static documents, like the A/B sets), so this stub mirrors
+# only the API surface velqu-view touches, with inert bodies:
+# compile() returns an empty plan (identical to the real compiler's
+# output for markup without vx-*/:attr/@event directives) and the turn
+# machine never prepares work. Native parity digests (tools in this
+# repo) prove the static pixel path is unaffected.
+[package]
+name = "velqu-reactive"
+version = "0.1.0"
+edition = "2021"
+publish = false

@@ -1,0 +1,39 @@
+# VENDORED from the frozen framework at rev 1d0a562 (identical at
+# 3c1ee34; `git diff 1d0a562 3c1ee34 -- crates/velqu-view` is empty).
+# Only two differences from upstream, both wasm-only and pixel-neutral:
+#   1. Cargo.toml flattened (was workspace-inherited deps) so this copy
+#      builds standalone; velqu-reactive/velqu-tailwind point at the
+#      same frozen git rev the starter pins.
+#   2. src/lib.rs: the two std::time::Instant instrumentation sites are
+#      cfg-gated — wasm32-unknown-unknown has no monotonic clock, and
+#      layout-duration stats / reactive-turn traces are the ONLY
+#      readers. Native builds compile byte-identical code paths.
+# Pixel neutrality is verified by frame-digest equality against the
+# real starter engine (tools/parity harness in this repo).
+[package]
+name = "velqu-view"
+description = "VelquView public renderer API: backend-independent document loading, offscreen frame rendering, and deterministic capture."
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.87"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ther12k/velqu-view"
+publish = false
+
+[dependencies]
+# fontdue: scalar path only (upstream comment: `simd` default-feature is
+# x86-gated and could rasterize differently on other architectures,
+# breaking fixture hashes).
+fontdue = { version = "0.9", default-features = false, features = ["std"] }
+png = "0.17"
+html5ever = "0.40"
+cssparser = "0.38"
+taffy = "0.14"
+unicode-segmentation = "1.13"
+# decode-only, feature-scoped to the M2c profile, single-threaded,
+# bounded by ImageLimits (mirrors the framework workspace pins)
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+sha2 = "0.10"
+# inert stub (see engine/velqu-reactive-stub): QuickJS has no wasm32 bindings; the playground never enables reactive
+velqu-reactive = { path = "../velqu-reactive-stub" }
+velqu-tailwind = { git = "https://github.com/ther12k/velqu-view.git", rev = "1d0a562bccdcb21c657423ca8b568cc2beebff88" }
